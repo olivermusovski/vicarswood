@@ -41,6 +41,8 @@
 					<h5>Total Price: ${{ number_format($totalPrice, 2) }}</h5>
 					<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 				</form>
+
+				asdfasdfasdfsa
 				--}}
     		</div>
     	</div>
