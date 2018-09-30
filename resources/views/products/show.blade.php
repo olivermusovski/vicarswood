@@ -15,6 +15,8 @@
 				<p>{{ $product->ProdProse }}</p>
 				<h5>Base Price: ${{ number_format($product->BasePrice, 2) }}</h5>
 				@php $totalPrice = $product->BasePrice; @endphp
+
+				{{--
 				{!! Form::open() !!}
 					@php $grouped = $product->options->groupBy('PositionName'); @endphp
 					@foreach($grouped as $group => $member)
@@ -24,8 +26,12 @@
 						@endforeach
 					@endforeach
 				{!! Form::close() !!}
-				{{--
-				<form action="">
+				--}}
+
+				
+				<form method="POST" action="">
+					@csrf
+
 					@php $grouped = $product->options->groupBy('PositionName'); @endphp
 					@foreach($grouped as $group => $member)
 						<div class="form-group">
@@ -41,9 +47,6 @@
 					<h5>Total Price: ${{ number_format($totalPrice, 2) }}</h5>
 					<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
 				</form>
-
-				asdfasdfasdfsa
-				--}}
     		</div>
     	</div>
     </div>
