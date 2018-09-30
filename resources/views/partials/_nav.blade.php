@@ -1,5 +1,5 @@
 <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+    <nav class="navbar navbar-expand-md navbar-light navbar-laravel shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
                 {{ config('app.name', 'Vicarswood') }}
@@ -11,10 +11,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a class="nav-link" href="{{ url('/products') }}">{{ __('Product') }}</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item ml-4">
                         <a class="nav-link" href="{{ url('/about') }}">{{ __('About') }}</a>
                     </li>
                 </ul>
@@ -23,13 +23,13 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
-                        <li class="nav-item">
+                        <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item mr-4">
                             <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}</a>
                         </li>
                     @else
