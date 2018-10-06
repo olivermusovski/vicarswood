@@ -24,3 +24,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // Products
 Route::resource('/products', 'ProductController');
+
+// Cart
+Route::resource('/cart', 'CartController');

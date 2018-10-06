@@ -12,7 +12,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item ml-4">
-                        <a class="nav-link" href="{{ url('/products') }}">{{ __('Product') }}</a>
+                        <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
                     </li>
                     <li class="nav-item ml-4">
                         <a class="nav-link" href="{{ url('/about') }}">{{ __('About') }}</a>
@@ -30,7 +30,7 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         <li class="nav-item mr-4">
-                            <a class="nav-link" href="#"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}</a>
                         </li>
                     @else
                         <li class="nav-item dropdown">
