@@ -30,7 +30,12 @@
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
                         <li class="nav-item mr-4">
-                            <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}</a>
+                            <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}
+                                @if (!Cart::isEmpty())
+                                    <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
+                                @endif
+                            </a>
+            
                         </li>
                     @else
                         <li class="nav-item dropdown">

@@ -35,9 +35,25 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        \Cart::add($request->id, $request->name, 1, $request->price);
+        if(\Cart::get($request->id)) {
+            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart.');
+        }
+
+        else {
+
+        \Cart::add([
+            'id' => $request->id, 
+            'name' => $request->name, 
+            'price' => $request->price, 
+            'quantity' => 1, 
+            'attributes' => [
+                'desc' => $request->desc
+            ]
+        ]);
 
         return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
+
+        }
     }
 
     /**
@@ -82,6 +98,8 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        //
+        \Cart::remove($id);
+
+        return back()->with('success_message', 'Item has been removed.');
     }
 }

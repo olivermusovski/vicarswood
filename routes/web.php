@@ -27,3 +27,8 @@ Route::resource('/products', 'ProductController');
 
 // Cart
 Route::resource('/cart', 'CartController');
+
+// Empty cart
+Route::get('/empty', function() {
+	\Cart::clear();
+});

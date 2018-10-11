@@ -36,6 +36,7 @@
 					<input type="hidden" name="id" value="{{ $product->id }}">
 					<input type="hidden" name="name" value="{{ $product->ProdName }}">
 					<input type="hidden" name="price" value="{{ $product->BasePrice }}">
+					<input type="hidden" name="desc" value="{{ $product->ProdDesc }}">
 					<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> Add to Cart</button>	
 				</form>
 				

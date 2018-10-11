@@ -73,7 +73,11 @@
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         <a href="{{ route('register') }}">Register</a>
-                        <a href="{{ route('cart.index') }}">Cart</a>
+                        <a href="{{ route('cart.index') }}">Cart
+                            @if (!Cart::isEmpty())
+                                <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
+                            @endif
+                        </a>
                     @endauth
                 </div>
             @endif
