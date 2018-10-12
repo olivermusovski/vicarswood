@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Darryldecode\Cart\CartCondition;
-use App\ProductOption;
 
-class CartController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +13,7 @@ class CartController extends Controller
      */
     public function index()
     {
-        return view('cart.index');
+        return view('checkout.index');
     }
 
     /**
@@ -36,39 +34,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
-        if(\Cart::get($request->id)) {
-            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart.');
-        }
-
-        else {
-
-            foreach ($request->options as $option) {
-                $productOptions[] = ProductOption::find($option);
-            }
-
-            foreach ($productOptions as $productOption) {
-                $itemConditions[] = new CartCondition([
-                    'name' => $productOption->OptName,
-                    'type' => 'option',
-                    'value' => $productOption->OptPrice,
-                ]);
-            }
-
-            \Cart::add([
-                'id' => $request->id, 
-                'name' => $request->name, 
-                'price' => $request->price, 
-                'quantity' => 1, 
-                'attributes' => [
-                    'desc' => $request->desc
-                ],
-                'conditions' => $itemConditions
-            ]);
-
-            return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
-
-        }
+        //
     }
 
     /**
@@ -113,8 +79,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        \Cart::remove($id);
-
-        return back()->with('success_message', 'Item has been removed.');
+        //
     }
 }

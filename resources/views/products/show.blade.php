@@ -15,24 +15,23 @@
 				<p>{{ $product->ProdProse }}</p>
 				<h5>Base Price: ${{ number_format($product->BasePrice, 2) }}</h5>
 				@php $totalPrice = $product->BasePrice; @endphp
-
-				@php $grouped = $product->options->groupBy('PositionName'); @endphp
-				@foreach($grouped as $group => $member)
-					<div class="form-group">
-						<label for="finish">{{ $group }}</label>
-						<select name="finish" id="finish" class="form-control">
-							@foreach($member as $eachmember)
-								<option value="">{{ $eachmember->OptName }} - ${{ number_format($eachmember->OptPrice, 2) }}</option>
-							@endforeach
-						</select>
-					</div>
-				@endforeach
-				@php $totalPrice += $eachmember->OptPrice; @endphp
-				<h5>Total Price: ${{ number_format($totalPrice, 2) }}</h5>
-
+				
 				<form action="{{ route('cart.store') }}" method="POST">
+
 					@csrf
-					
+
+					@php $optionName = $product->options->groupBy('PositionName'); @endphp
+					@foreach($optionName as $option => $member)
+						<div class="form-group">
+							<label for="options[]">{{ $option }}</label>
+							<select name="options[]" class="form-control">
+								@foreach($member as $eachmember)
+									<option value="{{ $eachmember->id }}">{{ $eachmember->OptName }} - ${{ number_format($eachmember->OptPrice, 2) }}</option>
+								@endforeach
+							</select>
+						</div>
+					@endforeach
+
 					<input type="hidden" name="id" value="{{ $product->id }}">
 					<input type="hidden" name="name" value="{{ $product->ProdName }}">
 					<input type="hidden" name="price" value="{{ $product->BasePrice }}">

@@ -32,3 +32,6 @@ Route::resource('/cart', 'CartController');
 Route::get('/empty', function() {
 	\Cart::clear();
 });
+
+// Checkout
+Route::resource('/checkout', 'CheckoutController');

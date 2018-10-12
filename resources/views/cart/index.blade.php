@@ -35,6 +35,10 @@
 						<div class="mt-4">
 							<div class="row"><a href="{{ route('products.show', $item->id) }}">{{ $item->name }}</a></div>
 							<div class="row"><p>{{ $item->attributes->desc }}</p></div>
+							@foreach ($item->conditions as $condition)
+								<div class="row"><p>{{ $condition->getName() }} +${{ $condition->getValue() }}</p></div>										
+							@endforeach
+							
 						</div>
 					</div>
 					<div class="col mt-4">
@@ -77,6 +81,12 @@
 				</div>
 			</div>
 			
+			<div class="row">
+				<div class="col-md-5 offset-md-7 text-right mt-4">
+					<a href="{{ route('products.index') }}" class="btn btn-secondary">Continue Shopping</a>
+					<a href="{{ route('checkout.index') }}" class="btn btn-primary">Proceed to Checkout</a>
+				</div>
+			</div>
 
 		@endif
 		
