@@ -15,6 +15,7 @@
 Route::get('/', 'PageController@index');
 Route::get('/about', 'PageController@about');
 Route::get('/test', 'PageController@test');
+Route::get('/confirmation', 'PageController@confirmation')->name('confirmation');
 
 // Authentication
 Auth::routes();

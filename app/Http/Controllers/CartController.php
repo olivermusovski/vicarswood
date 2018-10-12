@@ -44,14 +44,14 @@ class CartController extends Controller
         else {
 
             foreach ($request->options as $option) {
-                $productOptions[] = ProductOption::find($option);
-            }
-
-            foreach ($productOptions as $productOption) {
+                $productOption = ProductOption::find($option);
                 $itemConditions[] = new CartCondition([
                     'name' => $productOption->OptName,
                     'type' => 'option',
                     'value' => $productOption->OptPrice,
+                    'attributes' => [
+                        'id' => $productOption->id
+                    ]
                 ]);
             }
 

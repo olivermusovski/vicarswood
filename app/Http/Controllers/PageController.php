@@ -18,6 +18,15 @@ class PageController extends Controller
         return view('pages.about');
     }
 
+    public function confirmation()
+    {
+        if(! session()->has('success_message')) {
+            return redirect('/');
+        }
+        
+        return view('pages.confirmation');
+    }
+
     public function test()
     {
     	

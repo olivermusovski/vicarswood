@@ -22,19 +22,11 @@
 			</div>
 		@endif
 
-		<div class="row">
-			<div class="col-md-7">
-				<form action="{{ route('checkout.store') }}" method="POST">
-					@csrf
-					<hr>
-					<button type="submit" class="btn btn-primary btn-block">Complete Order</button>
-				</form>
-			</div>
-			<div class="col-md-5">
-
-				
-			</div>
-		</div>
+		<h1>Thank you for your order!</h1>
+		
 	</div>
+	
+
+
 
 @endsection
