@@ -8,7 +8,7 @@
     	<h1 class="font-weight-bold mb-4">Product Page</h1>
     	<div class="row">
     		<div class="col-md-4">
-				<img src="#" alt="" width="300" height="300">
+				<a href="#"><img src="#" alt="product" class="rounded" style="width: 300px; height: 300px; border: solid;"></a>
     		</div>
     		<div class="col-md-8">
     			<h3>{{ $product->ProdName." - ".$product->ProdDesc }}</h3>

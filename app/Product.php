@@ -19,4 +19,13 @@ class Product extends Model
     public function packagings(){
     	return $this->hasMany('App\ProductPackaging', 'BaseNBR');
     }
+
+    // calculation functions
+
+    // calculates the base cost of the product
+    public function getCost() {
+        $cost = $this->BaseStdLabor + $this->BaseStdMaterial + $this->BaseStdOverhead;
+        return $cost;
+    }
+
 }

@@ -39,17 +39,15 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //dd(\Cart::getContent());
 
         // store order
         $order = new Order;
-
+        $order->OrderStatus = 'Order';
         $order->OrdLanguage = 'EN';
         $order->user_id = auth()->user() ? auth()->user()->id : null;
         $order->UserEmail = auth()->user() ? auth()->user()->email : null;
         $order->UpdatedBy = 1;
         $order->DateOrdered = date('Y-m-d h:i:s');
-
         $order->save();
 
         //store order lines
@@ -60,13 +58,17 @@ class CheckoutController extends Controller
 
             // create new order line
             $orderLine = new OrderLine;
-
             $orderLine->order_id = $order->id;
+            $orderLine->LineTypeID = 1;
             $orderLine->BaseNBR = $product->BaseNBR;
+            $partNumber = $product->BaseNBR;
+            $partDescription = $product->ProdDesc.' ('.$product->ProdName.") \n";
             $orderLine->BasePrice = $product->BasePrice;
+            $partPrice = $product->BasePrice;
+            $orderLine->BaseCost = $product->getCost();
+            $partCost = $product->getCost();
             $orderLine->Qty = $item->quantity;
             $orderLine->ProductDesc = $item->attributes->desc;
-
             $orderLine->save();
 
             foreach ($item->conditions as $condition) {
@@ -74,17 +76,26 @@ class CheckoutController extends Controller
                 $option = ProductOption::find($condition->getAttributes()['id']);
 
                 $lineOption = new OrderOption;
-
                 $lineOption->orderLine_id = $orderLine->id;
                 $lineOption->OptCode = $option->OptCode;
                 $lineOption->OptPosition = $option->OptPosition;
+                $partNumber .= '-'.$option->OptCode.$option->OptPosition;
+                $partDescription .= 'OPTION '.$option->OptCode.$option->OptPosition.' - '.$option->OptName.' $'.$condition->getValue()." \n";
                 $lineOption->PositionName = $option->PositionName;
                 $lineOption->OptName = $condition->getName();
                 $lineOption->OptPrice = $condition->getValue();
-
+                $lineOption->OptCost = $option->getCost();
+                $partPrice += $condition->getValue();
+                $partCost += $option->getCost();
                 $lineOption->save();
 
             }
+
+            $orderLine->PartNBR = $partNumber;
+            $orderLine->PartDesc = $partDescription;
+            $orderLine->PartPrice = $partPrice;
+            $orderLine->PartCost = $partCost;
+            $orderLine->save();
         }
 
         return redirect()->route('confirmation')->with('success_message', 'Thank you for your order!');
