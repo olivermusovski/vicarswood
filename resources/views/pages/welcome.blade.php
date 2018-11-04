@@ -11,6 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <style>
             html, body {
                 background-color: #fff;
@@ -85,6 +86,8 @@
             <div class="content">
                 <div class="title m-b-md">
                     Vicarswood
+                    <i class="fas fa-shopping-cart"></i>
+                    <i class="fas fa-archive"></i>
                 </div>
 
                 <div class="links">

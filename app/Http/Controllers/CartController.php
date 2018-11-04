@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Darryldecode\Cart\CartCondition;
 use App\ProductOption;
 
@@ -102,7 +103,26 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'quantity' => 'required|numeric|between:1,5'
+        ]);
+
+        if($validator->fails()) {
+            session()->flash('errors', 'Quantity must be between 1 and 5');
+            return response()->json(['success' => false], 400);
+        }
+
+
+        \Cart::update($id, array(
+            'quantity' => [
+                'relative' => false,
+                'value' => $request->quantity
+            ],
+        ));
+
+        session()->flash('success_message', 'Quantity was updated successfully!');
+
+        return response()->json(['success' => true]);
     }
 
     /**

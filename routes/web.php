@@ -34,5 +34,10 @@ Route::get('/empty', function() {
 	\Cart::clear();
 });
 
+// Show cart contents
+Route::get('/showcart', function() {
+	dd(\Cart::getContent());
+});
+
 // Checkout
 Route::resource('/checkout', 'CheckoutController');

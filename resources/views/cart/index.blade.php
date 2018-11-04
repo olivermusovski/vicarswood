@@ -26,7 +26,7 @@
 			<h3>No items in Shopping Cart</h3>
 			<a href="{{ route('products.index') }}" class="btn btn-primary"><-- Continue Shopping</a>
 		@else
-			<h2>{{ Cart::getContent()->count() }} item(s) in Shopping Cart</h2>
+			<h2>{{ Cart::getTotalQuantity() }} item(s) in Shopping Cart</h2>
 			<hr>
 			@foreach ( Cart::getContent() as $item)
 				<div class="row mb-3">
@@ -34,11 +34,10 @@
 						<a href="{{ route('products.show', $item->id) }}"><img src="#" alt="item" class="rounded float-left mr-2" style="width: 150px; height: 150px; border: solid;"></a>
 						<div class="mt-4">
 							<div class="row"><a href="{{ route('products.show', $item->id) }}">{{ $item->name }}</a></div>
-							<div class="row"><p>{{ $item->attributes->desc }}</p></div>
+							<div class="row"><p>{{ $item->attributes->desc }} ${{ $item->price }}</p></div>
 							@foreach ($item->conditions as $condition)
-								<div class="row"><p>{{ $condition->getName() }} +${{ $condition->getValue() }}</p></div>										
-							@endforeach
-							
+								<div class="row"><p>{{ $condition->getName() }} +${{ $condition->getValue() }}</p></div>
+							@endforeach				
 						</div>
 					</div>
 					<div class="col mt-4">
@@ -52,16 +51,14 @@
 						<div class="row"><a href="#">Save for later</a></div>
 					</div>
 					<div class="col mt-4">
-						<select name="" id="" class="form-control">
-							<option value="" selected="">1</option>
-							<option value="">2</option>
-							<option value="">3</option>
-							<option value="">4</option>
-							<option value="">5</option>
+						<select name="" class="form-control quantity" data-id="{{ $item->id }}">
+							@for($i = 1; $i <= 5; $i++)
+								<option value="{{ $i }}" {{ $item->quantity == $i ? 'selected' : '' }}>{{ $i }}</option>
+							@endfor
 						</select>
 					</div>
 					<div class="col mt-4">
-						<div>${{ number_format($item->price, 2) }}</div>
+						<div>${{ number_format($item->getPriceWithConditions(), 2) }}</div>
 					</div>
 				</div>
 				<hr>
@@ -72,10 +69,9 @@
 					<div class="card text-right">
 					  <div class="card-body">
 					    <p class="card-text">Subtotal: {{ number_format(Cart::getSubTotal(), 2) }} </p>
-					    <p class="card-text">Tax: {{ number_format(Cart::getSubTotal() * 0.0825, 2) }} </p>
 					  </div>
 					  <div class="card-footer text-muted">
-					    <h4>Total: {{ number_format(Cart::getTotal() + (Cart::getSubTotal() * 0.0825), 2) }}</h4>
+					    <h4>Total: {{ number_format(Cart::getTotal(), 2) }}</h4>
 					  </div>
 					</div>
 				</div>
@@ -95,10 +91,28 @@
 @endsection
 
 @section('scripts')	
+	
+	<script src="{{ asset('js/app.js') }}"></script>
 
 	<script>
 		(function() {
-			alert('hi');
+			const classname = document.querySelectorAll('.quantity')
+
+			Array.from(classname).forEach(function(element) {
+				element.addEventListener('change', function() {
+					const id = element.getAttribute('data-id')
+					axios.patch(`/cart/${id}`, {
+						quantity: this.value
+					})
+					.then(function(response) {
+						window.location.href = '{{ route('cart.index') }}'
+					})
+					.catch(function(error) {
+						console.log(error);
+						window.location.href = '{{ route('cart.index') }}'
+					});
+				})
+			})
 		})();
 	</script>
 

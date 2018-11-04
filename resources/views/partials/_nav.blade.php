@@ -38,6 +38,13 @@
             
                         </li>
                     @else
+                        <li class="nav-item mr-4">
+                            <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}
+                                @if (!Cart::isEmpty())
+                                    <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
+                                @endif
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>

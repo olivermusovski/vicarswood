@@ -94,7 +94,9 @@ class CheckoutController extends Controller
             $orderLine->PartNBR = $partNumber;
             $orderLine->PartDesc = $partDescription;
             $orderLine->PartPrice = $partPrice;
+            $orderLine->ExtPartPrice = $partPrice * $item->quantity;
             $orderLine->PartCost = $partCost;
+            $orderLine->ExtPartCost = $partCost * $item->quantity;
             $orderLine->save();
         }
 
