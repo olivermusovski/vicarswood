@@ -1,102 +1,29 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('app')
 
-        <title>Vicarswood</title>
+@section('title')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+@section('content')
+            
+    <div class="container">
 
-        <!-- Styles -->
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+        <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto d-block" alt="">
 
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                        <a href="{{ route('cart.index') }}">Cart
-                            @if (!Cart::isEmpty())
-                                <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
-                            @endif
-                        </a>
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Vicarswood
-                    <i class="fas fa-shopping-cart"></i>
-                    <i class="fas fa-archive"></i>
-                </div>
-
-                <div class="links">
-                    <a href="#">Home</a>
-                    <a href="{{ route('products.index') }}">Products</a>
-                    <a href="#">Account</a>
-                    <a href="/about">About</a>
-                </div>
-            </div>
+        <div class="row mt-5">
+            <p>
+                Welcome to Vicarswood.  We are a small workshop offering a choice of craft furniture pieces to add to your home or office.  Timber is hand selected as you would expect from high-end manufacturer.  However, the difference may be found within its workmanship, design and finishes.  We build and finish everything by hand and proudly package all for a safe journey to their next home.
+            </p>
+            <p>
+                Our focus continues targeting desks and chests.  Products have been a solution to family issues and comfort to its selfish desires.   If it were for everybody, Vicarswood, indeed would be a mass manufacturing.  But, our customers are limited to those that share an appreciation for unique function and style.  We like that.
+            </p>
+            <p> 
+                Final finishing remains more of an art than a process.  It involves seven-coats chemistry and discipline to yield rich depth and natural beauty.  It’s important that it is durable as it is beautiful.  Selections are many and dyes are available as well.  Old and new schools coexist.  Our two favorites are the grey and turquoise.
+            </p>
+            <p>
+                For more information, check out our About page.
+            </p>
         </div>
-    </body>
-</html>
+
+    </div>
+ 
+ @endsection
+ 

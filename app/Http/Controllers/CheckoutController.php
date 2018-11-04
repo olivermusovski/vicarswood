@@ -8,6 +8,7 @@ use App\OrderLine;
 use App\OrderOption;
 use App\Product;
 use App\ProductOption;
+use App\Address;
 
 class CheckoutController extends Controller
 {
@@ -39,6 +40,31 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
+
+        //store shipping address
+        $shipping = new Address;
+        $shipping->UserEmail = $request->UserEmailShip;
+        $shipping->AddressType = 'ShipTo';
+        $shipping->Attention = $request->AttentionShip;
+        $shipping->Street1 = $request->Street1Ship;
+        $shipping->City = $request->CityShip;
+        $shipping->Province = $request->ProvinceShip;
+        $shipping->PostalCode = $request->PostalCodeShip;
+        $shipping->PhoneNumber = $request->PhoneNumberShip;
+        $shipping->save();
+
+        //store billing address
+        $billing = new Address;
+        $billing->UserEmail = $request->UserEmailBill;
+        $billing->AddressType = 'BillTo';
+        $billing->Attention = $request->AttentionBill;
+        $billing->Street1 = $request->Street1Bill;
+        $billing->City = $request->CityBill;
+        $billing->Province = $request->ProvinceBill;
+        $billing->PostalCode = $request->PostalCodeBill;
+        $billing->PhoneNumber = $request->PhoneNumberBill;
+        $billing->save();
 
         // store order
         $order = new Order;
@@ -46,6 +72,8 @@ class CheckoutController extends Controller
         $order->OrdLanguage = 'EN';
         $order->user_id = auth()->user() ? auth()->user()->id : null;
         $order->UserEmail = auth()->user() ? auth()->user()->email : null;
+        $order->BillToId = $billing->id;
+        $order->ShipToId = $shipping->id;
         $order->UpdatedBy = 1;
         $order->DateOrdered = date('Y-m-d h:i:s');
         $order->save();
