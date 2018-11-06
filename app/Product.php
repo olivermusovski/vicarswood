@@ -9,7 +9,11 @@ class Product extends Model
     protected $table = 'ProductHeaders';
 
     public function details(){
-    	return $this->hasMany('App\ProductDetail', 'BaseNBR');
+    	return $this->hasMany('App\ProductDetail', 'BaseNBR', 'BaseNBR');
+    }
+
+    public function detail(){
+        return $this->hasOne('App\ProductDetail', 'BaseNBR', 'BaseNBR')->limit(1)->where('ObjectSequence', 1);
     }
 
     public function options(){

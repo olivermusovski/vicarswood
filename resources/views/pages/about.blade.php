@@ -7,9 +7,9 @@
     <div class="container">
 		
 		<div class="row justify-content-md-center">
-			<div class="col-md-8">
+			<div class="col-md-9">
 				<h1>About</h1>
-	        	<p>
+	        	<h4>
 	        		Robert Sargeant began fine working and supplied unique furniture to Northern California.  His son endured the apprenticeship and inherited the tools in 2014.  These skills and tools formed Vicarswood.  Located now in Las Vegas, this small workshop offers an interesting place to work as well as producing progressive furniture.
 					<br><br>
 					Desks and Chest of Drawers remain priority.  All products are all built-to-order.  Custom finishes, hardware and other options are available to uniquely configure furniture to an order specification.  To support that, please expect a 6-8 week lead-time to receive your order and be confident that Vicarswood warrants its workmanship.  But since all product are built-to-order, refunds are not allowed.  
@@ -28,7 +28,7 @@
 					customersupport@vicarswood.com
 					<br><br>
 					Inspired by wood?  View job openings at Careers with Vicarswood
-	        	</p>
+	        	</h4>
         	</div>
 		</div>
         

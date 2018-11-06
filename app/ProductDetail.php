@@ -9,6 +9,6 @@ class ProductDetail extends Model
 	protected $table = 'ProductDetails';
 
     public function product(){
-    	return $this->belongsTo('App\Product', 'BaseNBR');
+    	return $this->belongsTo('App\Product', 'BaseNBR', 'BaseNBR');
     }
 }

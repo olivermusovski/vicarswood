@@ -9,7 +9,7 @@
     	<div class="row">
     		@foreach($products as $product)
 	    		<div class="col-md-3">
-	    			<a href="#"><img src="#" alt="product" class="rounded" style="width: 100px; height: 100px; border: solid;"></a>
+	    			<a href="{{ route('products.show', $product->id) }}"><img src="{{ asset('images/'.$product->detail->ObjectFile) }}" alt="product" class="rounded img-fluid"></a>
 	    		</div>
 	    		<div class="col-md-9">
 					<h3>{{ $product->ProdName." - ".$product->ProdDesc }}</h3>
