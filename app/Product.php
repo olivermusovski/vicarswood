@@ -24,6 +24,10 @@ class Product extends Model
     	return $this->hasMany('App\ProductPackaging', 'BaseNBR');
     }
 
+    public function orderLine(){
+        return $this->belongsTo('App\OrderLine', 'BaseNBR', 'BaseNBR');
+    }
+
     // calculation functions
 
     // calculates the base cost of the product

@@ -17,6 +17,7 @@ Route::get('/about', 'PageController@about');
 Route::get('/test', 'PageController@test');
 Route::get('/confirmation', 'PageController@confirmation')->name('confirmation');
 
+
 // Authentication
 Auth::routes();
 
@@ -41,3 +42,5 @@ Route::get('/showcart', function() {
 
 // Checkout
 Route::resource('/checkout', 'CheckoutController');
+Route::post('/checkout-addresses', 'CheckoutController@storeAddresses')->name('checkout.storeAddresses');
+Route::get('/checkout-review', 'CheckoutController@review')->name('review');

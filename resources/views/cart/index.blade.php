@@ -79,8 +79,11 @@
 			
 			<div class="row">
 				<div class="col-md-5 offset-md-7 text-right mt-4">
-					<a href="{{ route('products.index') }}" class="btn btn-secondary">Continue Shopping</a>
-					<a href="{{ route('checkout.index') }}" class="btn btn-primary">Proceed to Checkout</a>
+					<a href="{{ route('products.index') }}" class="btn btn-secondary mr-2">Continue Shopping</a>
+					<form action="{{ route('checkout.store') }}" method="POST" class="float-right">
+						@csrf
+						<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
+					</form>
 				</div>
 			</div>
 

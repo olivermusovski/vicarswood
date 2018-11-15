@@ -23,6 +23,16 @@ class CheckoutController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function review()
+    {
+        return view('checkout.review');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -32,13 +42,13 @@ class CheckoutController extends Controller
         //
     }
 
-    /**
+     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeAddresses(Request $request)
     {
         //dd($request);
 
@@ -66,14 +76,86 @@ class CheckoutController extends Controller
         $billing->PhoneNumber = $request->PhoneNumberBill;
         $billing->save();
 
+        //attach addresses to order
+        $order = Order::find($request->order_id);
+        $order->BillToId = $billing->id;
+        $order->ShipToId = $shipping->id;
+        $order->save();
+
+        $this->calculateShipping($shipping, $order);
+        $this->calculateTaxes($shipping, $order);
+
+        return view('checkout.review')->withOrder($order);
+    }
+
+    public function calculateShipping(Address $shipping, Order $order)
+    {
+        //calculate shipping
+        $price = 20;
+
+        $orderLine = new OrderLine;
+        $orderLine->order_id = $order->id;
+        $orderLine->LineTypeID = 5;
+        $orderLine->BaseNBR = null;
+        $orderLine->BasePrice = 0;
+        $orderLine->BaseCost = 0;
+        $orderLine->Qty = 0;
+        $orderLine->Taxable = 0;
+        $orderLine->ProductDesc = 'Freight';
+        $orderLine->PartDesc = 'Shipping & Handling';
+        $orderLine->PartPrice = $price;
+        $orderLine->ExtPartPrice = $price;
+        $orderLine->PartCost = 0;
+        $orderLine->ExtPartCost = 0;
+        $orderLine->SalesTax = 0;
+        $orderLine->save();
+
+        return;
+    }
+
+    public function calculateTaxes(Address $shipping, Order $order)
+    {
+        //calculate tax
+        $price = 102.67;
+
+        $orderLine = new OrderLine;
+        $orderLine->order_id = $order->id;
+        $orderLine->LineTypeID = 4;
+        $orderLine->BaseNBR = null;
+        $orderLine->BasePrice = 0;
+        $orderLine->BaseCost = 0;
+        $orderLine->Qty = 0;
+        $orderLine->Taxable = 0;
+        $orderLine->ProductDesc = 'Sales Tax';
+        $orderLine->PartDesc = 'Sales Tax';
+        $orderLine->PartPrice = $price;
+        $orderLine->ExtPartPrice = $price;
+        $orderLine->PartCost = 0;
+        $orderLine->ExtPartCost = 0;
+        $orderLine->SalesTax = 1;
+        $orderLine->save();
+
+        return;
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //dd($request);
+
+        
+
         // store order
         $order = new Order;
-        $order->OrderStatus = 'Order';
+        $order->OrderStatus = 'Started';
         $order->OrdLanguage = 'EN';
         $order->user_id = auth()->user() ? auth()->user()->id : null;
         $order->UserEmail = auth()->user() ? auth()->user()->email : null;
-        $order->BillToId = $billing->id;
-        $order->ShipToId = $shipping->id;
         $order->UpdatedBy = 1;
         $order->DateOrdered = date('Y-m-d h:i:s');
         $order->save();
@@ -125,10 +207,11 @@ class CheckoutController extends Controller
             $orderLine->ExtPartPrice = $partPrice * $item->quantity;
             $orderLine->PartCost = $partCost;
             $orderLine->ExtPartCost = $partCost * $item->quantity;
+            $orderLine->SalesTax = 1;
             $orderLine->save();
         }
 
-        return redirect()->route('confirmation')->with('success_message', 'Thank you for your order!');
+        return view('checkout.index')->withOrder($order);//->with('success_message', 'Thank you for your order!');
 
     }
 

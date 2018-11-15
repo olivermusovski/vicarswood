@@ -15,4 +15,8 @@ class OrderLine extends Model
     public function options(){
     	return $this->hasMany('App\OrderOption', 'orderLine_id');
     }
+
+    public function product(){
+    	return $this->hasOne('App\Product', 'BaseNBR', 'BaseNBR');
+    }
 }

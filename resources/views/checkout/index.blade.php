@@ -25,7 +25,7 @@
 		<h1>Checkout</h1>
 
 		<div class="col-md-7">
-			<form action="{{ route('checkout.store') }}" method="POST">
+			<form action="{{ route('checkout.storeAddresses') }}" method="POST">
 				@csrf
 				<h2>Shipping Details</h2>
 
@@ -129,8 +129,10 @@
 
 				<hr>
 
+				<input type="hidden" name="order_id" value="{{ $order->id }}">
+
 				<div class="row">
-					<button type="submit" class="btn btn-primary btn-block">Complete Order</button>
+					<button type="submit" class="btn btn-primary btn-block">Proceed to Order Review</button>
 				</div>
 
 			</form>
