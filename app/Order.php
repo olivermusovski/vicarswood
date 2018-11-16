@@ -15,4 +15,19 @@ class Order extends Model
     public function lines(){
     	return $this->hasMany('App\OrderLine', 'order_id');
     }
+
+    //calculations
+    public function getSubTotal() {
+    	$subTotal = 0;
+
+    	foreach($this->lines as $orderLine) {
+
+    		if($orderLine->LineTypeID == 1) {
+    			$subTotal += $orderLine->ExtPartPrice;
+    		}
+    	}
+
+    	return $subTotal;
+    }
+
 }

@@ -79,23 +79,32 @@
 				@foreach($order->lines as $orderLine)
 					@if($orderLine->LineTypeID == 1)
 						<div class="row">
-							<div class="col-md-2">
-								{{-- <img src="{{ asset('images/'.$orderLine->product->detail->ObjectFile }}" alt=""> --}}
-								<img src="" alt="product" class="rounded img-fluid">
+							<div class="col-md-2 align-self-center">
+								<img src="{{ asset('images/'.$orderLine->product->detail->ObjectFile) }}" alt="product" class="rounded img-fluid">
 							</div>
 							<div class="col-md-8">
 								<div class="row">
-									<h5>{{ $orderLine->product->ProdName }}</h5>
+									<h5 class="mb-1">{{ $orderLine->product->ProdName }}</h5>
 								</div>
 								<div class="row">
 									@foreach($orderLine->options as $orderOption)
-										<p>{{ $orderOption->OptName }}</p>
+										<p class="mb-1">{{ $orderOption->OptName }}</p>
 									@endforeach
 								</div>
+								<div class="row">
+									<p class="mb-1">${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								</div>
+							</div>
+							<div class="col-md-2 align-self-center">
+								<h5>{{ $orderLine->Qty }}</h5>
 							</div>
 						</div>
+						<hr>
 					@endif
 				@endforeach
+
+				<h4>Subtotal: {{ $order->getSubTotal() }}</h4>
+				
 
 			</div>
 		</div>
