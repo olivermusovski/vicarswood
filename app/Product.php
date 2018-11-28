@@ -36,4 +36,23 @@ class Product extends Model
         return $cost;
     }
 
+    public function getPriceRange() {
+        $basePrice = $this->BasePrice;
+        $highestPrice = $this->BasePrice;
+
+        $optionCode = $this->options->groupBy('OptCode');
+        foreach ($optionCode as $option => $member) {
+            $highestOption = 0;
+            foreach ($member as $eachmember) {
+                if ($eachmember->OptPrice > $highestOption) {
+                    $highestOption = $eachmember->OptPrice;
+                }
+            }
+            $highestPrice += $highestOption;
+        }
+
+        $result = "$".number_format($basePrice,2)." - "."$".number_format($highestPrice,2);
+        return $result;
+    }
+
 }

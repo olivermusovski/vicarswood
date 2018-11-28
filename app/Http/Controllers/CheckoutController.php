@@ -216,6 +216,22 @@ class CheckoutController extends Controller
     }
 
     /**
+     * Complete the order
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function completeOrder(Request $request)
+    {
+        //dd($request);
+        $order = Order::find($request->order_id);
+        $order->OrderStatus = 'Entered';
+        $order->save();
+        
+        return redirect()->route('confirmation')->with('success_message', 'You order has been entered!');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id

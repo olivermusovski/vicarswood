@@ -26,7 +26,7 @@
 		
 		<div class="row">
 			<div class="col-md-6">
-				<form action="{{ route('checkout.store') }}" method="POST">
+				<form action="{{ route('checkout.complete') }}" method="POST">
 					@csrf
 					<h2>Payment Details</h2>
 
@@ -60,6 +60,8 @@
 							</div>
 						</div>
 					</div>
+
+					<input type="hidden" name="order_id" value="{{ $order->id }}">
 
 					<hr>
 
@@ -102,9 +104,27 @@
 						<hr>
 					@endif
 				@endforeach
-
-				<h4>Subtotal: {{ $order->getSubTotal() }}</h4>
 				
+				<div class="card text-right">
+					<div class="card-body">
+						<p class="card-text">
+							Subtotal: ${{ number_format($order->getSubTotal(), 2) }}
+						</p>
+						@foreach($order->lines as $orderLine)
+							@if($orderLine->LineTypeID == 4)
+								<p class="card-text">Tax: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+							@endif
+						@endforeach
+						@foreach($order->lines as $orderLine)
+							@if($orderLine->LineTypeID == 5)
+								<p class="card-text">Shipping & Handling: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+							@endif
+						@endforeach
+					</div>
+					<div class="card-footer text-muted">
+						<h3>Total: ${{ number_format($order->getTotal(), 2) }}</h3>
+					</div>
+				</div>
 
 			</div>
 		</div>

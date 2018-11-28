@@ -21,13 +21,22 @@ class Order extends Model
     	$subTotal = 0;
 
     	foreach($this->lines as $orderLine) {
-
     		if($orderLine->LineTypeID == 1) {
     			$subTotal += $orderLine->ExtPartPrice;
     		}
     	}
 
     	return $subTotal;
+    }
+
+    public function getTotal() {
+    	$total = 0;
+
+    	foreach ($this->lines as $orderLine) {
+    		$total += $orderLine->ExtPartPrice;
+    	}
+
+    	return $total;
     }
 
 }

@@ -38,6 +38,7 @@
     			<h3>{{ $product->ProdName." - ".$product->ProdDesc }}</h3>
 				<p>{{ $product->ProdProse }}</p>
 				<h5>Base Price: ${{ number_format($product->BasePrice, 2) }}</h5>
+				<h5>Price Range: {{ $product->getPriceRange() }}</h5>
 				@php $totalPrice = $product->BasePrice; @endphp
 				
 				<form action="{{ route('cart.store') }}" method="POST">
