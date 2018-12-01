@@ -148,7 +148,9 @@ class CheckoutController extends Controller
     {
         //dd($request);
 
-        
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
 
         // store order
         $order = new Order;
@@ -210,6 +212,8 @@ class CheckoutController extends Controller
             $orderLine->SalesTax = 1;
             $orderLine->save();
         }
+
+        \Cart::clear();
 
         return view('checkout.index')->withOrder($order);//->with('success_message', 'Thank you for your order!');
 

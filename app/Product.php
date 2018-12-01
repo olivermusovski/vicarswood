@@ -28,7 +28,9 @@ class Product extends Model
         return $this->belongsTo('App\OrderLine', 'BaseNBR', 'BaseNBR');
     }
 
+    //---------------------------
     // calculation functions
+    //---------------------------
 
     // calculates the base cost of the product
     public function getCost() {
@@ -36,6 +38,7 @@ class Product extends Model
         return $cost;
     }
 
+    // returns the price range of the product in a string
     public function getPriceRange() {
         $basePrice = $this->BasePrice;
         $highestPrice = $this->BasePrice;

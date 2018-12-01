@@ -16,7 +16,7 @@
 					<br><br>
 					Products are sold either through exclusive Distributors or on-line through this web site.  As an e-commerce site, customer privacy is paramount.  For more information, please see our Privacy and Data Policy.
 					<br><br>
-					For more information, please see our Terms and Conditions of Sale.
+					For more information, please see our <a href="">Terms and Conditions of Sale</a>.
 					<br><br>
 					Commissioned work or unique features to products can be discussed and quoted as well.
 					<br><br>

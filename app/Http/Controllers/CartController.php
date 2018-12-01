@@ -16,6 +16,10 @@ class CartController extends Controller
      */
     public function index()
     {
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
+
         return view('cart.index');
     }
 
@@ -37,6 +41,9 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
         
         if(\Cart::get($request->id)) {
             return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart.');
@@ -103,6 +110,10 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
+
         $validator = Validator::make($request->all(), [
             'quantity' => 'required|numeric|between:1,5'
         ]);
@@ -133,6 +144,10 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
+        
         \Cart::remove($id);
 
         return back()->with('success_message', 'Item has been removed.');

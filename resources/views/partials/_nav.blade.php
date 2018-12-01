@@ -41,6 +41,9 @@
                     @else
                         <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}
+                                @php
+                                \Cart::session(auth()->user()->id);
+                                @endphp
                                 @if (!Cart::isEmpty())
                                     <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
                                 @endif
