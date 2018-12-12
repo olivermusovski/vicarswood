@@ -77,6 +77,7 @@
 
 			<div class="col-md-5 offset-md-1">
 				<h2>Your Order</h2>
+				{{-- Order item list --}}
 				<hr>
 				@foreach($order->lines as $orderLine)
 					@if($orderLine->LineTypeID == 1)
@@ -104,7 +105,18 @@
 						<hr>
 					@endif
 				@endforeach
-				
+
+				{{-- Discount codes --}}
+				<p>Have a code?</p>
+				<form action="" method="POST" class="form-inline">
+					@csrf
+					<div class="form-group mr-3 mb-2">
+						<input type="text" class="form-control" id="Discount" name="discount" value="">
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">Apply</button>
+				</form>
+
+				{{-- Start of the card with totals --}}
 				<div class="card text-right">
 					<div class="card-body">
 						<p class="card-text">

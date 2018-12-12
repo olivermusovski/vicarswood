@@ -35,7 +35,7 @@ class DatabaseStorage
             DatabaseStorageModel::create([
                 'id' => $key,
                 'cart_data' => $value,
-                'user_id' => auth()->user()->id
+                'user_id' => auth()->user() ? auth()->user()->id : null
             ]);
         }
     }
