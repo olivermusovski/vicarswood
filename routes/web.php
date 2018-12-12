@@ -14,6 +14,9 @@
 // Pages
 Route::get('/', 'PageController@index');
 Route::get('/about', 'PageController@about');
+Route::get('/privacy-policy', 'PageController@privacyPolicy');
+Route::get('/terms-and-conditions', 'PageController@termsAndConditions');
+Route::get('/careers', 'PageController@careers');
 Route::get('/test', 'PageController@test');
 Route::get('/confirmation', 'PageController@confirmation')->name('confirmation');
 

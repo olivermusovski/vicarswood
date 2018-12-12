@@ -229,7 +229,7 @@ class CheckoutController extends Controller
     {
         //dd($request);
         $order = Order::find($request->order_id);
-        $order->OrderStatus = 'Entered';
+        $order->OrderStatus = 'Submitted';
         $order->save();
         
         return redirect()->route('confirmation')->with('success_message', 'You order has been entered!');

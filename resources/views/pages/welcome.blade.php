@@ -19,7 +19,7 @@
                 Final finishing remains more of an art than a process.  It involves seven-coats chemistry and discipline to yield rich depth and natural beauty.  It’s important that it is durable as it is beautiful.  Selections are many and dyes are available as well.  Old and new schools coexist.  Our two favorites are the grey and turquoise.
                 <br>
                 <br>
-                For more information, check out our About page.
+                For more information, check out our <a href="{{ url('/about') }}">About</a> page.
             </h4>
         </div>
 

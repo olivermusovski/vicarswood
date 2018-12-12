@@ -15499,3 +15499,9 @@ readers do not read off random characters that represent icons */
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.wallpaper-footer {
+  background-color: #3490dc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%2300589d' fill-opacity='0.58' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
+  height: 140px;
+}
+
