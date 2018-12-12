@@ -25,7 +25,7 @@
 		<h1>Checkout</h1>
 
 		<div class="col-md-7">
-			<form action="{{ route('checkout.storeAddresses') }}" method="POST">
+			<form action="{{ route('checkout.storeAddress') }}" method="POST">
 				@csrf
 				<h2>Shipping Details</h2>
 

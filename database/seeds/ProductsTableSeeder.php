@@ -14,26 +14,26 @@ class ProductsTableSeeder extends Seeder
     {
         Product::create([
         	'LangCode' => 'EN',
-        	'BaseNBR' => '601',
+        	'BaseNBR' => 601,
         	'ProdName' => '3-Drawer Pine Chest',
         	'ProdDesc' => 'Gerrans Chest',
         	'ProdProse' => 'This chest of drawers made of pine and poplar.  With a recipe of dye and glaze, its finish shows off a Regency style suitable for either bedroom or office.  Solid wood surrounds three drawers to endure through ages.  All wood is cut, shaped and fitted within a small Las Vegas workshop.  The result bears the Vicarswood emblem distinguishes it for any furniture collection.
 
 				Inspired by travels, this piece became the first of the Aylsham Series.  It was the same time tools were passed from father to son and apprentice became master.  Now this chest is sold many times “naked,” without finish, where the final artistry of the customer connects and completes the journey.',
-			'BasePrice' => '569.00',
-			'BaseStdHours' => '10',
-			'BaseStdLabor' => '200.00',
-			'BaseStdMaterial' => '200.00',
-			'BaseStdOverhead' => '100.00',
+			'BasePrice' => 569.00,
+			'BaseStdHours' => 10,
+			'BaseStdLabor' => 200.00,
+			'BaseStdMaterial' => 200.00,
+			'BaseStdOverhead' => 100.00,
 			'ReleaseDate' => '2018-08-02',
-			'Dim_Width' => '24.5',
-			'Dim_Length' => '18.5',
-			'Dim_Height' => '24.5',
-			'Dim_Weight' => '39',
-			'UpdatedBy' => '1',
+			'Dim_Width' => 24.5,
+			'Dim_Length' => 18.5,
+			'Dim_Height' => 24.5,
+			'Dim_Weight' => 39,
+			'UpdatedBy' => 1,
 			'CaptionDim' => 'Dimensions (Inches, Width x Length x Height)',
 			'CaptionPrice' => 'Price (varies with options selected)',
-			'LeadTime' => '10',
+			'LeadTime' => 10,
 			'Terms' => 'Note:  Prices exclude shipping and applicable taxes.  Product finish colors and tones printed from catalogs or from the Internet may vary from actual manufacturing processes.   All sales are subject to Sales Terms and Conditions.',
 
         ]);

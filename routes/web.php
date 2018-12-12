@@ -45,6 +45,10 @@ Route::get('/showcart', function() {
 
 // Checkout
 Route::resource('/checkout', 'CheckoutController');
-Route::post('/checkout-addresses', 'CheckoutController@storeAddresses')->name('checkout.storeAddresses');
-Route::get('/checkout-review', 'CheckoutController@review')->name('review');
+Route::get('/checkout-address/{order}', 'CheckoutController@showAddressForm')->name('checkout.address');
+Route::post('/checkout-address', 'CheckoutController@storeAddress')->name('checkout.storeAddress');
+Route::get('/checkout-review/{order}', 'CheckoutController@showReview')->name('checkout.review');
 Route::post('/complete-order', 'CheckoutController@completeOrder')->name('checkout.complete');
+
+// Coupon
+Route::resource('/coupon', 'CouponController');

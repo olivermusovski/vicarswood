@@ -65,8 +65,8 @@
 
 					<hr>
 
-					<div class="row justify-content-md-center">
-						<div class="col-md-8">
+					<div class="row">
+						<div class="col-md-12">
 							<button type="submit" class="btn btn-success btn-block">Complete Checkout</button>
 						</div>
 					</div>
@@ -108,20 +108,36 @@
 
 				{{-- Discount codes --}}
 				<p>Have a code?</p>
-				<form action="" method="POST" class="form-inline">
+				<form action="{{ route('coupon.store') }}" method="POST">
 					@csrf
-					<div class="form-group mr-3 mb-2">
-						<input type="text" class="form-control" id="Discount" name="discount" value="">
+					<div class="input-group mb-2">
+						<input type="hidden" name="order_id" value="{{ $order->id }}">
+						<input type="text" class="form-control" id="coupon_code" name="coupon_code" value="">
+						<div class="input-group-btn w-33">
+							<button type="submit" class="btn btn-primary btn-block">Apply</button>
+						</div>
 					</div>
-					<button type="submit" class="btn btn-primary mb-2">Apply</button>
 				</form>
 
 				{{-- Start of the card with totals --}}
 				<div class="card text-right">
 					<div class="card-body">
-						<p class="card-text">
-							Subtotal: ${{ number_format($order->getSubTotal(), 2) }}
-						</p>
+						<p class="card-text">Subtotal: ${{ number_format($order->getSubTotal(), 2) }}</p>
+						@foreach($order->lines as $orderLine)
+							@if($orderLine->LineTypeID == 6)
+								<div class="d-flex flex-row justify-content-end h-auto">
+									<form action="{{ route('coupon.destroy', ['id' => $orderLine->id]) }}" method="POST" class="">
+									@csrf
+									@method('DELETE')
+									<div class="form-group">
+										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">Remove</button>
+									</div>
+								</form>
+								<p class="card-text">Discount ({{ $orderLine->PartDesc }}): ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								</div>
+								
+							@endif
+						@endforeach
 						@foreach($order->lines as $orderLine)
 							@if($orderLine->LineTypeID == 4)
 								<p class="card-text">Tax: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>

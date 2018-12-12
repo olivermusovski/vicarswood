@@ -16,11 +16,11 @@ class ProductDetailsTableSeeder extends Seeder
 
         ProductDetail::create([
         	'LangCode' => 'EN',
-        	'BaseNBR' => '601',
-        	'ObjectSequence' => '1',
+        	'BaseNBR' => 601,
+        	'ObjectSequence' => 1,
         	'ObjectName' => 'Front View',
         	'ObjectFile' => '601-ShtImage1.png',
-        	'UpdatedBy' => '1',
+        	'UpdatedBy' => 1,
         ]);
 
         ProductDetail::create([

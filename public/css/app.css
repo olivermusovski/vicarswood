@@ -15505,3 +15505,7 @@ readers do not read off random characters that represent icons */
   height: 140px;
 }
 
+.w-33 {
+  width: 33% !important;
+}
+

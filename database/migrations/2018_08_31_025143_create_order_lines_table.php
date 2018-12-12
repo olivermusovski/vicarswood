@@ -16,20 +16,20 @@ class CreateOrderLinesTable extends Migration
         Schema::create('OrdB_Lines', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id')->unsigned();
-            $table->integer('LineTypeID')->unsigned();
-            $table->integer('BaseNBR')->unsigned();
+            $table->integer('LineTypeID')->unsigned()->nullable();
+            $table->integer('BaseNBR')->unsigned()->nullable();
             $table->double('BasePrice');
             $table->double('BaseCost');
             $table->integer('Qty');
-            $table->tinyInteger('Taxable');
-            $table->string('ProductDesc');
-            $table->string('PartNBR');
-            $table->string('PartDesc');
-            $table->double('PartPrice');
-            $table->double('ExtPartPrice');
-            $table->double('PartCost');
-            $table->double('ExtPartCost');
-            $table->tinyInteger('SalesTax');
+            $table->tinyInteger('Taxable')->nullable();
+            $table->string('ProductDesc')->nullable();
+            $table->string('PartNBR')->nullable();
+            $table->string('PartDesc')->nullable();
+            $table->double('PartPrice')->nullable();
+            $table->double('ExtPartPrice')->nullable();
+            $table->double('PartCost')->nullable();
+            $table->double('ExtPartCost')->nullable();
+            $table->tinyInteger('SalesTax')->nullable();
             $table->timestamps();
         });
     }

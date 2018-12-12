@@ -16,18 +16,18 @@ class ProductOptionsTableSeeder extends Seeder
 
         ProductOption::create([
         	'LangCode' => 'EN',
-        	'BaseNBR' => '601',
+        	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => '1C',
         	'PositionName' => 'Finish Options',
         	'OptName' => 'Grey',
-        	'OptPrice' => '75.00',
-        	'OptStdHours' => '0',
-        	'OptStdLabor' => '0',
-        	'OptStdMaterial' => '0',
-        	'OptStdOverhead' => '0',
-        	'UpdatedBy' => '1',
-        	'Default' => '0'
+        	'OptPrice' => 75.00,
+        	'OptStdHours' => 0,
+        	'OptStdLabor' => 0,
+        	'OptStdMaterial' => 0,
+        	'OptStdOverhead' => 0,
+        	'UpdatedBy' => 1,
+        	'Default' => 0
         ]);
 
         ProductOption::create([

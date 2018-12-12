@@ -15,26 +15,26 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('OrdA_Hdr', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('OrderStatus');
+            $table->string('OrderStatus')->nullable();
             $table->string('OrdLanguage');
-            $table->integer('user_id')->unsigned();
-            $table->string('UserEmail');
-            $table->integer('SoldById')->unsigned();
-            $table->integer('BillToId')->unsigned();
-            $table->integer('ShipToId')->unsigned();
-            $table->string('DiscountCode');
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->string('UserEmail')->nullable();
+            $table->integer('SoldById')->unsigned()->nullable();
+            $table->integer('BillToId')->unsigned()->nullable();
+            $table->integer('ShipToId')->unsigned()->nullable();
+            $table->string('DiscountCode')->nullable();
             $table->timestamps();
             $table->integer('UpdatedBy')->unsigned();
             $table->dateTime('DateOrdered');
-            $table->date('DatePlanned');
-            $table->date('DatePlanToShip');
-            $table->date('DateShipped');
-            $table->date('DateInvoiced');
-            $table->double('DiscountRate');
-            $table->double('TaxRate');
-            $table->string('TaxJurisdiction');
-            $table->string('ShipVia');
-            $table->string('TrackingNBR'); 
+            $table->date('DatePlanned')->nullable();
+            $table->date('DatePlanToShip')->nullable();
+            $table->date('DateShipped')->nullable();
+            $table->date('DateInvoiced')->nullable();
+            $table->double('DiscountRate')->nullable();
+            $table->double('TaxRate')->nullable();
+            $table->string('TaxJurisdiction')->nullable();
+            $table->string('ShipVia')->nullable();
+            $table->string('TrackingNBR')->nullable(); 
         });
     }
 
