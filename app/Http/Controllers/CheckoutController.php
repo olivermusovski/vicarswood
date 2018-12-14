@@ -28,10 +28,10 @@ class CheckoutController extends Controller
      * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function showAddressForm($order)
+    public function showAddressForm()
     {
-        $order = Order::find($order);
-        return view('checkout.address')->withOrder($order);
+        //$order = Order::find($order);
+        return view('checkout.address');//->withOrder($order);
     }
 
     /**

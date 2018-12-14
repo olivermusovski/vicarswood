@@ -10,6 +10,12 @@
 				Copyright © 2018 Vicarswood All rights reserved.
 			</p>
 		</div>
+		<div class="row d-flex justify-content-end">
+			<i class="fab fa-facebook fa-2x text-white"></i>
+			<i class="fab fa-twitter fa-2x text-white ml-3"></i>
+			<i class="fab fa-instagram fa-2x text-white ml-3"></i>
+			<i class="fab fa-pinterest fa-2x text-white ml-3"></i>
+		</div>
 	</div>
 </div>
 

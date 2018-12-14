@@ -40,12 +40,16 @@ class CouponController extends Controller
     {
         $coupon = Coupon::where('code', $request->coupon_code)->first();
         $order = Order::find($request->order_id);
-        $discount = $coupon->discount($order->getSubTotal());
         $alreadyHasCoupon = false;
         
         // Check to see if the coupon code is valid
         if(!$coupon) {
             return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Invalid coupon code. Please try again.');
+        }
+
+        // Check to see if the coupon has expired
+        if($coupon->end_date < date("Y-m-d")) {
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Coupon code has expired.');
         }
 
         // Run through the order lines and see if there is already a coupon code applied to the order
@@ -61,6 +65,7 @@ class CouponController extends Controller
         }
 
         // If none of those cases then add a coupon code to the order
+        $discount = $coupon->discount($order->getSubTotal());
         $orderLine = new OrderLine;
         $orderLine->order_id = $order->id;
         $orderLine->LineTypeID = 6;

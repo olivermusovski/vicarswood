@@ -23,15 +23,22 @@
 		@endif
 
 		@if (Cart::isEmpty())
-			<h3>No items in Shopping Cart</h3>
-			<a href="{{ route('products.index') }}" class="btn btn-primary"><-- Continue Shopping</a>
+			<div class="row justify-content-md-center">
+				<h3 class="font-weight-bold">CART</h3>
+			</div>
+			<div class="row justify-content-md-center">
+				<h5 class="text-muted">You don't have any items in your cart yet.</h5>
+			</div>
+			<div class="row justify-content-md-center">
+				<a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-4">Continue Shopping</a>
+			</div>
 		@else
 			<h2>{{ Cart::getTotalQuantity() }} item(s) in Shopping Cart</h2>
 			<hr>
 			@foreach ( Cart::getContent() as $item)
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<a href="{{ route('products.show', $item->id) }}"><img src="#" alt="item" class="rounded float-left mr-2" style="width: 150px; height: 150px; border: solid;"></a>
+						<a href="{{ route('products.show', $item->id) }}"><img src="" alt="item" class="rounded float-left mr-2" style="width: 150px; height: 150px; border: solid;"></a>
 						<div class="mt-4">
 							<div class="row"><a href="{{ route('products.show', $item->id) }}">{{ $item->name }}</a></div>
 							<div class="row"><p>{{ $item->attributes->desc }} ${{ $item->price }}</p></div>
@@ -45,10 +52,15 @@
 							<form action="{{ route('cart.destroy', $item->id) }}" method="POST">
 								@csrf
 								{{ method_field('DELETE') }}
-								<button type="submit" class="btn btn-sm btn-primary">Remove</button>
+								<button type="submit" class="btn btn-sm btn-secondary">Remove</button>
 							</form>
 						</div>
-						<div class="row"><a href="#">Save for later</a></div>
+						<div class="row">
+							<form action="#" method="POST">
+								@csrf
+								<button type="submit" class="btn btn-sm btn-secondary mt-2">Save for later</button>
+							</form>
+						</div>
 					</div>
 					<div class="col mt-4">
 						<select name="" class="form-control quantity" data-id="{{ $item->id }}">
@@ -79,11 +91,14 @@
 			
 			<div class="row">
 				<div class="col-md-5 offset-md-7 text-right mt-4">
-					<a href="{{ route('products.index') }}" class="btn btn-secondary mr-2">Continue Shopping</a>
+					<a href="{{ route('products.index') }}" class="btn btn-secondary">Continue Shopping</a>
+					{{--
 					<form action="{{ route('checkout.store') }}" method="POST" class="float-right">
 						@csrf
 						<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
 					</form>
+					--}}
+					<a href="{{ route('checkout.address') }}" class="btn btn-primary ml-2">Proceed to Checkout</a>
 				</div>
 			</div>
 

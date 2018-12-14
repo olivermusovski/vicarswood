@@ -19,6 +19,7 @@ class CreateCouponsTable extends Migration
             $table->string('type');
             $table->integer('value')->nullable();
             $table->integer('percent_off')->nullable();
+            $table->date('end_date');
             $table->timestamps();
         });
     }

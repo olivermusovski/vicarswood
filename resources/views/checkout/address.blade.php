@@ -129,10 +129,15 @@
 
 				<hr>
 
-				<input type="hidden" name="order_id" value="{{ $order->id }}">
+				{{-- <input type="hidden" name="order_id" value="{{ $order->id }}"> --}}
 
 				<div class="row">
-					<button type="submit" class="btn btn-primary btn-block">Proceed to Order Review</button>
+					<div class="col-md-6">
+						<a href="{{ route('cart.index') }}" class="btn btn-outline-secondary btn-block">Return to cart</a>
+					</div>
+					<div class="col-md-6">
+						<button type="submit" class="btn btn-primary btn-block">Proceed to Order Review</button>
+					</div>
 				</div>
 
 			</form>
