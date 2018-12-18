@@ -22,9 +22,21 @@
 			</div>
 		@endif
 
-		<h1>Checkout</h1>
+		<div class="row justify-content-center">
+			<h3 class="font-weight-bold">Checkout</h3>
+		</div>
 		
-		<div class="row">
+		<div class="row justify-content-center">
+			<nav aria-label="breadcrumb">
+			  <ol class="breadcrumb">
+			    <li class="breadcrumb-item">Checkout</li>
+			    <li class="breadcrumb-item">Shipping Information</li>
+			    <li class="breadcrumb-item active">Payment Details</li>
+			  </ol>
+			</nav>
+		</div>
+		
+		<div class="row mt-5">
 			<div class="col-md-6">
 				<form action="{{ route('checkout.complete') }}" method="POST">
 					@csrf
