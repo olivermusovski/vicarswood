@@ -98,7 +98,7 @@
 						<button type="submit" class="btn btn-primary">Proceed to Checkout</button>
 					</form>
 					--}}
-					<a href="{{ route('checkout.address') }}" class="btn btn-primary ml-2">Proceed to Checkout</a>
+					<a href="{{ route('checkout.shipping') }}" class="btn btn-primary ml-2">Proceed to Checkout</a>
 				</div>
 			</div>
 

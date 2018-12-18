@@ -45,7 +45,7 @@ Route::get('/showcart', function() {
 
 // Checkout
 Route::resource('/checkout', 'CheckoutController');
-Route::get('/checkout-address', 'CheckoutController@showAddressForm')->name('checkout.address');
+Route::get('/checkout-shipping', 'CheckoutController@showShippingForm')->name('checkout.shipping');
 Route::post('/checkout-address', 'CheckoutController@storeAddress')->name('checkout.storeAddress');
 Route::get('/checkout-review/{order}', 'CheckoutController@showReview')->name('checkout.review');
 Route::post('/complete-order', 'CheckoutController@completeOrder')->name('checkout.complete');

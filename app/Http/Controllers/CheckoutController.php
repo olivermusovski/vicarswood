@@ -28,10 +28,10 @@ class CheckoutController extends Controller
      * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function showAddressForm()
+    public function showShippingForm()
     {
         //$order = Order::find($order);
-        return view('checkout.address');//->withOrder($order);
+        return view('checkout.shipping');//->withOrder($order);
     }
 
     /**
@@ -62,6 +62,7 @@ class CheckoutController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+     /*
     public function storeAddress(Request $request)
     {
         //dd($request);
@@ -101,6 +102,7 @@ class CheckoutController extends Controller
 
         return redirect()->route('checkout.review', ['order' => $order->id]);
     }
+    */
 
     public function calculateShipping(Address $shipping, Order $order)
     {
@@ -176,6 +178,20 @@ class CheckoutController extends Controller
         $order->DateOrdered = date('Y-m-d h:i:s');
         $order->save();
 
+        //store shipping address
+        $shipping = new Address;
+        $shipping->UserEmail = $request->UserEmailShip;
+        $shipping->AddressType = 'ShipTo';
+        $shipping->Attention = $request->AttentionShip;
+        $shipping->Street1 = $request->Street1Ship;
+        $shipping->City = $request->CityShip;
+        $shipping->Province = $request->ProvinceShip;
+        $shipping->PostalCode = $request->PostalCodeShip;
+        $shipping->PhoneNumber = $request->PhoneNumberShip;
+        $shipping->save();
+        $order->ShipToId = $shipping->id;
+        $order->save();
+
         //store order lines
         foreach (\Cart::getContent() as $item) {
 
@@ -228,10 +244,13 @@ class CheckoutController extends Controller
             $orderLine->save();
         }
 
+        $this->calculateShipping($shipping, $order);
+        $this->calculateTaxes($shipping, $order);
+
         \Cart::clear();
 
         //return view('checkout.address')->withOrder($order);
-        return redirect()->route('checkout.address', ['order' => $order->id]);
+        return redirect()->route('checkout.review', ['order' => $order->id]);
 
     }
 
