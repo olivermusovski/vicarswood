@@ -104,55 +104,7 @@ class CheckoutController extends Controller
     }
     */
 
-    public function calculateShipping(Address $shipping, Order $order)
-    {
-        //calculate shipping
-        $price = 20;
-
-        $orderLine = new OrderLine;
-        $orderLine->order_id = $order->id;
-        $orderLine->LineTypeID = 5;
-        $orderLine->BaseNBR = null;
-        $orderLine->BasePrice = 0;
-        $orderLine->BaseCost = 0;
-        $orderLine->Qty = 0;
-        $orderLine->Taxable = 0;
-        $orderLine->ProductDesc = 'Freight';
-        $orderLine->PartDesc = 'Shipping & Handling';
-        $orderLine->PartPrice = $price;
-        $orderLine->ExtPartPrice = $price;
-        $orderLine->PartCost = 0;
-        $orderLine->ExtPartCost = 0;
-        $orderLine->SalesTax = 0;
-        $orderLine->save();
-
-        return;
-    }
-
-    public function calculateTaxes(Address $shipping, Order $order)
-    {
-        //calculate tax
-        $price = 102.67;
-
-        $orderLine = new OrderLine;
-        $orderLine->order_id = $order->id;
-        $orderLine->LineTypeID = 4;
-        $orderLine->BaseNBR = null;
-        $orderLine->BasePrice = 0;
-        $orderLine->BaseCost = 0;
-        $orderLine->Qty = 0;
-        $orderLine->Taxable = 0;
-        $orderLine->ProductDesc = 'Sales Tax';
-        $orderLine->PartDesc = 'Sales Tax';
-        $orderLine->PartPrice = $price;
-        $orderLine->ExtPartPrice = $price;
-        $orderLine->PartCost = 0;
-        $orderLine->ExtPartCost = 0;
-        $orderLine->SalesTax = 1;
-        $orderLine->save();
-
-        return;
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -247,11 +199,60 @@ class CheckoutController extends Controller
         $this->calculateShipping($shipping, $order);
         $this->calculateTaxes($shipping, $order);
 
-        \Cart::clear();
-
+        
         //return view('checkout.address')->withOrder($order);
         return redirect()->route('checkout.review', ['order' => $order->id]);
 
+    }
+
+    public function calculateShipping(Address $shipping, Order $order)
+    {
+        //calculate shipping
+        $price = 20;
+
+        $orderLine = new OrderLine;
+        $orderLine->order_id = $order->id;
+        $orderLine->LineTypeID = 5;
+        $orderLine->BaseNBR = null;
+        $orderLine->BasePrice = 0;
+        $orderLine->BaseCost = 0;
+        $orderLine->Qty = 0;
+        $orderLine->Taxable = 0;
+        $orderLine->ProductDesc = 'Freight';
+        $orderLine->PartDesc = 'Shipping & Handling';
+        $orderLine->PartPrice = $price;
+        $orderLine->ExtPartPrice = $price;
+        $orderLine->PartCost = 0;
+        $orderLine->ExtPartCost = 0;
+        $orderLine->SalesTax = 0;
+        $orderLine->save();
+
+        return;
+    }
+
+    public function calculateTaxes(Address $shipping, Order $order)
+    {
+        //calculate tax
+        $price = 102.67;
+
+        $orderLine = new OrderLine;
+        $orderLine->order_id = $order->id;
+        $orderLine->LineTypeID = 4;
+        $orderLine->BaseNBR = null;
+        $orderLine->BasePrice = 0;
+        $orderLine->BaseCost = 0;
+        $orderLine->Qty = 0;
+        $orderLine->Taxable = 0;
+        $orderLine->ProductDesc = 'Sales Tax';
+        $orderLine->PartDesc = 'Sales Tax';
+        $orderLine->PartPrice = $price;
+        $orderLine->ExtPartPrice = $price;
+        $orderLine->PartCost = 0;
+        $orderLine->ExtPartCost = 0;
+        $orderLine->SalesTax = 1;
+        $orderLine->save();
+
+        return;
     }
 
     /**
@@ -263,10 +264,27 @@ class CheckoutController extends Controller
     public function completeOrder(Request $request)
     {
         //dd($request);
+        //find order
         $order = Order::find($request->order_id);
+
+        //store billing address
+        $billing = new Address;
+        $billing->AddressType = 'BillTo';
+        $billing->Attention = $request->AttentionBill;
+        $billing->Street1 = $request->Street1Bill;
+        $billing->City = $request->CityBill;
+        $billing->Province = $request->ProvinceBill;
+        $billing->PostalCode = $request->PostalCodeBill;
+        $billing->PhoneNumber = $request->PhoneNumberBill;
+        $billing->save();
+
+        //apply updates to order
+        $order->BillToId = $billing->id;
         $order->OrderStatus = 'Submitted';
         $order->save();
         
+        \Cart::clear();
+                
         return redirect()->route('confirmation')->with('success_message', 'You order has been entered!');
     }
 

@@ -29,7 +29,7 @@
 		<div class="row justify-content-center">
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item">Checkout</li>
+			    <li class="breadcrumb-item">Cart</li>
 			    <li class="breadcrumb-item">Shipping Information</li>
 			    <li class="breadcrumb-item active">Payment Details</li>
 			  </ol>
@@ -40,35 +40,38 @@
 			<div class="col-md-6">
 				<form action="{{ route('checkout.complete') }}" method="POST">
 					@csrf
-					<h2>Payment Details</h2>
-
-					<div class="form-group">
-						<label for="name">Name on Card</label>
-						<input type="text" class="form-control" id="name" name="name" value="">
+					<div class="row mx-0 justify-content-between">
+						<h4 class="font-weight-bold">Payment Details</h4>
+						<span>
+							<i class="fab fa-cc-visa fa-2x"></i>
+							<i class="fab fa-cc-discover fa-2x ml-2"></i>
+							<i class="fab fa-cc-mastercard fa-2x ml-2"></i>
+							<i class="fab fa-cc-amex fa-2x ml-2"></i>
+						</span>
+						
 					</div>
-
+					
+					
 					<div class="form-group">
-						<label for="address">Address</label>
-						<input type="text" class="form-control" id="address" name="address" value="">
-					</div>
-
-					<div class="form-group">
-						<label for="creditcard">Credit Card Number</label>
-						<input type="text" class="form-control" id="creditcard" name="creditcard" value="">
+						<input type="text" class="form-control" id="creditcard" name="creditcard" value="" placeholder="Card Number">
 					</div>
 
 					<div class="row">
-						<div class="col-md">
+						<div class="col-md-6">
 							<div class="form-group">
-								<label for="expiry">Expiry</label>
-								<input type="date" class="form-control" id="expiry" name="expiry" value="">
+								<input type="text" class="form-control" id="name" name="name" value="" placeholder="Cardholder Name">
+							</div>
+						</div>
+						
+						<div class="col-md-3 pl-0">
+							<div class="form-group">
+								<input type="date" class="form-control" id="expiry" name="expiry" value="" placeholder="MM/YY">
 							</div>
 						</div>
 
-						<div class="col-md">
+						<div class="col-md-3 pl-0">
 							<div class="form-group">
-								<label for="cvccode">CVC Code</label>
-								<input type="text" class="form-control" id="cvccode" name="cvccode" value="">
+								<input type="text" class="form-control" id="cvccode" name="cvccode" value="" placeholder="CVV">
 							</div>
 						</div>
 					</div>
@@ -76,10 +79,51 @@
 					<input type="hidden" name="order_id" value="{{ $order->id }}">
 
 					<hr>
+					
+					<h4 class="font-weight-bold">Billing Details</h4>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="AttentionBill" value="" placeholder="Name">
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="address" name="Street1Bill" value="" placeholder="Address">
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="city" name="CityBill" value="" placeholder="City">
+					</div>
+
+					<div class="row">
+						<div class="col-md">
+							<div class="form-group">
+								<input type="text" class="form-control" id="country" name="CountryBill" value="" placeholder="Country">
+							</div>
+						</div>
+
+						<div class="col-md pl-0">
+							<div class="form-group">
+								<input type="text" class="form-control" id="province" name="ProvinceBill" value="" placeholder="State">
+							</div>
+						</div>
+
+						<div class="col-md pl-0">
+							<div class="form-group">
+								<input type="text" class="form-control" id="postalcode" name="PostalCodeBill" value="" placeholder="Postal Code">
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="phone" name="PhoneNumberBill" value="" placeholder="Phone Number">
+					</div>
+
+					<hr>
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-success btn-block">Complete Checkout</button>
+							<button type="submit" class="btn btn-primary btn-block">Complete Checkout</button>
 						</div>
 					</div>
 
@@ -88,7 +132,8 @@
 			</div>
 
 			<div class="col-md-5 offset-md-1">
-				<h2>Your Order</h2>
+				<h4 class="font-weight-bold">Your Order</h4>
+
 				{{-- Order item list --}}
 				<hr>
 				@foreach($order->lines as $orderLine)
@@ -126,7 +171,7 @@
 						<input type="hidden" name="order_id" value="{{ $order->id }}">
 						<input type="text" class="form-control" id="coupon_code" name="coupon_code" value="">
 						<div class="input-group-btn w-33">
-							<button type="submit" class="btn btn-primary btn-block">Apply</button>
+							<button type="submit" class="btn btn-secondary btn-block">Apply</button>
 						</div>
 					</div>
 				</form>

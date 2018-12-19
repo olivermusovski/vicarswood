@@ -29,8 +29,9 @@
 		<div class="row justify-content-center">
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item">Checkout</li>
+			    <li class="breadcrumb-item">Cart</li>
 			    <li class="breadcrumb-item active">Shipping Information</li>
+			    <li class="breadcrumb-item">Payment Details</li>
 			  </ol>
 			</nav>
 		</div>
