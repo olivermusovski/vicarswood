@@ -151,5 +151,5 @@ class CartController extends Controller
         \Cart::remove($id);
 
         return back()->with('success_message', 'Item has been removed.');
-    }
+    } 
 }
