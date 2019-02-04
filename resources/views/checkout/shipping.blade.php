@@ -38,18 +38,21 @@
 
 		<div class="row justify-content-center mt-5">
 			<div class="col-md-7">
-				<form action="{{ route('checkout.store') }}" method="POST">
+				<form action="{{ route('checkout.storeShippingAddress') }}" method="POST">
 					@csrf
-					<div class="row justify-content-between px-3">
-						<h4 class="font-weight-bold">Contact Information</h4>
-						<p>Already have an account? <a href="{{ route('login') }}">Log In</a></p>
-					</div>
-					
-					<div class="form-group mt-1">
-						<input type="email" class="form-control form-control-lg" id="email" name="UserEmailShip" value="" placeholder="Email Address">
-					</div>
 
-					<hr>
+					@if(!$order->user_id)
+						<div class="row justify-content-between px-3">
+							<h4 class="font-weight-bold">Contact Information</h4>
+							<p>Already have an account? <a href="{{ route('login') }}">Log In</a></p>
+						</div>
+						
+						<div class="form-group mt-1">
+							<input type="email" class="form-control form-control-lg" id="email" name="UserEmailShip" value="" placeholder="Email Address">
+						</div>
+
+						<hr>
+					@endif
 
 					<h4 class="font-weight-bold">Shipping Details</h4>
 
@@ -158,7 +161,7 @@
 					<hr>
 					--}}
 
-					{{-- <input type="hidden" name="order_id" value="{{ $order->id }}"> --}}
+					<input type="hidden" name="order_id" value="{{ $order->id }}">
 
 					<div class="row">
 						<div class="col-md-6">

@@ -28,10 +28,10 @@ class CheckoutController extends Controller
      * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function showShippingForm()
+    public function showShippingForm($order)
     {
-        //$order = Order::find($order);
-        return view('checkout.shipping');//->withOrder($order);
+        $order = Order::find($order);
+        return view('checkout.shipping')->withOrder($order);
     }
 
     /**
@@ -47,66 +47,6 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-     /*
-    public function storeAddress(Request $request)
-    {
-        //dd($request);
-
-        //store shipping address
-        $shipping = new Address;
-        $shipping->UserEmail = $request->UserEmailShip;
-        $shipping->AddressType = 'ShipTo';
-        $shipping->Attention = $request->AttentionShip;
-        $shipping->Street1 = $request->Street1Ship;
-        $shipping->City = $request->CityShip;
-        $shipping->Province = $request->ProvinceShip;
-        $shipping->PostalCode = $request->PostalCodeShip;
-        $shipping->PhoneNumber = $request->PhoneNumberShip;
-        $shipping->save();
-
-        //store billing address
-        $billing = new Address;
-        $billing->UserEmail = $request->UserEmailBill;
-        $billing->AddressType = 'BillTo';
-        $billing->Attention = $request->AttentionBill;
-        $billing->Street1 = $request->Street1Bill;
-        $billing->City = $request->CityBill;
-        $billing->Province = $request->ProvinceBill;
-        $billing->PostalCode = $request->PostalCodeBill;
-        $billing->PhoneNumber = $request->PhoneNumberBill;
-        $billing->save();
-
-        //attach addresses to order
-        $order = Order::find($request->order_id);
-        $order->BillToId = $billing->id;
-        $order->ShipToId = $shipping->id;
-        $order->save();
-
-        $this->calculateShipping($shipping, $order);
-        $this->calculateTaxes($shipping, $order);
-
-        return redirect()->route('checkout.review', ['order' => $order->id]);
-    }
-    */
-
-    
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -115,36 +55,49 @@ class CheckoutController extends Controller
     public function store(Request $request)
     {
         //dd($request);
+        
+        if(session()->get('order_id') != NULL) {
+            $order_id = session()->get('order_id');
+            self::removeOrderLines($order_id);
+            self::addOrderLines($order_id);
+            return redirect()->route('checkout.shipping', ['order' => $order_id]);
+        } else {
 
+            // store order
+            $order = new Order;
+            $order->OrderStatus = 'Started';
+            $order->OrdLanguage = 'EN';
+            $order->user_id = auth()->user() ? auth()->user()->id : null;
+            $order->UserEmail = auth()->user() ? auth()->user()->email : null;
+            $order->UpdatedBy = 1;
+            $order->DateOrdered = date('Y-m-d h:i:s');
+            $order->save();
+
+            addOrderLines();
+
+            //$this->calculateShipping($shipping, $order);
+            //$this->calculateTaxes($shipping, $order);
+            session()->put('order_id', $order->id);
+
+            
+            return redirect()->route('checkout.shipping', ['order' => $order->id]);
+        }
+        //return redirect()->route('checkout.review', ['order' => $order->id]);
+
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param   int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function addOrderLines($id) {
+        //store order lines
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
 
-        // store order
-        $order = new Order;
-        $order->OrderStatus = 'Started';
-        $order->OrdLanguage = 'EN';
-        $order->user_id = auth()->user() ? auth()->user()->id : null;
-        $order->UserEmail = auth()->user() ? auth()->user()->email : null;
-        $order->UpdatedBy = 1;
-        $order->DateOrdered = date('Y-m-d h:i:s');
-        $order->save();
-
-        //store shipping address
-        $shipping = new Address;
-        $shipping->UserEmail = $request->UserEmailShip;
-        $shipping->AddressType = 'ShipTo';
-        $shipping->Attention = $request->AttentionShip;
-        $shipping->Street1 = $request->Street1Ship;
-        $shipping->City = $request->CityShip;
-        $shipping->Province = $request->ProvinceShip;
-        $shipping->PostalCode = $request->PostalCodeShip;
-        $shipping->PhoneNumber = $request->PhoneNumberShip;
-        $shipping->save();
-        $order->ShipToId = $shipping->id;
-        $order->save();
-
-        //store order lines
         foreach (\Cart::getContent() as $item) {
 
             //get product
@@ -152,7 +105,7 @@ class CheckoutController extends Controller
 
             // create new order line
             $orderLine = new OrderLine;
-            $orderLine->order_id = $order->id;
+            $orderLine->order_id = $id;
             $orderLine->LineTypeID = 1;
             $orderLine->BaseNBR = $product->BaseNBR;
             $partNumber = $product->BaseNBR;
@@ -195,14 +148,69 @@ class CheckoutController extends Controller
             $orderLine->SalesTax = 1;
             $orderLine->save();
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function removeOrderLines($id) {
+
+        $order = Order::find($id);
+
+        foreach ($order->lines as $orderLine) {
+            $orderLine->delete();
+        }
+    }
+
+     /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeShippingAddress(Request $request)
+    {
+        //dd($request);
+        //dd(session());
+        //store shipping address
+        $shipping = new Address;
+        //$shipping->UserEmail = $request->UserEmailShip;
+        $shipping->AddressType = 'ShipTo';
+        $shipping->Attention = $request->AttentionShip;
+        $shipping->Street1 = $request->Street1Ship;
+        $shipping->City = $request->CityShip;
+        $shipping->Province = $request->ProvinceShip;
+        $shipping->PostalCode = $request->PostalCodeShip;
+        $shipping->PhoneNumber = $request->PhoneNumberShip;
+        $shipping->save();
+
+        //store billing address
+        /*
+        $billing = new Address;
+        $billing->UserEmail = $request->UserEmailBill;
+        $billing->AddressType = 'BillTo';
+        $billing->Attention = $request->AttentionBill;
+        $billing->Street1 = $request->Street1Bill;
+        $billing->City = $request->CityBill;
+        $billing->Province = $request->ProvinceBill;
+        $billing->PostalCode = $request->PostalCodeBill;
+        $billing->PhoneNumber = $request->PhoneNumberBill;
+        $billing->save();
+        */
+
+        //attach addresses to order
+        $order = Order::find($request->order_id);
+        //$order->BillToId = $billing->id;
+        $order->ShipToId = $shipping->id;
+        $order->save();
 
         $this->calculateShipping($shipping, $order);
         $this->calculateTaxes($shipping, $order);
 
-        
-        //return view('checkout.address')->withOrder($order);
         return redirect()->route('checkout.review', ['order' => $order->id]);
-
     }
 
     public function calculateShipping(Address $shipping, Order $order)
@@ -286,28 +294,6 @@ class CheckoutController extends Controller
         \Cart::clear();
                 
         return redirect()->route('confirmation')->with('success_message', 'You order has been entered!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
