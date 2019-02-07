@@ -6,7 +6,7 @@
             
     <div class="container">
 
-        <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto d-block" alt="">
+        <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto d-block w-25" alt="">
 
         <div class="row mt-5">
             <h4>
