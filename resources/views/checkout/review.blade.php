@@ -169,7 +169,7 @@
 					@csrf
 					<div class="input-group mb-2">
 						<input type="hidden" name="order_id" value="{{ $order->id }}">
-						<input type="text" class="form-control" id="coupon_code" name="coupon_code" value="">
+						<input type="text" class="form-control" id="promo_code" name="promo_code" value="">
 						<div class="input-group-btn w-33">
 							<button type="submit" class="btn btn-secondary btn-block">Apply</button>
 						</div>

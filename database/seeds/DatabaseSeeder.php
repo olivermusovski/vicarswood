@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         	CouponsTableSeeder::class,
         	ProductsTableSeeder::class,
         	ProductOptionsTableSeeder::class,
-        	ProductDetailsTableSeeder::class
+        	ProductDetailsTableSeeder::class,
+            PromoHistoryTableSeeder::class,
+            PromoOffersTableSeeder::class
         ]);
     }
 }

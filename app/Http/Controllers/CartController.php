@@ -41,6 +41,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
@@ -69,7 +70,8 @@ class CartController extends Controller
                 'price' => $request->price, 
                 'quantity' => 1, 
                 'attributes' => [
-                    'desc' => $request->desc
+                    'desc' => $request->desc,
+                    'imagepath' => $request->imagepath
                 ],
                 'conditions' => $itemConditions
             ]);

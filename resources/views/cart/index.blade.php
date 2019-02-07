@@ -38,12 +38,12 @@
 			@foreach ( Cart::getContent() as $item)
 				<div class="row mb-3">
 					<div class="col-md-6">
-						<a href="{{ route('products.show', $item->id) }}"><img src="" alt="item" class="rounded float-left mr-2" style="width: 150px; height: 150px; border: solid;"></a>
+						<a href="{{ route('products.show', $item->id) }}"><img src="{{ asset('images/'.$item->attributes->imagepath) }}" alt="product" class="rounded float-left mr-2" style="width: 150px; height: 150px;"></a>
 						<div class="mt-4">
 							<div class="row"><a href="{{ route('products.show', $item->id) }}">{{ $item->name }}</a></div>
-							<div class="row"><p>{{ $item->attributes->desc }} ${{ $item->price }}</p></div>
+							<div class="row"><p class="mb-0">{{ $item->attributes->desc }} ${{ $item->price }}</p></div>
 							@foreach ($item->conditions as $condition)
-								<div class="row"><p>{{ $condition->getName() }} +${{ $condition->getValue() }}</p></div>
+								<div class="row"><p class="mb-0">{{ $condition->getName() }} +${{ $condition->getValue() }}</p></div>
 							@endforeach				
 						</div>
 					</div>
@@ -78,6 +78,20 @@
 			
 			<div class="row">
 				<div class="col-md-5 offset-md-7">
+					{{-- Discount codes --}}
+					<p>Have a code?</p>
+					<form action="{{ route('coupon.store') }}" method="POST">
+						@csrf
+						<div class="input-group mb-2">
+							<input type="hidden" name="order_id" value="">
+							<input type="text" class="form-control" id="coupon_code" name="coupon_code" value="">
+							<div class="input-group-btn w-33">
+								<button type="submit" class="btn btn-secondary btn-block">Apply</button>
+							</div>
+						</div>
+					</form>
+
+					{{-- Totals card --}}
 					<div class="card text-right">
 					  <div class="card-body">
 					    <p class="card-text">Subtotal: {{ number_format(Cart::getSubTotal(), 2) }} </p>

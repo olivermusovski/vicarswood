@@ -73,7 +73,7 @@ class CheckoutController extends Controller
             $order->DateOrdered = date('Y-m-d h:i:s');
             $order->save();
 
-            addOrderLines();
+            self::addOrderLines($order->id);
 
             //$this->calculateShipping($shipping, $order);
             //$this->calculateTaxes($shipping, $order);

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Coupon;
 use App\Order;
 use App\OrderLine;
+use App\PromoHistory;
+use App\PromoOffer;
 
 class CouponController extends Controller
 {
@@ -38,34 +39,58 @@ class CouponController extends Controller
      */
     public function store(Request $request)
     {
-        $coupon = Coupon::where('code', $request->coupon_code)->first();
+        $promo = PromoHistory::where('PromoCode', $request->promo_code)->first();
         $order = Order::find($request->order_id);
         $alreadyHasCoupon = false;
+        $userHasOffer = false;
         
-        // Check to see if the coupon code is valid
-        if(!$coupon) {
-            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Invalid coupon code. Please try again.');
+        // Check to see if the promo code is valid
+        if(!$promo) {
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Invalid promo code. Please try again.');
         }
 
-        // Check to see if the coupon has expired
-        if($coupon->end_date < date("Y-m-d")) {
-            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Coupon code has expired.');
+        // Check to see if the promo has launched
+        if(!$promo->Launch) {
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Promotion has not started.');
         }
 
-        // Run through the order lines and see if there is already a coupon code applied to the order
+        // Check to see if the promo has expired or not started
+        if(date("Y-m-d") < $promo->DateStarted || date("Y-m-d") > $promo->DateClosed) {
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Promotion has expired.');
+        }
+
+        // Run through the order lines and see if there is already a promo code applied to the order
         foreach ($order->lines as $orderLine) {
             if($orderLine->LineTypeID == 6) {
                 $alreadyHasCoupon = true;
             }
         }
 
-        // Check to see if coupon code is already applied
+        // Check to see if promo code is already applied
         if($alreadyHasCoupon) {
-            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('You are already using a coupon code. Only one coupon can be applied.');
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('You are already using a promo code. Only one promo can be applied.');
         }
 
-        // If none of those cases then add a coupon code to the order
-        $discount = $coupon->discount($order->getSubTotal());
+        // Run through the promo offers to see if user has offer
+        foreach($promo->offers as $offer) {
+            if(auth()->user()->id == $offer->user_id) {
+                // Check if user has already used the promo code before
+                if($offer->OfferUsed) {
+                    return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Promo code has already been used. Cannot use promo code more than once.');
+                } else {
+                    $userHasOffer = true;
+                    $offer->OfferUsed = date('Y-m-d H:i:s');
+                    $offer->save();
+                }
+            }
+        }
+
+        if(!$userHasOffer) {
+            return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Promo code offer invalid! Please try again.');
+        }
+
+        // If none of those cases then add a promo code to the order
+        $discount = $promo->Discount * $order->getSubTotal() * -1;
         $orderLine = new OrderLine;
         $orderLine->order_id = $order->id;
         $orderLine->LineTypeID = 6;
@@ -74,8 +99,8 @@ class CouponController extends Controller
         $orderLine->BaseCost = 0;
         $orderLine->Qty = 0;
         $orderLine->Taxable = 0;
-        $orderLine->ProductDesc = 'Coupon';
-        $orderLine->PartDesc = $coupon->code;
+        $orderLine->ProductDesc = 'Promo';
+        $orderLine->PartDesc = $promo->PromoCode;
         $orderLine->PartPrice = $discount;
         $orderLine->ExtPartPrice = $discount;
         $orderLine->PartCost = 0;
