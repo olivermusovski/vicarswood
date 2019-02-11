@@ -52,3 +52,5 @@ Route::post('/complete-order', 'CheckoutController@completeOrder')->name('checko
 
 // Coupon
 Route::resource('/coupon', 'CouponController');
+Route::post('/coupon-cart', 'CouponController@storeFromCart')->name('coupon.storeFromCart');
+Route::delete('/coupon-cart', 'CouponController@destroyFromCart')->name('coupon.destroyFromCart');

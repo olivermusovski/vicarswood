@@ -80,11 +80,11 @@
 				<div class="col-md-5 offset-md-7">
 					{{-- Discount codes --}}
 					<p>Have a code?</p>
-					<form action="{{ route('coupon.store') }}" method="POST">
+					<form action="{{ route('coupon.storeFromCart') }}" method="POST">
 						@csrf
 						<div class="input-group mb-2">
 							<input type="hidden" name="order_id" value="">
-							<input type="text" class="form-control" id="coupon_code" name="coupon_code" value="">
+							<input type="text" class="form-control" id="promo_code" name="promo_code" value="">
 							<div class="input-group-btn w-33">
 								<button type="submit" class="btn btn-secondary btn-block">Apply</button>
 							</div>
@@ -95,6 +95,20 @@
 					<div class="card text-right">
 					  <div class="card-body">
 					    <p class="card-text">Subtotal: {{ number_format(Cart::getSubTotal(), 2) }} </p>
+					    @if(Cart::getCondition('promo'))
+
+								<div class="d-flex flex-row justify-content-end h-auto">
+									<form action="{{ route('coupon.destroyFromCart') }}" method="POST" class="">
+									@csrf
+									@method('DELETE')
+									<div class="form-group">
+										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">Remove</button>
+									</div>
+								</form>
+								<p class="card-text">Discount ({{ Cart::getCondition('promo')->getAttributes()['description'] }}): ${{ number_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubTotal()), 2) }}</p>
+								</div>
+
+						@endif
 					  </div>
 					  <div class="card-footer text-muted">
 					    <h4>Total: {{ number_format(Cart::getTotal(), 2) }}</h4>
