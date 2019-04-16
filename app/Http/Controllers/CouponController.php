@@ -126,6 +126,8 @@ class CouponController extends Controller
 
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
+        } else {
+           return redirect()->route('cart.index')->withErrors('Must be logged in to apply promotion.'); 
         }
         
         // Check to see if the promo code is valid
@@ -187,7 +189,8 @@ class CouponController extends Controller
             'target' => 'total', // this condition will be applied to cart's total when getTotal() is called.
             'value' => $discount.'%',
             'attributes' => array( // attributes field is optional
-                'description' => $promo->PromoCode
+                'description' => $promo->PromoCode,
+                'discount' => $promo->Discount
             )
         ));
 

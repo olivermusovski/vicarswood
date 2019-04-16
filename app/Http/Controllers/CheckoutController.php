@@ -93,6 +93,8 @@ class CheckoutController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addOrderLines($id) {
+        $order = Order::find($id);
+
         //store order lines
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
@@ -146,6 +148,32 @@ class CheckoutController extends Controller
             $orderLine->PartCost = $partCost;
             $orderLine->ExtPartCost = $partCost * $item->quantity;
             $orderLine->SalesTax = 1;
+            $orderLine->save();
+        }
+
+        // add promo line item
+        $promo = \Cart::getCondition('promo');
+        if($promo){
+            $attributes = $promo->getAttributes();
+            $discount = $attributes['discount'];
+            $description = $attributes['description'];
+            $discountAmount = $discount * $order->getSubTotal() * -1;
+            
+            $orderLine = new OrderLine;
+            $orderLine->order_id = $order->id;
+            $orderLine->LineTypeID = 6;
+            $orderLine->BaseNBR = null;
+            $orderLine->BasePrice = 0;
+            $orderLine->BaseCost = 0;
+            $orderLine->Qty = 0;
+            $orderLine->Taxable = 0;
+            $orderLine->ProductDesc = 'Promo';
+            $orderLine->PartDesc = $description;
+            $orderLine->PartPrice = $discountAmount;
+            $orderLine->ExtPartPrice = $discountAmount;
+            $orderLine->PartCost = 0;
+            $orderLine->ExtPartCost = 0;
+            $orderLine->SalesTax = 0;
             $orderLine->save();
         }
     }
