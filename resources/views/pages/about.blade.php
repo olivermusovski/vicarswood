@@ -5,8 +5,10 @@
 @section('content')
    
     <div class="container">
-		
-		<div class="row justify-content-md-center">
+		<div class="embed-responsive embed-responsive-16by9">
+		  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/dFCSFqHNfKs" allowfullscreen></iframe>
+		</div>
+		<div class="row justify-content-md-center mt-3">
 			<div class="col-md-9">
 				<h1>About</h1>
 	        	<h5>

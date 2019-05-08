@@ -19,6 +19,7 @@ Route::get('/terms-and-conditions', 'PageController@termsAndConditions');
 Route::get('/careers', 'PageController@careers');
 Route::get('/test', 'PageController@test');
 Route::get('/confirmation', 'PageController@confirmation')->name('confirmation');
+Route::get('/language/{code}', 'PageController@getLanguage')->name('language');
 
 
 // Authentication

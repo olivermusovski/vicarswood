@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::all();
+        $products = Product::where('LangCode', session()->get('lang'))->get();
 
         return view('products.index')->withProducts($products);
     }

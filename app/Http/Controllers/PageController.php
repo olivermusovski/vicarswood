@@ -36,6 +36,12 @@ class PageController extends Controller
         return view('pages.confirmation');
     }
 
+    public function getLanguage($code) {
+        session(['link' => url()->previous()]);
+        session()->put('lang', $code);
+        return redirect(session('link'));
+    }
+
     public function test() {
     	
     	$product = Product::find(1);

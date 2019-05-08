@@ -5,15 +5,6 @@
 @section('content')
             
     <div class="container">
-
-        {{-- <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto d-block w-25" alt=""> --}}
-        {{-- <img src="{{ asset('images/home.png') }}" class="img-fluid mx-auto d-block" alt="Catalog"> --}}
-        <div align="center" class="embed-responsive embed-responsive-16by9">
-            <video autoplay loop class="embed-responsive-item">
-                <source src="{{ asset('videos/Vicarswood.mp4') }}" type="video/mp4">
-            </video>
-        </div>
-
         <div class="row mt-5">
             <h4>
                 Welcome to Vicarswood.  We are a small workshop offering a choice of craft furniture pieces to add to your home or office.  Timber is hand selected as you would expect from high-end manufacturer.  However, the difference may be found within its workmanship, design and finishes.  We build and finish everything by hand and proudly package all for a safe journey to their next home.

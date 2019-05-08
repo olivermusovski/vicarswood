@@ -24,6 +24,23 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     @guest
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if(session()->has('lang')) {{ session()->get('lang') }} @else Language @endif<span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'EN']) }}">
+                                    English
+                                </a>
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'ES']) }}">
+                                    Espanol
+                                </a>
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'FR']) }}">
+                                    Francais
+                                </a>
+                            </div>
+                        </li>
                         <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
@@ -39,6 +56,23 @@
             
                         </li>
                     @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                @if(session()->has('lang')) {{ session()->get('lang') }} @else Language @endif<span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'EN']) }}">
+                                    English
+                                </a>
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'ES']) }}">
+                                    Espanol
+                                </a>
+                                <a class="dropdown-item" href="{{ route('language', ['code' => 'FR']) }}">
+                                    Francais
+                                </a>
+                            </div>
+                        </li>
                         <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}
                                 @php
