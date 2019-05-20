@@ -14,12 +14,12 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
         	UsersTableSeeder::class,
-        	CouponsTableSeeder::class,
         	ProductsTableSeeder::class,
         	ProductOptionsTableSeeder::class,
         	ProductDetailsTableSeeder::class,
             PromoHistoryTableSeeder::class,
-            PromoOffersTableSeeder::class
+            PromoOffersTableSeeder::class,
+            StaticWebPagesTableSeeder::class,
         ]);
     }
 }
