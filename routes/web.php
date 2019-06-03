@@ -25,6 +25,9 @@ Route::get('/language/{code}', 'PageController@getLanguage')->name('language');
 // Authentication
 Auth::routes();
 
+// Localization
+Route::get('lang/{locale}', 'LocalizationController@index');
+
 // User home page
 Route::get('/home', 'HomeController@index')->name('home');
 

@@ -26,18 +26,17 @@
                     @guest
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                @if(session()->has('lang')) {{ session()->get('lang') }} @else Language @endif<span class="caret"></span>
+                                <span class="caret">
+                                    Lang
+                                </span>
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('language', ['code' => 'EN']) }}">
+                                <a class="dropdown-item" href="lang/en" id="en">
                                     English
                                 </a>
-                                <a class="dropdown-item" href="{{ route('language', ['code' => 'ES']) }}">
+                                <a class="dropdown-item" href="lang/es" id="es">
                                     Espanol
-                                </a>
-                                <a class="dropdown-item" href="{{ route('language', ['code' => 'FR']) }}">
-                                    Francais
                                 </a>
                             </div>
                         </li>
