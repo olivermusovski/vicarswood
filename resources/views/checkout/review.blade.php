@@ -38,7 +38,7 @@
 		
 		<div class="row mt-5">
 			<div class="col-md-6">
-				<form action="{{ route('checkout.complete') }}" method="POST">
+				<form action="{{ route('checkout.complete') }}" method="POST" id="payment-form">
 					@csrf
 					<div class="row mx-0 justify-content-between">
 						<h4 class="font-weight-bold">Payment Details</h4>
@@ -53,27 +53,9 @@
 					
 					
 					<div class="form-group">
-						<input type="text" class="form-control" id="creditcard" name="creditcard" value="" placeholder="Card Number">
-					</div>
-
-					<div class="row">
-						<div class="col-md-6">
-							<div class="form-group">
-								<input type="text" class="form-control" id="name" name="name" value="" placeholder="Cardholder Name">
-							</div>
-						</div>
-						
-						<div class="col-md-3 pl-0">
-							<div class="form-group">
-								<input type="date" class="form-control" id="expiry" name="expiry" value="" placeholder="MM/YY">
-							</div>
-						</div>
-
-						<div class="col-md-3 pl-0">
-							<div class="form-group">
-								<input type="text" class="form-control" id="cvccode" name="cvccode" value="" placeholder="CVV">
-							</div>
-						</div>
+						<label for="card-element">Credit or debit card</label>
+						<div id="card-element"></div>
+						<div id="card-errors" role="alert"></div>
 					</div>
 
 					<input type="hidden" name="order_id" value="{{ $order->id }}">
@@ -217,5 +199,57 @@
 		
 	
 	</div>
+
+@endsection
+
+@section('scripts')
+	<script>
+		var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+		var elements = stripe.elements();
+		var style = {
+			base: {
+				fontSize: '16px',
+				color: "#32325d",
+			}
+		};
+		var card = elements.create('card', {style: style});
+		
+		card.mount('#card-element');
+
+		card.addEventListener('change', function(event) {
+			var displayError = document.getElementById('card-errors');
+			if(event.error) {
+				displayError.textContent = event.error.message;
+			} else {
+				displayError.textContent = '';
+			}
+		});
+
+		var form = document.getElementById('payment-form');
+
+		form.addEventListener('submit', function(event) {
+			event.preventDefault();
+			stripe.createToken(card).then(function(result) {
+				if(result.error) {
+					var errorElement = document.getElementById('card-errors');
+					errorElement.textContent = result.error.message;
+				} else {
+					stripeTokenHandler(result.token);
+				}
+			});
+		});
+
+		function stripeTokenHandler(token) {
+		  	var form = document.getElementById('payment-form');
+		 	var hiddenInput = document.createElement('input');
+		  	hiddenInput.setAttribute('type', 'hidden');
+		  	hiddenInput.setAttribute('name', 'stripeToken');
+		  	hiddenInput.setAttribute('value', token.id);
+		  	form.appendChild(hiddenInput);
+		  	form.submit();
+		}
+	</script>
+
+
 
 @endsection

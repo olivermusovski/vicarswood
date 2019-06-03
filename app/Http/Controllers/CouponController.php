@@ -43,6 +43,10 @@ class CouponController extends Controller
         $order = Order::find($request->order_id);
         $alreadyHasCoupon = false;
         $userHasOffer = false;
+
+        if(!auth()->user()) {
+           return redirect()->route('checkout.review', ['order' => $order->id])->withErrors('Must be logged in to apply promotion.'); 
+        }
         
         // Check to see if the promo code is valid
         if(!$promo) {
