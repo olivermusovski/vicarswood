@@ -33,7 +33,7 @@
 				<a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-4">{{ __("Continue Shopping") }}</a>
 			</div>
 		@else
-			<h2>{{ Cart::getTotalQuantity() }} item(s) in Shopping Cart</h2>
+			<h2>{{ Cart::getTotalQuantity() }} {{ __("item(s) in Shopping Cart") }}</h2>
 			<hr>
 			@foreach ( Cart::getContent() as $item)
 				<div class="row mb-3">
@@ -52,13 +52,13 @@
 							<form action="{{ route('cart.destroy', $item->id) }}" method="POST">
 								@csrf
 								{{ method_field('DELETE') }}
-								<button type="submit" class="btn btn-sm btn-secondary">Remove</button>
+								<button type="submit" class="btn btn-sm btn-secondary">{{ __("Remove") }}</button>
 							</form>
 						</div>
 						<div class="row">
 							<form action="#" method="POST">
 								@csrf
-								<button type="submit" class="btn btn-sm btn-secondary mt-2">Save for later</button>
+								<button type="submit" class="btn btn-sm btn-secondary mt-2">{{ __("Save for later") }}</button>
 							</form>
 						</div>
 					</div>
@@ -79,14 +79,14 @@
 			<div class="row">
 				<div class="col-md-5 offset-md-7">
 					{{-- Discount codes --}}
-					<p>Have a code?</p>
+					<p>{{ __("Have a code?") }}</p>
 					<form action="{{ route('coupon.storeFromCart') }}" method="POST">
 						@csrf
 						<div class="input-group mb-2">
 							<input type="hidden" name="order_id" value="">
 							<input type="text" class="form-control" id="promo_code" name="promo_code" value="">
 							<div class="input-group-btn w-33">
-								<button type="submit" class="btn btn-secondary btn-block">Apply</button>
+								<button type="submit" class="btn btn-secondary btn-block">{{ __("Apply") }}</button>
 							</div>
 						</div>
 					</form>
@@ -94,7 +94,7 @@
 					{{-- Totals card --}}
 					<div class="card text-right">
 					  <div class="card-body">
-					    <p class="card-text">Subtotal: {{ number_format(Cart::getSubTotal(), 2) }} </p>
+					    <p class="card-text">{{ __("Subtotal") }}: {{ number_format(Cart::getSubTotal(), 2) }} </p>
 					    @if(Cart::getCondition('promo'))
 
 								<div class="d-flex flex-row justify-content-end h-auto">
@@ -102,16 +102,16 @@
 									@csrf
 									@method('DELETE')
 									<div class="form-group">
-										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">Remove</button>
+										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">{{ __("Remove") }}</button>
 									</div>
 								</form>
-								<p class="card-text">Discount ({{ Cart::getCondition('promo')->getAttributes()['description'] }}): ${{ number_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubTotal()), 2) }}</p>
+								<p class="card-text">{{ __("Discount") }} ({{ Cart::getCondition('promo')->getAttributes()['description'] }}): ${{ number_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubTotal()), 2) }}</p>
 								</div>
 
 						@endif
 					  </div>
 					  <div class="card-footer text-muted">
-					    <h4>Total: {{ number_format(Cart::getTotal(), 2) }}</h4>
+					    <h4>{{ __("Total") }}: {{ number_format(Cart::getTotal(), 2) }}</h4>
 					  </div>
 					</div>
 				</div>
@@ -119,11 +119,11 @@
 			
 			<div class="row">
 				<div class="col-md-5 offset-md-7 text-right mt-4">
-					<a href="{{ route('products.index') }}" class="btn btn-secondary">Continue Shopping</a>
+					<a href="{{ route('products.index') }}" class="btn btn-secondary">{{ __("Continue Shopping") }}</a>
 					
 					<form action="{{ route('checkout.store') }}" method="POST" class="float-right">
 						@csrf
-						<button type="submit" class="btn btn-primary ml-2">Proceed to Checkout</button>
+						<button type="submit" class="btn btn-primary ml-2">{{ __("Proceed to Checkout") }}</button>
 					</form>
 					
 					{{-- <a href="{{ route('checkout.shipping') }}" class="btn btn-primary ml-2">Proceed to Checkout</a> --}}

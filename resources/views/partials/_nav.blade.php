@@ -32,10 +32,10 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="lang/en" id="en">
+                                <a class="dropdown-item" href="{{ route('locale', "en") }}" id="en">
                                     English
                                 </a>
-                                <a class="dropdown-item" href="lang/es" id="es">
+                                <a class="dropdown-item" href="{{ route('locale', "es") }}" id="es">
                                     Espanol
                                 </a>
                             </div>

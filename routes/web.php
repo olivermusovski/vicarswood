@@ -19,14 +19,13 @@ Route::get('/terms-and-conditions', 'PageController@termsAndConditions');
 Route::get('/careers', 'PageController@careers');
 Route::get('/test', 'PageController@test');
 Route::get('/confirmation', 'PageController@confirmation')->name('confirmation');
-Route::get('/language/{code}', 'PageController@getLanguage')->name('language');
 
 
 // Authentication
 Auth::routes();
 
 // Localization
-Route::get('lang/{locale}', 'LocalizationController@index');
+Route::get('lang/{locale}', 'LocalizationController@index')->name('locale');
 
 // User home page
 Route::get('/home', 'HomeController@index')->name('home');

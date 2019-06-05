@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App;
+use App\ProductOption;
+use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Darryldecode\Cart\CartCondition;
-use App\ProductOption;
 
 class CartController extends Controller
 {
@@ -41,13 +42,29 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        // -----------------------------------
+        // Set alert messages based on locale
+        // -----------------------------------
+        
+        if (App::isLocale('en')) {
+            $alreadyInCart = "Item is already in your cart.";
+            $addedToCart = "Item was added to your cart!";
+        }
+
+        if (App::isLocale('es')) {
+            $alreadyInCart = "El artículo ya está en su carrito.";
+            $addedToCart = "¡El artículo fue añadido a su carrito!";
+        }
+
+        // -----------------------------------
+        // -----------------------------------
 
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
         
         if(\Cart::get($request->id)) {
-            return redirect()->route('cart.index')->with('success_message', 'Item is already in your cart.');
+            return redirect()->route('cart.index')->with('success_message', $alreadyInCart);
         }
 
         else {
@@ -76,7 +93,7 @@ class CartController extends Controller
                 'conditions' => $itemConditions
             ]);
 
-            return redirect()->route('cart.index')->with('success_message', 'Item was added to your cart!');
+            return redirect()->route('cart.index')->with('success_message', $addedToCart);
 
         }
     }
@@ -112,6 +129,23 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // -----------------------------------
+        // Set alert messages based on locale
+        // -----------------------------------
+        
+        if (App::isLocale('en')) {
+            $quantityError = "Quantity must be between 1 and 5";
+            $quantitySuccess = "Quantity was updated successfully!";
+        }
+
+        if (App::isLocale('es')) {
+            $quantityError = "La cantidad debe estar entre 1 y 5";
+            $quantitySuccess = "¡Cantidad se actualizó con éxito!";
+        }
+
+        // -----------------------------------
+        // -----------------------------------
+        
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
@@ -121,7 +155,7 @@ class CartController extends Controller
         ]);
 
         if($validator->fails()) {
-            session()->flash('errors', 'Quantity must be between 1 and 5');
+            session()->flash('errors', $quantityError);
             return response()->json(['success' => false], 400);
         }
 
@@ -133,7 +167,7 @@ class CartController extends Controller
             ],
         ));
 
-        session()->flash('success_message', 'Quantity was updated successfully!');
+        session()->flash('success_message', $quantitySuccess);
 
         return response()->json(['success' => true]);
     }
@@ -146,12 +180,27 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
+        // -----------------------------------
+        // Set alert messages based on locale
+        // -----------------------------------
+        
+        if (App::isLocale('en')) {
+            $itemRemoved = "Item has been removed.";
+        }
+
+        if (App::isLocale('es')) {
+            $itemRemoved = "El artículo ha sido eliminado."; 
+        }
+
+        // -----------------------------------
+        // -----------------------------------
+        
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
         
         \Cart::remove($id);
 
-        return back()->with('success_message', 'Item has been removed.');
+        return back()->with('success_message', $itemRemoved);
     } 
 }
