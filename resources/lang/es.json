@@ -25,6 +25,8 @@
 
 	"Cart" : "Carro",
 
+	"CART" : "CARRO",
+
 	"Privacy and Data Policy" : "Política de privacidad y datos",
 
 	"Sales Terms & Conditions" : "Términos y condiciones de venta",
@@ -86,9 +88,28 @@
 	: "Vicarswood también utiliza cookies y otras tecnologías para 'recordar' cómo utiliza nuestro sitio web. Nuestro objetivo en estos casos es hacer que su experiencia con Vicarswood sea más conveniente y personal. Por ejemplo, saber su nombre nos permite darle la bienvenida la próxima vez que visite el sitio web de Vicarswood. Saber que alguien que usa su computadora o dispositivo ha comprado un determinado producto nos ayuda a hacer que nuestras comunicaciones por correo electrónico y nuestras sugerencias de productos sean más relevantes para sus intereses. Puede configurar su navegador web para que le notifique cuando reciba una cookie. Sin embargo, si decide no aceptar cookies de nuestros sitios, limitará la funcionalidad que podemos proporcionarle cuando visite nuestros sitios.",
 
 	"As is true of most websites, our web servers gather some information automatically and store it in log files. This information includes Internet Protocol (IP) addresses, browser type and language, Internet service provider (ISP), referring and exit pages, operating system, date/time stamp, and clickstream data. We use this information to understand and analyze trends, to administer the site, to learn about user behavior on the site, and to gather demographic information about our customer base."
-	: "Como ocurre con la mayoría de los sitios web, nuestros servidores web recopilan cierta información automáticamente y la almacenan en archivos de registro. Esta información incluye direcciones de Protocolo de Internet (IP), tipo de navegador e idioma, proveedor de servicios de Internet (ISP), páginas de referencia y salida, sistema operativo, sello de fecha / hora y datos de flujo de clics. Utilizamos esta información para comprender y analizar las tendencias, para administrar el sitio, para conocer el comportamiento de los usuarios en el sitio y para recopilar información demográfica sobre nuestra base de clientes."
+	: "Como ocurre con la mayoría de los sitios web, nuestros servidores web recopilan cierta información automáticamente y la almacenan en archivos de registro. Esta información incluye direcciones de Protocolo de Internet (IP), tipo de navegador e idioma, proveedor de servicios de Internet (ISP), páginas de referencia y salida, sistema operativo, sello de fecha / hora y datos de flujo de clics. Utilizamos esta información para comprender y analizar las tendencias, para administrar el sitio, para conocer el comportamiento de los usuarios en el sitio y para recopilar información demográfica sobre nuestra base de clientes.",
 
+	"Currently there are no openings, but we’d like to hear your interest if you have skill and background in any of the areas"
+	: "Actualmente no hay vacantes, pero nos gustaría conocer su interés si tiene habilidad y experiencia en alguna de las áreas",
 
+	"Programmer" : "Programador",
+
+	"Data Scientist – Analytics, Economics/Marketing" : "Científico de datos - Analítica, Ciencias económicas/Márketing",
+
+	"Engineer - Furniture Design & Autodesk Fusion 360, or" : "Ingeniero - Diseño de muebles y Autodesk Fusion 360, o",
+
+	"Craftsman - Woodworking and Finishing" : "Artesano - carpintería y acabado",
+
+	"Remember Me" : "Recuérdame",
+
+	"Forgot Your Password?" : "¿Olvidaste tu contraseña?",
+
+	"Name" : "Nombre",
+
+	"You don't have any items in your cart yet." : "Aún no tienes ningún artículo en tu carrito.",
+
+	"Continue Shopping" : "Seguir Comprando"
 
 
 

@@ -24,13 +24,13 @@
 
 		@if (Cart::isEmpty())
 			<div class="row justify-content-md-center">
-				<h3 class="font-weight-bold">CART</h3>
+				<h3 class="font-weight-bold">{{ __('CART') }}</h3>
 			</div>
 			<div class="row justify-content-md-center">
-				<h5 class="text-muted">You don't have any items in your cart yet.</h5>
+				<h5 class="text-muted">{{ __("You don't have any items in your cart yet.") }}</h5>
 			</div>
 			<div class="row justify-content-md-center">
-				<a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-4">Continue Shopping</a>
+				<a href="{{ route('products.index') }}" class="btn btn-outline-primary mt-4">{{ __("Continue Shopping") }}</a>
 			</div>
 		@else
 			<h2>{{ Cart::getTotalQuantity() }} item(s) in Shopping Cart</h2>
