@@ -299,7 +299,21 @@ class CheckoutController extends Controller
      */
     public function completeOrder(Request $request)
     {
-        //dd($request);
+        // -----------------------------------
+        // Set alert messages based on locale
+        // -----------------------------------
+        
+        if (App::isLocale('en')) {
+            $successMessage = "Your order has been entered!";
+        }
+
+        if (App::isLocale('es')) {
+            $successMessage = "Su pedido ha sido ingresado!"; 
+        }
+
+        // -----------------------------------
+        // -----------------------------------
+        
         //find order
         $order = Order::find($request->order_id);
 
@@ -321,7 +335,7 @@ class CheckoutController extends Controller
         
         \Cart::clear();
                 
-        return redirect()->route('confirmation')->with('success_message', 'You order has been entered!');
+        return redirect()->route('confirmation')->with('success_message', $successMessage);
     }
 
     /**

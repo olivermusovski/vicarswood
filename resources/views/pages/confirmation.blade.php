@@ -22,7 +22,7 @@
 			</div>
 		@endif
 
-		<h1>Thank you for your order!</h1>
+		<h1>{{ __("Thank you for your order!") }}</h1>
 		
 	</div>
 	
