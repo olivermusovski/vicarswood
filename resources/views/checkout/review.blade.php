@@ -23,15 +23,15 @@
 		@endif
 
 		<div class="row justify-content-center">
-			<h3 class="font-weight-bold">Checkout</h3>
+			<h3 class="font-weight-bold">{{ __("Checkout") }}</h3>
 		</div>
 		
 		<div class="row justify-content-center">
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item">Cart</li>
-			    <li class="breadcrumb-item">Shipping Information</li>
-			    <li class="breadcrumb-item active">Payment Details</li>
+			    <li class="breadcrumb-item">{{ __("Cart") }}</li>
+			    <li class="breadcrumb-item">{{ __("Shipping Information") }}</li>
+			    <li class="breadcrumb-item active">{{ __("Payment Details") }}</li>
 			  </ol>
 			</nav>
 		</div>
@@ -41,7 +41,7 @@
 				<form action="{{ route('checkout.complete') }}" method="POST" id="payment-form">
 					@csrf
 					<div class="row mx-0 justify-content-between">
-						<h4 class="font-weight-bold">Payment Details</h4>
+						<h4 class="font-weight-bold">{{ __("Payment Details") }}</h4>
 						<span>
 							<i class="fab fa-cc-visa fa-2x"></i>
 							<i class="fab fa-cc-discover fa-2x ml-2"></i>
@@ -53,7 +53,7 @@
 					
 					
 					<div class="form-group">
-						<label for="card-element">Credit or debit card</label>
+						<label for="card-element">{{ __("Credit or debit card") }}</label>
 						<div id="card-element"></div>
 						<div id="card-errors" role="alert"></div>
 					</div>
@@ -62,50 +62,50 @@
 
 					<hr>
 					
-					<h4 class="font-weight-bold">Billing Details</h4>
+					<h4 class="font-weight-bold">{{ __("Billing Details") }}</h4>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="name" name="AttentionBill" value="" placeholder="Name">
+						<input type="text" class="form-control" id="name" name="AttentionBill" value="" placeholder={{ __("Name") }}>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="address" name="Street1Bill" value="" placeholder="Address">
+						<input type="text" class="form-control" id="address" name="Street1Bill" value="" placeholder={{ __("Address") }}>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="city" name="CityBill" value="" placeholder="City">
+						<input type="text" class="form-control" id="city" name="CityBill" value="" placeholder={{ __("City") }}>
 					</div>
 
 					<div class="row">
 						<div class="col-md">
 							<div class="form-group">
-								<input type="text" class="form-control" id="country" name="CountryBill" value="" placeholder="Country">
+								<input type="text" class="form-control" id="country" name="CountryBill" value="" placeholder={{ __("Country") }}>
 							</div>
 						</div>
 
 						<div class="col-md pl-0">
 							<div class="form-group">
-								<input type="text" class="form-control" id="province" name="ProvinceBill" value="" placeholder="State">
+								<input type="text" class="form-control" id="province" name="ProvinceBill" value="" placeholder={{ __("State") }}>
 							</div>
 						</div>
 
 						<div class="col-md pl-0">
 							<div class="form-group">
-								<input type="text" class="form-control" id="postalcode" name="PostalCodeBill" value="" placeholder="Postal Code">
+								<input type="text" class="form-control" id="postalcode" name="PostalCodeBill" value="" placeholder={{ __("Postal Code") }}>
 							</div>
 						</div>
 					</div>
 
 
 					<div class="form-group">
-						<input type="text" class="form-control" id="phone" name="PhoneNumberBill" value="" placeholder="Phone Number">
+						<input type="text" class="form-control" id="phone" name="PhoneNumberBill" value="" placeholder={{ __("Phone Number") }}>
 					</div>
 
 					<hr>
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary btn-block">Complete Checkout</button>
+							<button type="submit" class="btn btn-primary btn-block">{{ __("Complete Checkout") }}</button>
 						</div>
 					</div>
 
@@ -114,7 +114,7 @@
 			</div>
 
 			<div class="col-md-5 offset-md-1">
-				<h4 class="font-weight-bold">Your Order</h4>
+				<h4 class="font-weight-bold">{{ __("Your Order") }}</h4>
 
 				{{-- Order item list --}}
 				<hr>
@@ -146,14 +146,14 @@
 				@endforeach
 
 				{{-- Discount codes --}}
-				<p>Have a code?</p>
+				<p>{{ __("Have a code?") }}</p>
 				<form action="{{ route('coupon.store') }}" method="POST">
 					@csrf
 					<div class="input-group mb-2">
 						<input type="hidden" name="order_id" value="{{ $order->id }}">
 						<input type="text" class="form-control" id="promo_code" name="promo_code" value="">
 						<div class="input-group-btn w-33">
-							<button type="submit" class="btn btn-secondary btn-block">Apply</button>
+							<button type="submit" class="btn btn-secondary btn-block">{{ __("Apply") }}</button>
 						</div>
 					</div>
 				</form>
@@ -161,7 +161,7 @@
 				{{-- Start of the card with totals --}}
 				<div class="card text-right">
 					<div class="card-body">
-						<p class="card-text">Subtotal: ${{ number_format($order->getSubTotal(), 2) }}</p>
+						<p class="card-text">{{ __("Subtotal") }}: ${{ number_format($order->getSubTotal(), 2) }}</p>
 						@foreach($order->lines as $orderLine)
 							@if($orderLine->LineTypeID == 6)
 								<div class="d-flex flex-row justify-content-end h-auto">
@@ -169,22 +169,22 @@
 									@csrf
 									@method('DELETE')
 									<div class="form-group">
-										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">Remove</button>
+										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">{{ __("Remove") }}</button>
 									</div>
 								</form>
-								<p class="card-text">Discount ({{ $orderLine->PartDesc }}): ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								<p class="card-text">{{ __("Discount") }} ({{ $orderLine->PartDesc }}): ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
 								</div>
 								
 							@endif
 						@endforeach
 						@foreach($order->lines as $orderLine)
 							@if($orderLine->LineTypeID == 4)
-								<p class="card-text">Tax: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								<p class="card-text">{{ __("Tax:") }} ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
 							@endif
 						@endforeach
 						@foreach($order->lines as $orderLine)
 							@if($orderLine->LineTypeID == 5)
-								<p class="card-text">Shipping & Handling: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								<p class="card-text">{{ __("Shipping & Handling") }}: ${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
 							@endif
 						@endforeach
 					</div>

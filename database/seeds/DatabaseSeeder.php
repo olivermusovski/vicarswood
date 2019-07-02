@@ -19,7 +19,6 @@ class DatabaseSeeder extends Seeder
         	ProductDetailsTableSeeder::class,
             PromoHistoryTableSeeder::class,
             PromoOffersTableSeeder::class,
-            StaticWebPagesTableSeeder::class,
         ]);
     }
 }

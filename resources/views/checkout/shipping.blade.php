@@ -23,15 +23,15 @@
 		@endif
 		
 		<div class="row justify-content-center">
-			<h3 class="font-weight-bold">Checkout</h3>
+			<h3 class="font-weight-bold">{{ __("Checkout") }}</h3>
 		</div>
 		
 		<div class="row justify-content-center">
 			<nav aria-label="breadcrumb">
 			  <ol class="breadcrumb">
-			    <li class="breadcrumb-item">Cart</li>
-			    <li class="breadcrumb-item active">Shipping Information</li>
-			    <li class="breadcrumb-item">Payment Details</li>
+			    <li class="breadcrumb-item">{{ __("Cart") }}</li>
+			    <li class="breadcrumb-item active">{{ __("Shipping Information") }}</li>
+			    <li class="breadcrumb-item">{{ __("Payment Details") }}</li>
 			  </ol>
 			</nav>
 		</div>
@@ -43,8 +43,8 @@
 
 					@if(!$order->user_id)
 						<div class="row justify-content-between px-3">
-							<h4 class="font-weight-bold">Contact Information</h4>
-							<p>Already have an account? <a href="{{ route('login') }}">Log In</a></p>
+							<h4 class="font-weight-bold">{{ __("Contact Information") }}</h4>
+							<p>{{ __("Already have an account?") }} <a href="{{ route('login') }}">{{ __("Login") }}</a></p>
 						</div>
 						
 						<div class="form-group mt-1">
@@ -54,24 +54,24 @@
 						<hr>
 					@endif
 
-					<h4 class="font-weight-bold">Shipping Details</h4>
+					<h4 class="font-weight-bold">{{ __("Shipping Details") }}</h4>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="name" name="AttentionShip" value="" placeholder="Name">
+						<input type="text" class="form-control form-control-lg" id="name" name="AttentionShip" value="" placeholder={{ __("Name") }}>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="address" name="Street1Ship" value="" placeholder="Address">
+						<input type="text" class="form-control form-control-lg" id="address" name="Street1Ship" value="" placeholder={{ __("Address") }}>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder="City">
+						<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
 					</div>
 
 					<div class="row">
 						<div class="col-md">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder="Country">
+								<input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}>
 								{{--
 								<label for="Country">Country</label>
 								<select class="form-control form-control-lg">
@@ -87,13 +87,13 @@
 
 						<div class="col-md">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder="State">
+								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}>
 							</div>
 						</div>
 
 						<div class="col-md">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="postalcode" name="PostalCodeShip" value="" placeholder="Postal Code">
+								<input type="text" class="form-control form-control-lg" id="postalcode" name="PostalCodeShip" value="" placeholder={{ __("Postal Code") }}>
 							</div>
 						</div>
 					</div>
@@ -101,7 +101,7 @@
 					
 			
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="phone" name="PhoneNumberShip" value="" placeholder="Phone Number">
+						<input type="text" class="form-control form-control-lg" id="phone" name="PhoneNumberShip" value="" placeholder={{ __("Phone Number") }}>
 					</div>
 
 					
@@ -165,10 +165,10 @@
 
 					<div class="row">
 						<div class="col-md-6">
-							<a href="{{ route('cart.index') }}" class="btn btn-outline-secondary btn-block">Return to cart</a>
+							<a href="{{ route('cart.index') }}" class="btn btn-outline-secondary btn-block">{{ __("Return to cart") }}</a>
 						</div>
 						<div class="col-md-6">
-							<button type="submit" class="btn btn-primary btn-block">Proceed to Order Review</button>
+							<button type="submit" class="btn btn-primary btn-block">{{ __("Proceed to Order Review") }}</button>
 						</div>
 					</div>
 

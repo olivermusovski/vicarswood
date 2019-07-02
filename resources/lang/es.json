@@ -139,7 +139,49 @@
 
 	"Base Price" : "Precio Base",
 
-	"Price Range" : "Rango de precios"
+	"Price Range" : "Rango de precios",
+
+	"Checkout" : "Revisa",
+
+	"Shipping Information" : "Información de envío",
+
+	"Payment Details" : "Detalles del pago",
+
+	"Shipping Details" : "Detalles de envío",
+
+	"Contact Information" : "Información del contacto",
+
+	"Already have an account?" : "¿Ya tienes una cuenta?",
+
+	"Address" : "Dirección",
+
+	"City" : "Ciudad",
+
+	"Country" : "País",
+
+	"State" : "Estado",
+
+	"Postal Code" : "Código postal",
+
+	"Phone Number" : "Número de teléfono",
+
+	"Return to cart" : "Volver al carrito",
+
+	"Proceed to Order Review" : "Proceder a la Revisión de Orden",
+
+	"Credit or debit card" : "Tarjeta de crédito o débito",
+
+	"Billing Details" : "Detalles de facturación",
+
+	"Complete Checkout" : "Completar Checkout",
+
+	"Your Order" : "Su pedido",
+
+	"Tax" : "Impuesto",
+
+	"Shipping & Handling" : "Gastos de envío y manipulación"
+
+
 
 
 
