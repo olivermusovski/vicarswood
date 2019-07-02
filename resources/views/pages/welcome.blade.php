@@ -5,6 +5,9 @@
 @section('content')
             
     <div class="container">
+        <div class="row">
+            <img class="img-fluid mx-auto" src="{{ asset('images/home.png') }}" alt="home">
+        </div>
         <div class="row mt-5">
             <h4>
                 {{ __("Welcome to Vicarswood. We are a small workshop offering a choice of craft furniture pieces to add to your home or office. Timber is hand selected as you would expect from high-end manufacturer. However, the difference may be found within its workmanship, design and finishes. We build and finish everything by hand and proudly package all for a safe journey to their next home.") }}
