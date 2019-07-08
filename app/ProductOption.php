@@ -3,10 +3,17 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class ProductOption extends Model
 {
+    use HasTranslations;
+
     protected $table = 'ProductOptions';
+
+    public $translatable = [
+        
+    ];
 
     public function product(){
     	return $this->belongsTo('App\Product', 'BaseNBR', 'BaseNBR');

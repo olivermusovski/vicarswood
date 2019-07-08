@@ -58,6 +58,7 @@ class ProductDetailsTableSeeder extends Seeder
             'ObjectFile' => '601-ShtImage5.png',
             'UpdatedBy' => 1,
         ]);
+        
 
         // 605 Product
         

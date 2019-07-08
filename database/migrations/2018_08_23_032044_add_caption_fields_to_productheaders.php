@@ -14,8 +14,8 @@ class AddCaptionFieldsToProductheaders extends Migration
     public function up()
     {
         Schema::table('ProductHeaders', function (Blueprint $table) {
-            $table->string('CaptionDim')->after('UpdatedBy');
-            $table->string('CaptionPrice')->after('CaptionDim');
+            $table->json('CaptionDim')->after('UpdatedBy');
+            $table->json('CaptionPrice')->after('CaptionDim');
         });
     }
 

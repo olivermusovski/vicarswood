@@ -17,9 +17,9 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('LangCode');
             $table->integer('BaseNBR');
-            $table->string('ProdName');
-            $table->string('ProdDesc');
-            $table->text('ProdProse');
+            $table->json('ProdName');
+            $table->json('ProdDesc');
+            $table->json('ProdProse');
             $table->double('BasePrice');
             $table->double('BaseStdHours');
             $table->double('BaseStdLabor');

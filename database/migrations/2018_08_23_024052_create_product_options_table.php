@@ -19,8 +19,8 @@ class CreateProductOptionsTable extends Migration
             $table->integer('BaseNBR');
             $table->string('OptCode');
             $table->string('OptPosition');
-            $table->string('PositionName');
-            $table->string('OptName');
+            $table->json('PositionName');
+            $table->json('OptName');
             $table->double('OptPrice');
             $table->double('OptStdHours');
             $table->double('OptStdLabor');

@@ -19,8 +19,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => '1C',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Grey',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Grey',
+                'es' => 'Grey'
+            ],
         	'OptPrice' => 75.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -35,8 +41,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => 'D2',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Cherry',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Cherry',
+                'es' => 'Cherry'
+            ],
         	'OptPrice' => 75.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -51,8 +63,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => 'D3',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Turquiose',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Turquiose',
+                'es' => 'Turquiosa'
+            ],
         	'OptPrice' => 75.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -67,8 +85,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => '4C',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Red',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Red',
+                'es' => 'Rojo'
+            ],
         	'OptPrice' => 75.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -83,8 +107,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => '0C',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Unfinished',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Unfinished',
+                'es' => '(Sin acabado)'
+            ],
         	'OptPrice' => -60.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -99,8 +129,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'F',
         	'OptPosition' => '6C',
-        	'PositionName' => 'Finish Options',
-        	'OptName' => 'Danish Oil (Natural)',
+        	'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+        	'OptName' => [
+                'en' => 'Danish Oil (Natural)',
+                'es' => 'Aceite danés, luz'
+            ],
         	'OptPrice' => 0.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -160,101 +196,7 @@ class ProductOptionsTableSeeder extends Seeder
 
         // 601 Spanish
         
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '6',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Aceite danés, luz',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
 
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '5',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => '(Sin acabado)',
-            'OptPrice' => -60.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '4',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Red',
-            'OptPrice' => 75.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '3',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Turquiose',
-            'OptPrice' => 75.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '2',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Cherry',
-            'OptPrice' => 75.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'F',
-            'OptPosition' => '1',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Grey',
-            'OptPrice' => 75.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
 
         ProductOption::create([
             'LangCode' => 'ES',

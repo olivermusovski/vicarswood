@@ -3,10 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Translatable\HasTranslations;
 
 class Product extends Model
 {
+    use HasTranslations;
+
     protected $table = 'ProductHeaders';
+
+    public $translatable = [
+        'ProdName', 
+        'ProdDesc', 
+        'ProdProse', 
+        'CaptionDim', 
+        'CaptionPrice'
+    ];
 
     public function details(){
     	return $this->hasMany('App\ProductDetail', 'BaseNBR', 'BaseNBR');

@@ -18,7 +18,7 @@ class CreateProductDetailsTable extends Migration
             $table->string('LangCode');
             $table->integer('BaseNBR');
             $table->integer('ObjectSequence');
-            $table->string('ObjectName');
+            $table->json('ObjectName');
             $table->string('ObjectFile');
             $table->timestamps();
             $table->integer('UpdatedBy');
