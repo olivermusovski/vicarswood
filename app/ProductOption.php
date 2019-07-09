@@ -12,7 +12,8 @@ class ProductOption extends Model
     protected $table = 'ProductOptions';
 
     public $translatable = [
-        
+        'PositionName',
+        'OptName'
     ];
 
     public function product(){

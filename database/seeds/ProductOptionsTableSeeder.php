@@ -151,8 +151,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'H',
         	'OptPosition' => '3C',
-        	'PositionName' => 'Hardware Options',
-        	'OptName' => 'Decorative Knob',
+        	'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+        	'OptName' => [
+                'en' => 'Decorative Knob',
+                'es' => 'Perilla decorativa'
+            ],
         	'OptPrice' => 0.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -167,8 +173,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'H',
         	'OptPosition' => '1C',
-        	'PositionName' => 'Hardware Options',
-        	'OptName' => '(No Hardware)',
+        	'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+        	'OptName' => [
+                'en' => '(No Hardware)',
+                'es' => '(Sin manijas o perillas)'
+            ],
         	'OptPrice' => -36.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -183,8 +195,14 @@ class ProductOptionsTableSeeder extends Seeder
         	'BaseNBR' => 601,
         	'OptCode' => 'H',
         	'OptPosition' => '2C',
-        	'PositionName' => 'Hardware Options',
-        	'OptName' => 'Decorative Pull',
+        	'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+        	'OptName' => [
+                'en' => 'Decorative Pull',
+                'es' => 'Manija decorativa'
+            ],
         	'OptPrice' => 25.00,
         	'OptStdHours' => 0,
         	'OptStdLabor' => 0,
@@ -192,58 +210,6 @@ class ProductOptionsTableSeeder extends Seeder
         	'OptStdOverhead' => 0,
         	'UpdatedBy' => 1,
         	'Default' => 0
-        ]);
-
-        // 601 Spanish
-        
-
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'H',
-            'OptPosition' => '2C',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => 'Manija decorativa',
-            'OptPrice' => 25.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'H',
-            'OptPosition' => '3C',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => 'Perilla decorativa',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 601,
-            'OptCode' => 'H',
-            'OptPosition' => '1C',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => '(Sin manijas o perillas)',
-            'OptPrice' => -36.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
         ]);
 
         // 609 English
@@ -447,8 +413,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '6D',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Danish Oil (Natural)',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Danish Oil (Natural)',
+                'es' => 'Aceite danés, luz'
+            ],
             'OptPrice' => 0.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -463,8 +435,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '0D',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Unfinished',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Unfinished',
+                'es' => '(Sin acabado)'
+            ],
             'OptPrice' => -123.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -479,8 +457,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '4D',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Red',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Red',
+                'es' => 'Roja'
+            ],
             'OptPrice' => 326.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -495,8 +479,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '3C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Turquiose',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Turquiose',
+                'es' => 'Turquiosa'
+            ],
             'OptPrice' => 326.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -511,8 +501,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '2D',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Cherry',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Cherry',
+                'es' => 'Cherry'
+            ],
             'OptPrice' => 326.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -527,8 +523,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'F',
             'OptPosition' => '1D',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Grey',
+            'PositionName' => [
+                'en' => 'Finish Options',
+                'es' => 'Acabados Disponibles'
+            ],
+            'OptName' => [
+                'en' => 'Grey',
+                'es' => 'Grey'
+            ],
             'OptPrice' => 326.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -543,8 +545,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'H',
             'OptPosition' => '3D',
-            'PositionName' => 'Hardware Options',
-            'OptName' => 'Decorative Knob',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => 'Decorative Knob',
+                'es' => 'Perilla decorativa'
+            ],
             'OptPrice' => 0.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -559,8 +567,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'H',
             'OptPosition' => '2D',
-            'PositionName' => 'Hardware Options',
-            'OptName' => 'Decorative Pull',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => 'Decorative Pull',
+                'es' => 'Manija decorativa'
+            ],
             'OptPrice' => 25.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -575,8 +589,14 @@ class ProductOptionsTableSeeder extends Seeder
             'BaseNBR' => 705,
             'OptCode' => 'H',
             'OptPosition' => '0D',
-            'PositionName' => 'Hardware Options',
-            'OptName' => '(No Hardware)',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => '(No Hardware)',
+                'es' => '(Sin manijas o perillas)'
+            ],
             'OptPrice' => -36.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -682,150 +702,6 @@ class ProductOptionsTableSeeder extends Seeder
             'Default' => 0
         ]);
 
-        // 705 Spanish
-            
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '1',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Grey',
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '2',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Cherry',
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '3',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Turquiose',
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '4',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Red',
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '5',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => '(Sin acabado)',
-            'OptPrice' => -60.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '6',
-            'PositionName' => 'Acabados Disponibles',
-            'OptName' => 'Aceite danés, luz',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'H',
-            'OptPosition' => '3D',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => 'Perilla decorativa',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'H',
-            'OptPosition' => '0D',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => '(Sin manijas o perillas)',
-            'OptPrice' => -36.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'ES',
-            'BaseNBR' => 705,
-            'OptCode' => 'H',
-            'OptPosition' => '2D',
-            'PositionName' => 'Opciones de Hardware',
-            'OptName' => 'Manija decorativa',
-            'OptPrice' => 25.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
+        
     }
 }
