@@ -7,7 +7,7 @@
 	
 	    @include('partials._nav')
 	    @include('partials._messages')
-	    <main class="py-4">
+	    <main class="">
 	        @yield('content')
 	    </main>
 	    @include('partials._footer')

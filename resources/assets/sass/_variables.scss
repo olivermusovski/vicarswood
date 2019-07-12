@@ -3,9 +3,10 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-sans-serif: "Lato", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+$enable-responsive-font-sizes: true;
 
 // Colors
 $blue: #3490dc;
@@ -19,7 +20,10 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-$primary: #40c5cc;
+$primary: #24C7CB;
+$secondary: #93969D;
+$light: #F3F4F7;
+$tertiary: #08748B;
 
 // Breadcrumb
 $breadcrumb-divider: quote(">");

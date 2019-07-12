@@ -1,15 +1,34 @@
 @extends('app')
 
+@section('stylesheets')
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+@stop
+
 @section('title')
 
 @section('content')
+
+    <div class="row wallpaper-home w-auto align-items-center">
+        <div class="col p-7l">
+            <h1 class="display-1" style="font-family: 'Montserrat', sans-serif">Vicarswood</h1>
+            <div class="row">
+                <div class="col">
+                    <h2 class="text-light">Hand-made, high quality furniture</h2>    
+                </div>
+            </div>
+        </div>
+        <div class="col p-7r">
+            <div class="row justify-content-center">
+                <button class="btn btn-light btn-xl rounded-full">Products</button>
+                <button class="btn btn-secondary btn-xl rounded-full ml-5">About Us</button>
+            </div>
+            
+        </div>
+    </div>
             
     <div class="container">
-        <div class="row">
-            <img class="img-fluid mx-auto" src="{{ asset('images/home.png') }}" alt="home">
-        </div>
-        <div class="row mt-5">
-            <h4>
+        <div class="row my-5">
+            <h5 class="text-muted">
                 {{ __("Welcome to Vicarswood. We are a small workshop offering a choice of craft furniture pieces to add to your home or office. Timber is hand selected as you would expect from high-end manufacturer. However, the difference may be found within its workmanship, design and finishes. We build and finish everything by hand and proudly package all for a safe journey to their next home.") }}
                 <br>
                 <br>
@@ -20,9 +39,8 @@
                 <br>
                 <br>
                 {{ __("For more information, check out our") }} <a href="{{ url('/about') }}">{{ __("About") }} </a> {{ __("page") }}.
-            </h4>
+            </h5>
         </div>
-
     </div>
  
  @endsection
