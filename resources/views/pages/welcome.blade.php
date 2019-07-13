@@ -1,33 +1,41 @@
 @extends('app')
 
 @section('stylesheets')
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:600&display=swap" rel="stylesheet">
 @stop
 
 @section('title')
 
 @section('content')
 
-    <div class="row wallpaper-home w-auto align-items-center">
-        <div class="col p-7l">
-            <h1 class="display-1" style="font-family: 'Montserrat', sans-serif">Vicarswood</h1>
-            <div class="row">
-                <div class="col">
-                    <h2 class="text-light">Hand-made, high quality furniture</h2>    
+    <div class="conainter-fluid wallpaper-home">
+        <div class="container">
+            <div class="row py-5 px-3 align-items-center">
+                <div class="col-12 col-md-8 col-xl-6">
+                    <div class="row">
+                        <h1 class="display-1" style="font-family: 'Montserrat', sans-serif">Vicarswood</h1>
+                    </div>
+                    <div class="row">
+                        <h2 class="text-light font-weight-bolder">{{ __("Hand-made, high quality furniture") }}</h2>    
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-xl-6 mt-4 mt-md-0">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-end">
+                            <button class="btn btn-light btn-lg rounded-full">{{ __("Products") }}</button>    
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-start">
+                            <button class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4">{{ __("About Us") }}</button>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
-        </div>
-        <div class="col p-7r">
-            <div class="row justify-content-center">
-                <button class="btn btn-light btn-xl rounded-full">Products</button>
-                <button class="btn btn-secondary btn-xl rounded-full ml-5">About Us</button>
-            </div>
-            
         </div>
     </div>
             
     <div class="container">
-        <div class="row my-5">
+        <div class="row my-5 px-3">
             <h5 class="text-muted">
                 {{ __("Welcome to Vicarswood. We are a small workshop offering a choice of craft furniture pieces to add to your home or office. Timber is hand selected as you would expect from high-end manufacturer. However, the difference may be found within its workmanship, design and finishes. We build and finish everything by hand and proudly package all for a safe journey to their next home.") }}
                 <br>

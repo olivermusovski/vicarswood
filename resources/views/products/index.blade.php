@@ -4,8 +4,7 @@
 
 @section('content')
    
-    <div class="container">
-    	<h1 class="font-weight-bold mb-4">{{ __("Products Page") }}</h1>
+    <div class="container my-3">
     	<div class="row justify-content-center">
     		@foreach($products as $product)
 		    	<div class="col-md-10">
