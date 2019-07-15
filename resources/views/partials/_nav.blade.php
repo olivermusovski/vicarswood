@@ -49,7 +49,7 @@
                         <li class="nav-item mr-4">
                             <a class="nav-link" href="{{ route('cart.index') }}"><i class="fas fa-shopping-cart"></i> {{ __('Cart') }}
                                 @if (!Cart::isEmpty())
-                                    <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
+                                    <span class="badge badge-pill badge-light">{{ Cart::getContent()->count() }}</span>
                                 @endif
                             </a>
             
