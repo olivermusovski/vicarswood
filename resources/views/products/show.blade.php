@@ -5,8 +5,7 @@
 @section('content')
    
     <div class="container">
-    	<h1 class="font-weight-bold mb-4">{{ __("Product Page") }}</h1>
-    	<div class="row">
+    	<div class="row py-4">
     		<div class="col-md-7">
 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				  <ol class="carousel-indicators">
@@ -34,7 +33,7 @@
 				</div>
     		</div>
     		
-    		<div class="col-md-5">
+    		<div class="col-md-5 mt-3 mt-md-0">
     			<h2 class="font-weight-bold">{{ $product->ProdName." - ".$product->ProdDesc }}</h2>
 				<h5 class="text-muted">{{ __("Base Price") }}: ${{ number_format($product->BasePrice, 2) }}</h5>
 				<h5 class="text-muted">{{ __("Price Range") }}: {{ $product->getPriceRange() }}</h5>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<div class="container">
+	<div class="container my-3">
 
 		@if (session()->has('success_message'))
 			<div class="alert alert-success">
@@ -36,7 +36,7 @@
 			</nav>
 		</div>
 
-		<div class="row justify-content-center mt-5">
+		<div class="row justify-content-center mt-3">
 			<div class="col-md-7">
 				<form action="{{ route('checkout.storeShippingAddress') }}" method="POST">
 					@csrf
@@ -69,7 +69,7 @@
 					</div>
 
 					<div class="row">
-						<div class="col-md">
+						<div class="col-md-12 col-lg">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}>
 								{{--
@@ -85,13 +85,13 @@
 							</div>
 						</div>
 
-						<div class="col-md">
+						<div class="col-md-12 col-lg">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}>
 							</div>
 						</div>
 
-						<div class="col-md">
+						<div class="col-md-12 col-lg">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-lg" id="postalcode" name="PostalCodeShip" value="" placeholder={{ __("Postal Code") }}>
 							</div>
@@ -167,7 +167,7 @@
 						<div class="col-md-6">
 							<a href="{{ route('cart.index') }}" class="btn btn-outline-secondary btn-block">{{ __("Return to cart") }}</a>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-6 mt-3 mt-md-0">
 							<button type="submit" class="btn btn-primary btn-block">{{ __("Proceed to Order Review") }}</button>
 						</div>
 					</div>

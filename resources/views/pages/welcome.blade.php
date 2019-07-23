@@ -22,10 +22,10 @@
                 <div class="col-12 col-md-4 col-xl-6 mt-4 mt-md-0">
                     <div class="row justify-content-center">
                         <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-end">
-                            <button class="btn btn-light btn-lg rounded-full">{{ __("Products") }}</button>    
+                            <a class="btn btn-light btn-lg rounded-full" href="{{ route('products.index') }}">{{ __('Products') }}</a>    
                         </div>
                         <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-start">
-                            <button class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4">{{ __("About Us") }}</button>
+                            <a class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4" href="{{ url('/about') }}">{{ __('About') }}</a>
                         </div>
                     </div>
                     
