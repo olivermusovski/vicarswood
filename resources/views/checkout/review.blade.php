@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('stylesheets')
+<link href="{{ asset('css/stripe.css') }}" rel="stylesheet">
+@endsection
+
 @section('title', '| Checkout')
 
 @section('content')
@@ -36,84 +40,8 @@
 			</nav>
 		</div>
 		
-		<div class="row mt-5">
-			<div class="col-md-6">
-				<form action="{{ route('checkout.complete') }}" method="POST" id="payment-form">
-					@csrf
-					<div class="row mx-0 justify-content-between">
-						<h4 class="font-weight-bold">{{ __("Payment Details") }}</h4>
-						<span>
-							<i class="fab fa-cc-visa fa-2x"></i>
-							<i class="fab fa-cc-discover fa-2x ml-2"></i>
-							<i class="fab fa-cc-mastercard fa-2x ml-2"></i>
-							<i class="fab fa-cc-amex fa-2x ml-2"></i>
-						</span>
-						
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="card-element">{{ __("Credit or debit card") }}</label>
-						<div id="card-element"></div>
-						<div id="card-errors" role="alert"></div>
-					</div>
-
-					<input type="hidden" name="order_id" value="{{ $order->id }}">
-
-					<hr>
-					
-					<h4 class="font-weight-bold">{{ __("Billing Details") }}</h4>
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="name" name="AttentionBill" value="" placeholder={{ __("Name") }}>
-					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="address" name="Street1Bill" value="" placeholder={{ __("Address") }}>
-					</div>
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="city" name="CityBill" value="" placeholder={{ __("City") }}>
-					</div>
-
-					<div class="row">
-						<div class="col-md">
-							<div class="form-group">
-								<input type="text" class="form-control" id="country" name="CountryBill" value="" placeholder={{ __("Country") }}>
-							</div>
-						</div>
-
-						<div class="col-md pl-0">
-							<div class="form-group">
-								<input type="text" class="form-control" id="province" name="ProvinceBill" value="" placeholder={{ __("State") }}>
-							</div>
-						</div>
-
-						<div class="col-md pl-0">
-							<div class="form-group">
-								<input type="text" class="form-control" id="postalcode" name="PostalCodeBill" value="" placeholder={{ __("Postal Code") }}>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="form-group">
-						<input type="text" class="form-control" id="phone" name="PhoneNumberBill" value="" placeholder={{ __("Phone Number") }}>
-					</div>
-
-					<hr>
-
-					<div class="row">
-						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary btn-block">{{ __("Complete Checkout") }}</button>
-						</div>
-					</div>
-
-				</form>
-
-			</div>
-
-			<div class="col-md-5 offset-md-1">
+		<div class="row mt-3">
+			<div class="col-lg-5">
 				<h4 class="font-weight-bold">{{ __("Your Order") }}</h4>
 
 				{{-- Order item list --}}
@@ -121,23 +49,18 @@
 				@foreach($order->lines as $orderLine)
 					@if($orderLine->LineTypeID == 1)
 						<div class="row">
-							<div class="col-md-2 align-self-center">
+							<div class="col-12">
 								<img src="{{ asset('images/'.$orderLine->product->detail->ObjectFile) }}" alt="product" class="rounded img-fluid">
 							</div>
-							<div class="col-md-8">
-								<div class="row">
-									<h5 class="mb-1">{{ $orderLine->product->ProdName }}</h5>
-								</div>
-								<div class="row">
-									@foreach($orderLine->options as $orderOption)
-										<p class="mb-1">{{ $orderOption->OptName }}</p>
-									@endforeach
-								</div>
-								<div class="row">
-									<p class="mb-1">${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
-								</div>
+							<div class="col-12">
+								<h5 class="mt-2">{{ $orderLine->product->ProdName }}</h5>
+								@foreach($orderLine->options as $orderOption)
+									<p>{{ $orderOption->OptName }}</p>
+								@endforeach
+								<p>${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
+								
 							</div>
-							<div class="col-md-2 align-self-center">
+							<div class="col-12">
 								<h5>{{ $orderLine->Qty }}</h5>
 							</div>
 						</div>
@@ -145,6 +68,10 @@
 					@endif
 				@endforeach
 
+				
+
+			</div>
+			<div class="col-lg-7 mt-3 mt-lg-0" id="checkout">
 				{{-- Discount codes --}}
 				<p>{{ __("Have a code?") }}</p>
 				<form action="{{ route('coupon.store') }}" method="POST">
@@ -193,7 +120,89 @@
 					</div>
 				</div>
 
+				<form action="{{ route('checkout.complete') }}" method="POST" id="payment-form" class="mt-3">
+					@csrf
+					{{-- <div class="row mx-0 justify-content-between">
+						<h4 class="font-weight-bold">{{ __("Payment Details") }}</h4>
+						<span>
+							<i class="fab fa-cc-visa fa-2x"></i>
+							<i class="fab fa-cc-discover fa-2x ml-2"></i>
+							<i class="fab fa-cc-mastercard fa-2x ml-2"></i>
+							<i class="fab fa-cc-amex fa-2x ml-2"></i>
+						</span>
+						
+					</div> --}}
+
+					<p>BILLING INFORMATION</p>
+					
+					<div class="form-group">
+						<input class="w-100" id="name" name="name" required placeholder={{ __("Cardholder_Name") }}>
+					</div>
+					<div class="form-group">
+						<input class="w-100" id="email" type="email" name="email" required placeholder={{ __("Email_Address") }}>
+					</div>
+					<div class="form-group">
+						<label for="card-element">{{ __("PAYMENT INFORMATION") }}</label>
+						<div id="card-element"></div>
+						<div id="card-errors" role="alert"></div>
+					</div>
+
+					<input type="hidden" name="order_id" value="{{ $order->id }}">
+
+					{{-- <hr>
+					
+					<h4 class="font-weight-bold">{{ __("Billing Details") }}</h4>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="name" name="AttentionBill" value="" placeholder={{ __("Name") }}>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="address" name="Street1Bill" value="" placeholder={{ __("Address") }}>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="city" name="CityBill" value="" placeholder={{ __("City") }}>
+					</div>
+
+					<div class="row">
+						<div class="col-md">
+							<div class="form-group">
+								<input type="text" class="form-control" id="country" name="CountryBill" value="" placeholder={{ __("Country") }}>
+							</div>
+						</div>
+
+						<div class="col-md pl-0">
+							<div class="form-group">
+								<input type="text" class="form-control" id="province" name="ProvinceBill" value="" placeholder={{ __("State") }}>
+							</div>
+						</div>
+
+						<div class="col-md pl-0">
+							<div class="form-group">
+								<input type="text" class="form-control" id="postalcode" name="PostalCodeBill" value="" placeholder={{ __("Postal Code") }}>
+							</div>
+						</div>
+					</div>
+
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="phone" name="PhoneNumberBill" value="" placeholder={{ __("Phone Number") }}>
+					</div> --}}
+
+					{{-- <hr> --}}
+
+					<div class="row">
+						<div class="col-md-12">
+							<button type="submit" class="btn btn-primary btn-block">{{ __("Complete Checkout") }}</button>
+						</div>
+					</div>
+
+				</form>
+
 			</div>
+
+			
 		</div>
 
 		

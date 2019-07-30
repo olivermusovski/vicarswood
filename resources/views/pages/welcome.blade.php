@@ -13,10 +13,10 @@
             <div class="row py-5 px-3 align-items-center">
                 <div class="col-12 col-md-8 col-xl-6">
                     <div class="row">
-                        <h1 class="display-1" style="font-family: 'Montserrat', sans-serif">Vicarswood</h1>
+                        <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto" alt="">
                     </div>
-                    <div class="row">
-                        <h2 class="text-light font-weight-bolder">{{ __("Hand-made, high quality furniture") }}</h2>    
+                    <div class="row mt-4">
+                        <h2 class="text-light font-weight-bolder mx-auto">{{ __("Hand-made, high quality furniture") }}</h2>    
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-xl-6 mt-4 mt-md-0">
@@ -25,7 +25,7 @@
                             <a class="btn btn-light btn-lg rounded-full" href="{{ route('products.index') }}">{{ __('Products') }}</a>    
                         </div>
                         <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-start">
-                            <a class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4" href="{{ url('/about') }}">{{ __('About') }}</a>
+                            <a class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4" href="{{ asset('files/Catalog.pdf') }}"><i class="far fa-file-pdf"></i> {{ __('View Catalog') }}</a>
                         </div>
                     </div>
                     
