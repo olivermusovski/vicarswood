@@ -16,7 +16,7 @@
                         <img src="{{ asset('images/LogoVicarswood_.png') }}" class="img-fluid mx-auto" alt="">
                     </div>
                     <div class="row mt-4">
-                        <h2 class="text-light font-weight-bolder mx-auto">{{ __("Hand-made, high quality furniture") }}</h2>    
+                        <h2 class="text-light font-weight-bolder mx-auto">{{ __("Crosslake Pine Furniture") }}</h2>    
                     </div>
                 </div>
                 <div class="col-12 col-md-4 col-xl-6 mt-4 mt-md-0">
