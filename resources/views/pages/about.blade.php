@@ -12,11 +12,11 @@
 			<div class="col-md-9">
 				<h1>{{ __('About') }}</h1>
 	        	<h5>
-	        		{{ __('Robert Sargeant began fine working and supplied unique furniture to Northern California. His son endured the apprenticeship and inherited the tools in 2014. These skills and tools formed Vicarswood. Located now in Las Vegas, this small workshop offers an interesting place to work as well as producing progressive furniture.') }}
+	        		{{ __('There’s more to Vicarswood than the apprentice son inherits master’s tools, but that is where it started.  Skills wanted perfection.  Designs needed maturing and order fulfillment required capacity and technology.  Now Vicarswood continues in Las Vegas.  ') }}
 					<br><br>
-					{{ __('Desks and Chest of Drawers remain priority. All products are all built-to-order.  Custom finishes, hardware and other options are available to uniquely configure furniture to an order specification. To support that, please expect a 6-8 week lead-time to receive your order and be confident that Vicarswood warrants its workmanship. But since all product are built-to-order, refunds are not allowed.') }}  
+					{{ __('Our website is effective as we are small in numbers.  With few disputes and many laughs, we would like to think that each piece of furniture joins your journey.') }}  
 					<br><br>
-					{{ __('Products are sold either through exclusive Distributors or on-line through this web site. As an e-commerce site, customer privacy is paramount. For more information, please see our') }} <a href="{{ url('/privacy-policy') }}">{{ __('Privacy and Data Policy') }}</a>.
+					{{ __(' ') }}</a>.
 					<br><br>
 					{{ __('For more information, please see our') }} <a href="{{ url('/terms-and-conditions') }}">{{ __('Terms and Conditions of Sale') }}</a>.
 					<br><br>
