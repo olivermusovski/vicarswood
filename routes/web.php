@@ -57,3 +57,8 @@ Route::post('/complete-order', 'CheckoutController@completeOrder')->name('checko
 Route::resource('/coupon', 'CouponController');
 Route::post('/coupon-cart', 'CouponController@storeFromCart')->name('coupon.storeFromCart');
 Route::delete('/coupon-cart', 'CouponController@destroyFromCart')->name('coupon.destroyFromCart');
+
+// Dropdown Lists
+Route::get('dropdownlist','DropdownController@index');
+Route::get('get-state-list','DropdownController@getStateList');
+Route::get('get-city-list','DropdownController@getCityList');

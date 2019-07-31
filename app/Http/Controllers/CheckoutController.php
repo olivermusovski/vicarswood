@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Address;
+use App\Country;
 use App\Order;
 use App\OrderLine;
 use App\OrderOption;
 use App\Product;
 use App\ProductOption;
-use App\Address;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CheckoutController extends Controller
 {
@@ -31,7 +33,8 @@ class CheckoutController extends Controller
     public function showShippingForm($order)
     {
         $order = Order::find($order);
-        return view('checkout.shipping')->withOrder($order);
+        $countries = DB::table("countries")->pluck("name","id");
+        return view('checkout.shipping')->withOrder($order)->withCountries($countries);
     }
 
     /**
@@ -54,8 +57,6 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request);
-        
         if(session()->get('order_id') != NULL) {
             $order_id = session()->get('order_id');
             self::removeOrderLines($order_id);

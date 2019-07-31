@@ -1,5 +1,9 @@
 @extends('app')
 
+@section('stylesheets')
+<script src="http://www.codermen.com/js/jquery.js"></script>
+@endsection
+
 @section('title', '| Checkout')
 
 @section('content')
@@ -65,29 +69,28 @@
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
+						{{-- <input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}> --}}
+						<select class="form-control form-control-lg" name="city" id="city"></select>
 					</div>
 
 					<div class="row">
 						<div class="col-md-12 col-lg">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}>
-								{{--
-								<label for="Country">Country</label>
-								<select class="form-control form-control-lg">
-								  <option selected="">Choose One...</option>
-								  <option>Large select</option>
-								  <option>Large select</option>
-								  <option>Large select</option>
-								  <option>Large select</option>
+								<select class="form-control form-control-lg" id="country" name="category_id">
+									<option value="" selected disabled>Select</option>
+									@foreach($countries as $key => $country)
+									<option value="{{$key}}">{{$country}}</option>
+									@endforeach
 								</select>
-								--}}
+								{{-- <input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}> --}}
+								
 							</div>
 						</div>
 
 						<div class="col-md-12 col-lg">
 							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}>
+								{{-- <input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}> --}}
+								<select class="form-control form-control-lg" name="state" id="state"></select>
 							</div>
 						</div>
 
@@ -181,3 +184,57 @@
 	</div>
 
 @endsection
+
+@section('scripts')	
+
+	<script type="text/javascript">
+		$('#country').change(function(){
+	    var countryID = $(this).val();    
+	    if(countryID){
+	        $.ajax({
+	           type:"GET",
+	           url:"{{url('get-state-list')}}?country_id="+countryID,
+	           success:function(res){               
+	            if(res){
+	                $("#state").empty();
+	                $("#state").append('<option>Select</option>');
+	                $.each(res,function(key,value){
+	                    $("#state").append('<option value="'+key+'">'+value+'</option>');
+	                });
+	           
+	            }else{
+	               $("#state").empty();
+	            }
+	           }
+	        });
+	    }else{
+	        $("#state").empty();
+	        $("#city").empty();
+	    }      
+	   });
+	    $('#state').on('change',function(){
+	    var stateID = $(this).val();    
+	    if(stateID){
+	        $.ajax({
+	           type:"GET",
+	           url:"{{url('get-city-list')}}?state_id="+stateID,
+	           success:function(res){               
+	            if(res){
+	                $("#city").empty();
+	                $.each(res,function(key,value){
+	                    $("#city").append('<option value="'+key+'">'+value+'</option>');
+	                });
+	           
+	            }else{
+	               $("#city").empty();
+	            }
+	           }
+	        });
+	    }else{
+	        $("#city").empty();
+	    }
+	        
+	   });
+	</script>
+
+@endsection 
