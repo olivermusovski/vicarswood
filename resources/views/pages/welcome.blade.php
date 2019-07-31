@@ -43,7 +43,8 @@
                 {{ __("Open the Product Catalog or peruse the products on-line.  The Penzance Chest, a.k.a. the Smuggler’s Chest, has been a favorite for its specialty.  Like its catalog counterparts, it is built by hand in Las Vegas, but this one was conceived after a horrid home invasion.  Precious items stored behind its false back are not easily found, even after being knocked about.  Vicarswood stands for enduring style and construction.") }}
                 <br>
                 <br>
-                {{ __("Current lead time is approximately XX weeks.  Products are built-to order not allowing refunds.") }}
+                {{ __("Current lead time is approximately XX weeks.  Orders are custom and are NCNR (non-cancellable, nonrefundable)
+once Vicarswood has purchased the raw materials.") }}
                 <br>
                 <br>
                 {{ __("For more information, check out our") }} <a href="{{ url('/about') }}">{{ __("About") }} </a> {{ __("page") }}.
