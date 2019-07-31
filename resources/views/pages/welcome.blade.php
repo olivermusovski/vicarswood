@@ -37,13 +37,13 @@
     <div class="container">
         <div class="row my-5 px-3">
             <h5 class="text-muted">
-                {{ __("Welcome to Vicarswood. We are a small workshop offering a choice of craft furniture pieces to add to your home or office. Timber is hand selected as you would expect from high-end manufacturer. However, the difference may be found within its workmanship, design and finishes. We build and finish everything by hand and proudly package all for a safe journey to their next home.") }}
+                {{ __("Vicarswood designs and sells desks and chests of drawers.  They are solid.   Built-to-order from pine, they are dyed rather than stained.  The deeper finish lasts longer and produces combinations of color to suit the most unique personality.") }}
                 <br>
                 <br>
-                {{ __("Our focus continues targeting desks and chests. Products have been a solution to family issues and comfort to its selfish desires. If it were for everybody, Vicarswood, indeed would be a mass manufacturing. But, our customers are limited to those that share an appreciation for unique function and style. We like that.") }}
+                {{ __("Open the Product Catalog or peruse the products on-line.  The Penzance Chest, a.k.a. the Smuggler’s Chest, has been a favorite for its specialty.  Like its catalog counterparts, it is built by hand in Las Vegas, but this one was conceived after a horrid home invasion.  Precious items stored behind its false back are not easily found, even after being knocked about.  Vicarswood stands for enduring style and construction.") }}
                 <br>
                 <br>
-                {{ __("Final finishing remains more of an art than a process. It involves seven-coats chemistry and discipline to yield rich depth and natural beauty. It’s important that it is durable as it is beautiful. Selections are many and dyes are available as well. Old and new schools coexist. Our two favorites are the grey and turquoise.") }}
+                {{ __("Current lead time is approximately XX weeks.  Products are built-to order not allowing refunds.") }}
                 <br>
                 <br>
                 {{ __("For more information, check out our") }} <a href="{{ url('/about') }}">{{ __("About") }} </a> {{ __("page") }}.
