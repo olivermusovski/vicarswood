@@ -14,11 +14,10 @@
 	        		<br><br>
 	        		• {{ __("Programmer") }} - PHP/SQL,
 	        		<br>
-					• {{ __('Data Scientist – Analytics, Economics/Marketing') }},
+					• {{ __('Data Scientist – Analytics, Economics/Marketing, or') }},
 					<br>
-					• {{ __('Engineer - Furniture Design & Autodesk Fusion 360, or') }}
-					<br>
-					• {{ __('Craftsman - Woodworking and Finishing') }}.
+					• {{ __('Engineer - Furniture Design & Autodesk Fusion 360.') }}
+				
 					<br>
 	        	</h4>
         	</div>
