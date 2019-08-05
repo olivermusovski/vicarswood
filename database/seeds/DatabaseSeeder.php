@@ -21,7 +21,8 @@ class DatabaseSeeder extends Seeder
             PromoOffersTableSeeder::class,
             CountriesTableSeeder::class,
             StatesTableSeeder::class,
-            CitiesTableSeeder::class
+            CitiesTableSeeder::class,
+            AddressesTableSeeder::class,
         ]);
     }
 }

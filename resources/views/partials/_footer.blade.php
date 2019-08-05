@@ -12,9 +12,7 @@
 		</div>
 		<div class="row px-3 justify-content-end">
 			<i class="fab fa-facebook fa-2x text-white"></i>
-			<i class="fab fa-twitter fa-2x text-white ml-3"></i>
-			<i class="fab fa-instagram fa-2x text-white ml-3"></i>
-			<i class="fab fa-pinterest fa-2x text-white ml-3"></i>
+			<a href="https://www.instagram.com/vicarswood_las_vegas/"><i class="fab fa-instagram fa-2x text-white ml-3"></i></a>
 		</div>
 	</div>
 </div>

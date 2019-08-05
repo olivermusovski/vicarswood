@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Address;
 use App\Product;
 use App\ProductOption;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index() {
-        return view('pages.welcome');
+        $leadTimeInDays = Address::where('AddressType', 'Company')->first()->LeadTime;
+        $leadTimeInWeeks = intval($leadTimeInDays / 7);
+        return view('pages.welcome')->withLeadTimeInWeeks($leadTimeInWeeks);
     }
     
     public function about() {
-        return view('pages.about');
+        $address = Address::where('AddressType', 'Company')->first();
+        return view('pages.about')->withAddress($address);
     }
 
     public function privacyPolicy() {

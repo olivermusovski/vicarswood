@@ -6,7 +6,7 @@
    
     <div class="container my-3">
 		<div class="embed-responsive embed-responsive-16by9">
-		  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5WNtoAntT4U" allowfullscreen></iframe>
+		  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/5WNtoAntT4U?rel=0" allowfullscreen></iframe>
 		</div>
 		<div class="row justify-content-md-center mt-3">
 			<div class="col-md-9">
@@ -16,18 +16,19 @@
 					<br><br>
 					{{ __('Our website is effective as we are small in numbers.  With few disputes and many laughs, we would like to think that each piece of furniture joins your journey.') }}  
 					<br><br>
-					{{ __(' ') }}</a>.
-					<br><br>
+					{{ __(' ') }}</a>
+					<br>
 					{{ __('For more information, please see our') }} <a href="{{ url('/terms-and-conditions') }}">{{ __('Terms and Conditions of Sale') }}</a>.
 					<br><br>
 					{{ __('Commissioned work or unique features to products can be discussed and quoted as well.') }}
 					<br><br>
 					{{ __('Please send inquiries to') }}: <br>
-					Vicarswood, LLC <br>
-					Las Vegas, NV USA
+					{{ $address->CompanyLegalName }}<br>
+					{{ $address->Street1 }}<br>
+					{{ $address->City }}, {{ $address->Province }} {{ $address->PostalCode }}
 					<br><br>
 					{{ __('Or by email to') }}: <br>
-					customersupport@vicarswood.com
+					{{ $address->UserEmail }}
 					<br><br>
 					{{ __('Inspired by wood? View job openings at') }} <a href="{{ url('/careers') }}">{{ __('Careers with Vicarswood') }}</a>.
 	        	</h5>
