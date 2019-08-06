@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
             StatesTableSeeder::class,
             CitiesTableSeeder::class,
             AddressesTableSeeder::class,
+            ProductFinishesTableSeeder::class,
+            ProductFinishConfigTableSeeder::class
         ]);
     }
 }
