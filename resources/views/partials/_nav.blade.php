@@ -1,4 +1,4 @@
-<div id="app">
+<div>
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel shadow-sm bg-primary">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">

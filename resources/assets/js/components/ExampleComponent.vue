@@ -1,23 +1,23 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="component">
+        <b-form-select v-model="selected" :options="options"></b-form-select>
+        <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
     </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+        data() {
+            return {
+                selected: null,
+                options: [
+                  { value: null, text: 'Please select an option' },
+                  { value: 'a', text: 'This is First option' },
+                  { value: 'b', text: 'Selected Option' },
+                  { value: { C: '3PO' }, text: 'This is an option with object value' },
+                  { value: 'd', text: 'This one is disabled', disabled: true }
+                ]
+            };
         }
     }
 </script>

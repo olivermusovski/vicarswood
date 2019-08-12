@@ -7,6 +7,13 @@
 
 require('./bootstrap');
 
+import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
+import vSelect from 'vue-select'
+
+Vue.use(BootstrapVue)
+Vue.component('v-select', vSelect)
+
 window.Vue = require('vue');
 
 /**
@@ -15,12 +22,14 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import component from './components/ExampleComponent.vue'
 
-// var app = new Vue({
-// 	el: '#app',
-// 	data: {
+var app = new Vue({
+	el: '#app',
+	components: { component },
+	data: {
 		
-// 	}
-// })
+	}
+});
 

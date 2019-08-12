@@ -17,146 +17,14 @@ class ProductOptionsTableSeeder extends Seeder
         ProductOption::create([
         	'LangCode' => 'EN',
         	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => '1C',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Grey',
-                'es' => 'Grey'
-            ],
-        	'OptPrice' => 75.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 0
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => 'D2',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Cherry',
-                'es' => 'Cherry'
-            ],
-        	'OptPrice' => 75.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 0
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => 'D3',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Turquiose',
-                'es' => 'Turquiosa'
-            ],
-        	'OptPrice' => 75.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 0
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => '4C',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Red',
-                'es' => 'Rojo'
-            ],
-        	'OptPrice' => 75.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 0
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => '0C',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Unfinished',
-                'es' => '(Sin acabado)'
-            ],
-        	'OptPrice' => -60.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 0
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
-        	'OptCode' => 'F',
-        	'OptPosition' => '6C',
-        	'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-        	'OptName' => [
-                'en' => 'Danish Oil (Natural)',
-                'es' => 'Aceite danés, luz'
-            ],
-        	'OptPrice' => 0.00,
-        	'OptStdHours' => 0,
-        	'OptStdLabor' => 0,
-        	'OptStdMaterial' => 0,
-        	'OptStdOverhead' => 0,
-        	'UpdatedBy' => 1,
-        	'Default' => 1
-        ]);
-
-        ProductOption::create([
-        	'LangCode' => 'EN',
-        	'BaseNBR' => 601,
         	'OptCode' => 'H',
-        	'OptPosition' => '3C',
+        	'OptPosition' => '1C',
         	'PositionName' => [
                 'en' => 'Hardware Options',
                 'es' => 'Opciones de Hardware'
             ],
         	'OptName' => [
-                'en' => 'Decorative Knob',
+                'en' => 'Decorative Knob, Black',
                 'es' => 'Perilla decorativa'
             ],
         	'OptPrice' => 0.00,
@@ -172,7 +40,7 @@ class ProductOptionsTableSeeder extends Seeder
         	'LangCode' => 'EN',
         	'BaseNBR' => 601,
         	'OptCode' => 'H',
-        	'OptPosition' => '1C',
+        	'OptPosition' => '0C',
         	'PositionName' => [
                 'en' => 'Hardware Options',
                 'es' => 'Opciones de Hardware'
@@ -200,7 +68,7 @@ class ProductOptionsTableSeeder extends Seeder
                 'es' => 'Opciones de Hardware'
             ],
         	'OptName' => [
-                'en' => 'Decorative Pull',
+                'en' => 'Decorative (Las Vegas) Pull, Black',
                 'es' => 'Manija decorativa'
             ],
         	'OptPrice' => 25.00,
@@ -212,13 +80,127 @@ class ProductOptionsTableSeeder extends Seeder
         	'Default' => 0
         ]);
 
+        // 605
+        
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 605,
+            'OptCode' => 'D',
+            'OptPosition' => '1C',
+            'PositionName' => [
+                'en' => 'Drawer Options',
+                'es' => 'Opciones de Drawer'
+            ],
+            'OptName' => [
+                'en' => 'Three Drawers',
+                'es' => 'Tres Drawers'
+            ],
+            'OptPrice' => 0.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 605,
+            'OptCode' => 'D',
+            'OptPosition' => '2C',
+            'PositionName' => [
+                'en' => 'Drawer Options',
+                'es' => 'Opciones de Drawer'
+            ],
+            'OptName' => [
+                'en' => 'Hanging File Folder Drawer',
+                'es' => 'Hanging Drawero'
+            ],
+            'OptPrice' => 132.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 605,
+            'OptCode' => 'H',
+            'OptPosition' => '1C',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => 'Decorative Knob, Black',
+                'es' => 'Perilla decorativa'
+            ],
+            'OptPrice' => 0.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 1
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 605,
+            'OptCode' => 'H',
+            'OptPosition' => '0C',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => '(No Hardware)',
+                'es' => '(Sin manijas o perillas)'
+            ],
+            'OptPrice' => -36.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 605,
+            'OptCode' => 'H',
+            'OptPosition' => '2C',
+            'PositionName' => [
+                'en' => 'Hardware Options',
+                'es' => 'Opciones de Hardware'
+            ],
+            'OptName' => [
+                'en' => 'Decorative (Las Vegas) Pull, Black',
+                'es' => 'Manija decorativa'
+            ],
+            'OptPrice' => 25.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+        
+
         // 609 English
 
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 609,
-            'OptCode' => '3',
-            'OptPosition' => 'P2',
+            'OptCode' => 'D',
+            'OptPosition' => '2C',
             'PositionName' => 'Drawer Options',
             'OptName' => 'Hanging Filing Drawer',
             'OptPrice' => 132.00,
@@ -233,8 +215,8 @@ class ProductOptionsTableSeeder extends Seeder
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 609,
-            'OptCode' => '3',
-            'OptPosition' => 'P3',
+            'OptCode' => 'D',
+            'OptPosition' => '1C',
             'PositionName' => 'Drawer Options',
             'OptName' => 'Three Drawers',
             'OptPrice' => 0.00,
@@ -249,122 +231,10 @@ class ProductOptionsTableSeeder extends Seeder
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '6C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Danish Oil (Natural)',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '0C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Unfinished',
-            'OptPrice' => -35.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '5C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Green',
-            'OptPrice' => 83.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '4C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Red',
-            'OptPrice' => 83.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '3C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Turquiose',
-            'OptPrice' => 83.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '2C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Cherry',
-            'OptPrice' => 83.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
-            'OptCode' => 'F',
-            'OptPosition' => '1C',
-            'PositionName' => 'Finish Options',
-            'OptName' => 'Grey',
-            'OptPrice' => 83.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 609,
             'OptCode' => 'H',
             'OptPosition' => '1C',
             'PositionName' => 'Hardware Options',
-            'OptName' => 'Decorative Knob',
+            'OptName' => 'Decorative Knob, Black',
             'OptPrice' => 24.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -380,7 +250,7 @@ class ProductOptionsTableSeeder extends Seeder
             'OptCode' => 'H',
             'OptPosition' => '2C',
             'PositionName' => 'Hardware Options',
-            'OptName' => 'Decorative Pull',
+            'OptName' => 'Decorative (Las Vegas) Pull, Black',
             'OptPrice' => 33.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -406,44 +276,30 @@ class ProductOptionsTableSeeder extends Seeder
             'Default' => 0
         ]);
 
-        // 705 English
-        
         ProductOption::create([
             'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '6D',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Danish Oil (Natural)',
-                'es' => 'Aceite danés, luz'
-            ],
+            'BaseNBR' => 609,
+            'OptCode' => 'P',
+            'OptPosition' => '3B',
+            'PositionName' => 'Pull-Out Box Options',
+            'OptName' => 'Clear (No Pull-Out Box)',
             'OptPrice' => 0.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
             'OptStdMaterial' => 0,
             'OptStdOverhead' => 0,
             'UpdatedBy' => 1,
-            'Default' => 1
+            'Default' => 0
         ]);
 
         ProductOption::create([
             'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '0D',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Unfinished',
-                'es' => '(Sin acabado)'
-            ],
-            'OptPrice' => -123.00,
+            'BaseNBR' => 609,
+            'OptCode' => 'P',
+            'OptPosition' => '4B',
+            'PositionName' => 'Pull-Out Box Options',
+            'OptName' => 'Includes Pull-Out Storage Box',
+            'OptPrice' => 28.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
             'OptStdMaterial' => 0,
@@ -452,99 +308,13 @@ class ProductOptionsTableSeeder extends Seeder
             'Default' => 0
         ]);
 
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '4D',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Red',
-                'es' => 'Roja'
-            ],
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '3C',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Turquiose',
-                'es' => 'Turquiosa'
-            ],
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '2D',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Cherry',
-                'es' => 'Cherry'
-            ],
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => 'F',
-            'OptPosition' => '1D',
-            'PositionName' => [
-                'en' => 'Finish Options',
-                'es' => 'Acabados Disponibles'
-            ],
-            'OptName' => [
-                'en' => 'Grey',
-                'es' => 'Grey'
-            ],
-            'OptPrice' => 326.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
+        // 705 English
 
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 705,
             'OptCode' => 'H',
-            'OptPosition' => '3D',
+            'OptPosition' => '1D',
             'PositionName' => [
                 'en' => 'Hardware Options',
                 'es' => 'Opciones de Hardware'
@@ -609,42 +379,59 @@ class ProductOptionsTableSeeder extends Seeder
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 705,
-            'OptCode' => '3',
-            'OptPosition' => '1D',
-            'PositionName' => 'Desk Top Options',
-            'OptName' => 'Leather Inlay, Full',
-            'OptPrice' => 397.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => '3',
-            'OptPosition' => '2D',
-            'PositionName' => 'Desk Top Options',
-            'OptName' => 'Leather Inlay, Writing',
-            'OptPrice' => 98.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 0
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => '3',
+            'OptCode' => 'D',
             'OptPosition' => '3D',
-            'PositionName' => 'Desk Top Options',
-            'OptName' => 'Wood Pattern',
+            'PositionName' => 'Drawer Options',
+            'OptName' => 'Combination Pedestals',
+            'OptPrice' => 132.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'D',
+            'OptPosition' => '1D',
+            'PositionName' => 'Drawer Options',
+            'OptName' => 'Both Pedestals: 3-Drawer',
+            'OptPrice' => 132.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'D',
+            'OptPosition' => '2D',
+            'PositionName' => 'Drawer Options',
+            'OptName' => 'Both Pedestals: Hanging File',
+            'OptPrice' => 264.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'T',
+            'OptPosition' => '5D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'Cable Portal/Wood Mosaic Top',
             'OptPrice' => 35.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -657,42 +444,10 @@ class ProductOptionsTableSeeder extends Seeder
         ProductOption::create([
             'LangCode' => 'EN',
             'BaseNBR' => 705,
-            'OptCode' => '3',
-            'OptPosition' => '4D',
-            'PositionName' => 'Desk Top Options',
-            'OptName' => 'Wood Framed',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => '4',
-            'OptPosition' => '1D',
-            'PositionName' => 'Configurations',
-            'OptName' => 'Without Wire Management',
-            'OptPrice' => 0.00,
-            'OptStdHours' => 0,
-            'OptStdLabor' => 0,
-            'OptStdMaterial' => 0,
-            'OptStdOverhead' => 0,
-            'UpdatedBy' => 1,
-            'Default' => 1
-        ]);
-
-        ProductOption::create([
-            'LangCode' => 'EN',
-            'BaseNBR' => 705,
-            'OptCode' => '4',
-            'OptPosition' => '2D',
-            'PositionName' => 'Configurations',
-            'OptName' => 'With Cable Hatches, Powerstrip not included',
+            'OptCode' => 'T',
+            'OptPosition' => '6D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'No Portal/Wood Mosaic Top',
             'OptPrice' => 0.00,
             'OptStdHours' => 0,
             'OptStdLabor' => 0,
@@ -701,6 +456,72 @@ class ProductOptionsTableSeeder extends Seeder
             'UpdatedBy' => 1,
             'Default' => 0
         ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'T',
+            'OptPosition' => '7D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'Cable Portal/Mosaic & Leather Top',
+            'OptPrice' => 155.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 0
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'T',
+            'OptPosition' => '8D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'No Portal/Mosaic & Leather Top',
+            'OptPrice' => 120.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 1
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'T',
+            'OptPosition' => '3D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'Cable Portal/Full Leather Top',
+            'OptPrice' => 560.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 1
+        ]);
+
+        ProductOption::create([
+            'LangCode' => 'EN',
+            'BaseNBR' => 705,
+            'OptCode' => 'T',
+            'OptPosition' => '4D',
+            'PositionName' => 'Desktop Options',
+            'OptName' => 'No Portal/Full Leather Top',
+            'OptPrice' => 595.00,
+            'OptStdHours' => 0,
+            'OptStdLabor' => 0,
+            'OptStdMaterial' => 0,
+            'OptStdOverhead' => 0,
+            'UpdatedBy' => 1,
+            'Default' => 1
+        ]);
+
+        
 
         
     }
