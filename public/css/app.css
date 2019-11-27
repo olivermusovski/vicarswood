@@ -1,4 +1,8 @@
-@import url(https://fonts.googleapis.com/css?family=Roboto);/*!
+@import url(https://rsms.me/inter/inter.css);/*@import url('https://fonts.googleapis.com/css?family=Roboto');*/
+
+/*$font-family-sans-serif: "Lato", sans-serif;*/
+
+/*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
  * Copyright 2011-2019 Twitter, Inc.
@@ -32,7 +36,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Lato", sans-serif;
+  --font-family-sans-serif: "Inter", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -65,7 +69,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -6874,7 +6878,7 @@ a.close.disabled {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Lato", sans-serif;
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -6999,7 +7003,7 @@ a.close.disabled {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Lato", sans-serif;
+  font-family: "Inter", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
