@@ -3,9 +3,10 @@
 @section('title', '| Product')
 
 @section('content')
-   
     <div class="container">
+    	
     	<div class="row py-4">
+    		
     		<div class="col-md-7">
 				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 				  <ol class="carousel-indicators">
@@ -37,45 +38,49 @@
     			<h2 class="font-weight-bold">{{ $product->ProdName." - ".$product->ProdDesc }}</h2>
 				<h5 class="text-muted">{{ __("Base Price") }}: ${{ number_format($product->BasePrice, 2) }}</h5>
 				<h5 class="text-muted">{{ __("Price Range") }}: {{ $product->getPriceRange() }}</h5>
+				<h5 class="mt-4 text-muted">{{ $product->ProdProse }}</h5>
 				
 				@php 
 				$totalPrice = $product->BasePrice; 
 				@endphp
+			</div>
+
+		</div>
+
+		<div class="row py-4">
+			<div id="app">
+				<options :product="{{ $product }}"></options>	
+			</div>
+		</div>
+		
+		<div class="row py-4">
+			<form class="mt-4" action="{{ route('cart.store') }}" method="POST">
+				@csrf
 				
-				<form class="mt-4" action="{{ route('cart.store') }}" method="POST">
-					@csrf
-					
-					@php 
-					$optionName = $product->options->groupBy('PositionName'); 
-					@endphp
-					
-					@foreach($optionName as $option => $member)
-						<div class="form-group">
-							<label for="options[]">{{ $option }}</label>
-							<select name="options[]" class="form-control">
-								@foreach($member as $eachmember)
-									<option value="{{ $eachmember->id }}" @if($eachmember->Default) selected="" @endif>{{ $eachmember->OptName }} - ${{ number_format($eachmember->OptPrice, 2) }}</option>
-								@endforeach
-							</select>
-						</div>
-					@endforeach
+				{{-- @php 
+				$optionName = $product->options->groupBy('PositionName'); 
+				@endphp
+				
+				@foreach($optionName as $option => $member)
+					<div class="form-group">
+						<label for="options[]">{{ $option }}</label>
+						<select name="options[]" class="form-control">
+							@foreach($member as $eachmember)
+								<option value="{{ $eachmember->id }}" @if($eachmember->Default) selected="" @endif>{{ $eachmember->OptName }} - ${{ number_format($eachmember->OptPrice, 2) }}</option>
+							@endforeach
+						</select>
+					</div>
+				@endforeach --}}
 
-					<input type="hidden" name="id" value="{{ $product->id }}">
-					<input type="hidden" name="name" value="{{ $product->ProdName }}">
-					<input type="hidden" name="price" value="{{ $product->BasePrice }}">
-					<input type="hidden" name="desc" value="{{ $product->ProdDesc }}">
-					<input type="hidden" name="imagepath" value="{{ $product->detail->ObjectFile }}">
-					<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> {{ __("Add to Cart") }}</button>	
-				</form>
-				<h5 class="mt-4 text-muted">{{ $product->ProdProse }}</h5>
-    		</div>
+				<input type="hidden" name="id" value="{{ $product->id }}">
+				<input type="hidden" name="name" value="{{ $product->ProdName }}">
+				<input type="hidden" name="price" value="{{ $product->BasePrice }}">
+				<input type="hidden" name="desc" value="{{ $product->ProdDesc }}">
+				<input type="hidden" name="imagepath" value="{{ $product->detail->ObjectFile }}">
+				<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> {{ __("Add to Cart") }}</button>	
+			</form>
     	</div>
 
-    	<div class="row">
-    		<div class="col-md-6">
-    			
-    		</div>
-    	</div>
-    </div>
-    
+	</div>
+				
 @endsection

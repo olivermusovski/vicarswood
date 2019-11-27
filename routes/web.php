@@ -33,6 +33,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 // Products
 Route::resource('/products', 'ProductController');
 
+// Product Options
+Route::resource('/product-options', 'ProductOptionController');
+Route::get('/product-options-hardware', 'ProductOptionController@indexHardware');
+
 // Cart
 Route::resource('/cart', 'CartController');
 

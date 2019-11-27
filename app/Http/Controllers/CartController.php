@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App;
+use App\Product;
 use App\ProductOption;
 use Darryldecode\Cart\CartCondition;
 use Illuminate\Http\Request;
@@ -42,6 +43,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request);
         // -----------------------------------
         // Set alert messages based on locale
         // -----------------------------------
@@ -58,37 +60,51 @@ class CartController extends Controller
 
         // -----------------------------------
         // -----------------------------------
+        
+        $product = Product::find($request->productId);
 
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
         }
         
-        if(\Cart::get($request->id)) {
+        if(\Cart::get($request->productId)) {
             return redirect()->route('cart.index')->with('success_message', $alreadyInCart);
         }
 
         else {
 
-            foreach ($request->options as $option) {
-                $productOption = ProductOption::find($option);
-                $itemConditions[] = new CartCondition([
-                    'name' => $productOption->OptName,
-                    'type' => 'option',
-                    'value' => $productOption->OptPrice,
-                    'attributes' => [
-                        'id' => $productOption->id
-                    ]
-                ]);
-            }
+            // Set finish option
+            $finishOption = ProductOption::find($request->finishOptionId);
+            $itemConditions[] = new CartCondition([
+                'name' => $finishOption->OptName,
+                'type' => 'option',
+                'value' => $finishOption->OptPrice,
+                'attributes' => [
+                    'id' => $finishOption->id
+                ]
+            ]);
+
+            // Set hardware option
+            $hardwareOption = ProductOption::find($request->hardwareOptionId);
+            $itemConditions[] = new CartCondition([
+                'name' => $hardwareOption->OptName,
+                'type' => 'option',
+                'value' => $hardwareOption->OptPrice,
+                'attributes' => [
+                    'id' => $hardwareOption->id
+                ]
+            ]);
+            
+            //dd($itemConditions);
 
             \Cart::add([
-                'id' => $request->id, 
-                'name' => $request->name, 
-                'price' => $request->price, 
+                'id' => $product->id, 
+                'name' => $product->ProdName, 
+                'price' => $product->BasePrice, 
                 'quantity' => 1, 
                 'attributes' => [
-                    'desc' => $request->desc,
-                    'imagepath' => $request->imagepath
+                    'desc' => $product->ProdDesc//,
+                    //'imagepath' => $product->imagepath
                 ],
                 'conditions' => $itemConditions
             ]);
