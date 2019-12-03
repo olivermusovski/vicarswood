@@ -47,11 +47,11 @@
 
 		</div>
 
-		<div class="row py-4">
-			<div id="app">
-				<options :product="{{ $product }}"></options>	
-			</div>
+		
+		<div id="app">
+			<options :product="{{ $product }}"></options>	
 		</div>
+		
 		
 		<div class="row py-4">
 			<form class="mt-4" action="{{ route('cart.store') }}" method="POST">
@@ -77,7 +77,7 @@
 				<input type="hidden" name="price" value="{{ $product->BasePrice }}">
 				<input type="hidden" name="desc" value="{{ $product->ProdDesc }}">
 				<input type="hidden" name="imagepath" value="{{ $product->detail->ObjectFile }}">
-				<button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> {{ __("Add to Cart") }}</button>	
+				<!-- <button type="submit" class="btn btn-primary btn-lg btn-block mb-2"><i class="fas fa-shopping-cart"></i> {{ __("Add to Cart") }}</button>	 -->
 			</form>
     	</div>
 

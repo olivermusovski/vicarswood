@@ -82261,6 +82261,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['product'],
@@ -82268,33 +82279,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             pedestalSelected: null,
-            // pedestalOptions: [
-            //   { value: 'A', text: 'Natural Pine' },
-            //   { value: 'B', text: 'Turquoise' },
-            //   { value: 'C', text: 'Cherry' },
-            //   { value: 'G', text: 'Green' },
-            //   { value: 'N', text: 'Naked, Unfinished' },
-            //   { value: 'R', text: 'Red' },
-            //   { value: 'Z', text: 'Dark' }
-            // ],
-            pedestalOptions2: [{ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" }, { value: 'B', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Turquoise.png' class='fluid rounded shadow-sm' >" }, { value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" }, { value: 'G', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Green.png' class='fluid rounded shadow-sm' >" },
+            pedestalOptions: [{ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" }, { value: 'B', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Turquoise.png' class='fluid rounded shadow-sm' >" }, { value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" }, { value: 'G', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Green.png' class='fluid rounded shadow-sm' >" },
             //{ value: 'N', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_.png' class='fluid rounded w-50 h-75' >" },
             { value: 'R', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Red.png' class='fluid rounded shadow-sm' >" }, { value: 'Z', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Dark.png' class='fluid rounded shadow-sm' >" }],
             drawerSelected: null,
             //drawerOptions: [],
-            drawerOptions2: [],
+            drawerFinishOptions: [],
             topSelected: null,
             //topOptions: [],
-            topOptions2: [],
+            topOptions: [],
             code: null,
             show: false,
             imagePath: null,
-            hardwareSelected: null,
-            hardwareOptions: [{ value: 'B3', html: "<img src='http://vicarswood.test/images/FinishCombinations/Hardware_DecorativeKnob.png' class='fluid rounded shadow-sm' >" }, { value: 'A3', html: "<img src='http://vicarswood.test/images/FinishCombinations/Hardware_DecorativePull.png' class='fluid rounded shadow-sm' >" }, { value: '03', text: "No Hardware" }],
+            //hardwareSelected: null,
+            //drawerSelected: null,
+            hardwareOptions: [],
+            drawerOptions: [],
             hardwareImagePath: null,
             productId: null,
             finishOptionId: null,
-            hardwareOptionId: null
+            hardwareOptionId: null,
+            drawerOptionId: null,
+            showFinishes: false,
+            showHardware: false,
+            showDrawers: false,
+            showBoxes: false
         };
     },
     mounted: function mounted() {
@@ -82304,46 +82313,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     methods: {
         load: function load() {
-            //this.productId = { product };
+            var _this = this;
+
+            this.product.options.forEach(function (element) {
+                console.log(element);
+                switch (element.OptCode) {
+                    case "1":
+                        _this.showFinishes = true;
+                        break;
+                    case "H":
+                        _this.showHardware = true;
+                        _this.hardwareOptions.push({ value: element.id, html: element.OptName + '<br><img src=\'http://vicarswood.test/images/FinishCombinations/' + element.PhotoFile + '\' class=\'fluid rounded shadow-sm\' >' });
+                        break;
+                    case "D":
+                        _this.showDrawers = true;
+                        _this.drawerOptions.push({ value: element.id, html: element.OptName + '<br><img src=\'http://vicarswood.test/images/FinishCombinations/' + element.PhotoFile + '\' class=\'fluid rounded shadow-sm\' >' });
+                        break;
+                    case "B":
+                        _this.showBoxes = true;
+                        break;
+                    default:
+                        break;
+                }
+            });
         },
-
-
-        // checkOptionsDrawer(value) {
-        //     this.show = false;
-        //     this.drawerOptions = [];
-        //     this.drawerSelected = null;
-        //     this.topOptions = [];
-        //     this.topSelected = null;
-
-        //     var found = this.pedestalOptions.find(option => option.value === this.pedestalSelected);
-        //     this.drawerOptions.push(found);
-
-        //     switch(value) {
-        //         case 'N':
-        //             break;
-        //         case 'A':
-        //             break;
-        //         case 'C':
-        //             this.drawerOptions.push({ value: 'A', text: 'Natural Pine'});
-        //             break;
-        //         default:
-        //             this.drawerOptions.push({ value: 'A', text: 'Natural Pine'});
-        //             this.drawerOptions.push({ value: 'C', text: 'Cherry'});
-        //     }
-        // },
-
-        checkOptionsDrawer2: function checkOptionsDrawer2(value) {
-            //var value2 = this.pedestalSelected
+        checkOptionsDrawer: function checkOptionsDrawer(value) {
             this.show = false;
-            this.drawerOptions2 = [];
+            this.drawerFinishOptions = [];
             this.drawerSelected = null;
-            this.topOptions2 = [];
+            this.topOptions = [];
             this.topSelected = null;
 
-            var found = this.pedestalOptions2.find(function (option) {
+            var found = this.pedestalOptions.find(function (option) {
                 return option.value === value;
             });
-            this.drawerOptions2.push(found);
+            this.drawerFinishOptions.push(found);
 
             switch (value) {
                 case 'N':
@@ -82351,124 +82355,73 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 case 'A':
                     break;
                 case 'C':
-                    this.drawerOptions2.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
+                    this.drawerFinishOptions.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
                     break;
                 default:
-                    this.drawerOptions2.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
-                    this.drawerOptions2.push({ value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" });
+                    this.drawerFinishOptions.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
+                    this.drawerFinishOptions.push({ value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" });
             }
         },
-
-
-        // checkOptionsTop(value) {
-        //     this.show = false;
-        //     this.topOptions = [];
-        //     this.topSelected = null;
-        //     this.code = null;
-
-        //     var found = this.pedestalOptions.find(option => option.value === this.pedestalSelected);
-        //     this.topOptions.push(found);
-
-        //     switch(value) {
-        //         case 'N':
-        //             break;
-        //         case 'A':
-        //             if(this.pedestalSelected != 'A') {
-        //                 var found = this.drawerOptions.find(option => option.value === this.drawerSelected);
-        //                 this.topOptions.push(found);
-        //             }
-        //             break;
-        //         case 'C':
-        //             if(this.pedestalSelected == 'C') {
-        //                 this.topOptions.push({ value: 'A', text: 'Natural Pine'});
-        //             } else {
-        //                 var found = this.drawerOptions.find(option => option.value === this.drawerSelected);
-        //                 this.topOptions.push(found);
-        //             }
-        //             break;
-        //         default:
-        //             this.topOptions.push({ value: 'A', text: 'Natural Pine'});
-        //             this.topOptions.push({ value: 'C', text: 'Cherry'});
-        //     }
-        // },
-
-        checkOptionsTop2: function checkOptionsTop2(value) {
-            var _this = this;
+        checkOptionsTop: function checkOptionsTop(value) {
+            var _this2 = this;
 
             this.show = false;
-            this.topOptions2 = [];
+            this.topOptions = [];
             this.topSelected = null;
             this.code = null;
 
-            var found = this.pedestalOptions2.find(function (option) {
-                return option.value === _this.pedestalSelected;
+            var found = this.pedestalOptions.find(function (option) {
+                return option.value === _this2.pedestalSelected;
             });
-            this.topOptions2.push(found);
+            this.topOptions.push(found);
 
             switch (value) {
                 case 'N':
                     break;
                 case 'A':
                     if (this.pedestalSelected != 'A') {
-                        var found = this.drawerOptions2.find(function (option) {
+                        var found = this.drawerFinishOptions.find(function (option) {
                             return option.value === value;
                         });
-                        this.topOptions2.push(found);
+                        this.topOptions.push(found);
                     }
                     break;
                 case 'C':
                     if (this.pedestalSelected == 'C') {
-                        this.topOptions2.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
+                        this.topOptions.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
                     } else {
-                        var found = this.drawerOptions2.find(function (option) {
+                        var found = this.drawerFinishOptions.find(function (option) {
                             return option.value === value;
                         });
-                        this.topOptions2.push(found);
+                        this.topOptions.push(found);
                     }
                     break;
                 default:
-                    this.topOptions2.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
-                    this.topOptions2.push({ value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" });
+                    this.topOptions.push({ value: 'A', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Natural.png' class='fluid rounded shadow-sm' >" });
+                    this.topOptions.push({ value: 'C', html: "<img src='http://vicarswood.test/images/FinishCombinations/Finish_Cherry.png' class='fluid rounded shadow-sm' >" });
             }
         },
         createCode: function createCode(value) {
-            var _this2 = this;
-
-            this.code = this.pedestalSelected + this.drawerSelected + value;
-            this.imagePath = "/images/FinishCombinations/" + this.product + "-1" + this.code + ".png";
-            this.show = true;
-
-            axios.get('/product-options', {
-                params: {
-                    code: this.code,
-                    productId: this.product.id
-                }
-            }).then(function (response) {
-                console.log(response);
-                _this2.finishOptionId = response.data;
-            });
-        },
-        getHardwareSelection: function getHardwareSelection(value) {
             var _this3 = this;
 
-            axios.get('/product-options-hardware', {
-                params: {
-                    hardwareSelected: value,
-                    productId: this.product.id
-                }
-            }).then(function (response) {
-                console.log(response);
-                _this3.hardwareOptionId = response.data;
+            this.code = this.pedestalSelected + this.drawerSelected + value;
+            var finishOption = this.product.options.find(function (element) {
+                return element.OptPosition == _this3.code;
             });
+            this.imagePath = "/images/FinishCombinations/" + finishOption.PhotoFile;
+            this.show = true;
+            this.finishOptionId = finishOption.id;
         },
         submit: function submit() {
             axios.post('/cart', {
                 hardwareOptionId: this.hardwareOptionId,
                 finishOptionId: this.finishOptionId,
+                drawerOptionId: this.drawerOptionId,
                 productId: this.product.id
             }).then(function (response) {
-                console.log('in the response');
-                window.location.href = "/cart";
+                if (response.data.success) {
+                    window.location.assign('/cart?status=1');
+                }
             });
         }
     }
@@ -82484,126 +82437,61 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    {},
+    { staticClass: "row py-4" },
     [
-      _c("h4", [_vm._v("Finish Options:")]),
-      _vm._v(" "),
-      _c("label", [_vm._v("Pedestal:")]),
-      _vm._v(" "),
-      _c("b-form-radio-group", {
-        attrs: { options: _vm.pedestalOptions2 },
-        on: { change: _vm.checkOptionsDrawer2 },
-        model: {
-          value: _vm.pedestalSelected,
-          callback: function($$v) {
-            _vm.pedestalSelected = $$v
-          },
-          expression: "pedestalSelected"
-        }
-      }),
-      _vm._v(" "),
-      _c("label", [_vm._v("Drawer:")]),
-      _vm._v(" "),
-      _c("b-form-radio-group", {
-        attrs: { options: _vm.drawerOptions2 },
-        on: { change: _vm.checkOptionsTop2 },
-        model: {
-          value: _vm.drawerSelected,
-          callback: function($$v) {
-            _vm.drawerSelected = $$v
-          },
-          expression: "drawerSelected"
-        }
-      }),
-      _vm._v(" "),
-      _c("label", [_vm._v("Top:")]),
-      _vm._v(" "),
-      _c("b-form-radio-group", {
-        attrs: { options: _vm.topOptions2 },
-        on: { change: _vm.createCode },
-        model: {
-          value: _vm.topSelected,
-          callback: function($$v) {
-            _vm.topSelected = $$v
-          },
-          expression: "topSelected"
-        }
-      }),
-      _vm._v(" "),
-      _vm.show
-        ? _c("div", { staticClass: "mt-3" }, [
-            _vm._v("Selected: "),
-            _c("strong", [_vm._v(_vm._s(_vm.code))])
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.show
-        ? _c(
-            "div",
-            [
-              _c("b-img", {
-                staticClass: "shadow-sm w-25",
-                attrs: {
-                  src: _vm.imagePath,
-                  fluid: "",
-                  rounded: "",
-                  alt: "Responsive image"
+      _c(
+        "div",
+        { staticClass: "col-md-7" },
+        [
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-1",
+                  modifiers: { "modal-1": true }
                 }
-              })
-            ],
-            1
-          )
-        : _vm._e(),
-      _vm._v(" "),
-      _c("label", [_vm._v("Hardware:")]),
-      _vm._v(" "),
-      _c("b-form-radio-group", {
-        attrs: { options: _vm.hardwareOptions },
-        on: { change: _vm.getHardwareSelection },
-        model: {
-          value: _vm.hardwareSelected,
-          callback: function($$v) {
-            _vm.hardwareSelected = $$v
-          },
-          expression: "hardwareSelected"
-        }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "row mt-3" }, [
-        _c(
-          "div",
-          { staticClass: "col-12 col-md-3" },
-          [
-            _c(
-              "b-button",
-              {
-                staticClass: "btn btn-primary btn-lg btn-block mb-2",
-                attrs: { variant: "primary" },
-                on: { click: _vm.submit }
-              },
-              [
-                _c("i", { staticClass: "fas fa-shopping-cart" }),
-                _vm._v(" Add to Cart")
               ]
-            )
-          ],
-          1
-        )
-      ]),
+            },
+            [_vm._v("Configure product")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._m(0),
       _vm._v(" "),
       _c(
-        "b-button",
+        "b-modal",
         {
-          staticClass: "btn-block",
-          attrs: { id: "submitButton", type: "submit", variant: "primary" }
+          attrs: {
+            id: "modal-1",
+            title: "BootstrapVue",
+            "hide-backdrop": "",
+            centered: ""
+          }
         },
-        [_vm._v("Submit")]
+        [_c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])]
       )
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-5" }, [
+      _c("h4", [_vm._v("Finish Option:")]),
+      _vm._v(" "),
+      _c("h4", [_vm._v("Hardware Option:")]),
+      _vm._v(" "),
+      _c("h4", [_vm._v("Drawer Option:")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

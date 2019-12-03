@@ -16,10 +16,22 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if(auth()->user()) {
             \Cart::session(auth()->user()->id);
+        }
+
+        if ($request->status == 1) {
+            if (App::isLocale('en')) {
+                $addedToCart = "Item was added to your cart!";
+            }
+
+            if (App::isLocale('es')) {
+                $addedToCart = "¡El artículo fue añadido a su carrito!";
+            }
+
+            return redirect()->route('cart.index')->with('success_message', $addedToCart);
         }
 
         return view('cart.index');
@@ -67,11 +79,11 @@ class CartController extends Controller
             \Cart::session(auth()->user()->id);
         }
         
-        if(\Cart::get($request->productId)) {
-            return redirect()->route('cart.index')->with('success_message', $alreadyInCart);
-        }
+        // if(\Cart::get($request->productId)) {
+        //     return redirect()->route('cart.index')->with('success_message', $alreadyInCart);
+        // }
 
-        else {
+        
 
             // Set finish option
             $finishOption = ProductOption::find($request->finishOptionId);
@@ -94,24 +106,37 @@ class CartController extends Controller
                     'id' => $hardwareOption->id
                 ]
             ]);
+
+            // Set hardware option
+            $drawerOption = ProductOption::find($request->drawerOptionId);
+            $itemConditions[] = new CartCondition([
+                'name' => $drawerOption->OptName,
+                'type' => 'option',
+                'value' => $drawerOption->OptPrice,
+                'attributes' => [
+                    'id' => $drawerOption->id
+                ]
+            ]);
             
             //dd($itemConditions);
 
             \Cart::add([
-                'id' => $product->id, 
+                'id' => $product->id + rand(0, 100), 
                 'name' => $product->ProdName, 
                 'price' => $product->BasePrice, 
                 'quantity' => 1, 
                 'attributes' => [
-                    'desc' => $product->ProdDesc//,
+                    'desc' => $product->ProdDesc,
+                    'id' => $product->id
                     //'imagepath' => $product->imagepath
                 ],
                 'conditions' => $itemConditions
             ]);
 
-            return redirect()->route('cart.index')->with('success_message', $addedToCart);
+            return ['success' => true];
+            //return redirect()->route('cart.index')->with('success_message', $addedToCart);
 
-        }
+        
     }
 
     /**

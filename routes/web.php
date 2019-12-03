@@ -35,7 +35,8 @@ Route::resource('/products', 'ProductController');
 
 // Product Options
 Route::resource('/product-options', 'ProductOptionController');
-Route::get('/product-options-hardware', 'ProductOptionController@indexHardware');
+//Route::get('/product-options-hardware', 'ProductOptionController@indexHardware');
+//Route::get('/product-options-drawer', 'ProductOptionController@indexDrawers');
 
 // Cart
 Route::resource('/cart', 'CartController');

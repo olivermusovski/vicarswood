@@ -25,22 +25,39 @@ class ProductOptionController extends Controller
         //return view('products.index')->withProducts($products);
     }
 
-    /**
-     * Display a listing of the resource.
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function indexHardware(Request $request)
-    {
-        $product = Product::find($request->productId);
-        $option = ProductOption::where('BaseNBR', $product->BaseNBR)
-        ->where('OptPosition', $request->hardwareSelected)->first();
-        //dd($option);
-        //$products = Product::all();
-        return $option->id;
-        //return view('products.index')->withProducts($products);
-    }
+    // /**
+    //  * Display a listing of the resource.
+    //  * 
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function indexHardware(Request $request)
+    // {
+    //     $product = Product::find($request->productId);
+    //     $option = ProductOption::where('BaseNBR', $product->BaseNBR)
+    //     ->where('OptPosition', $request->hardwareSelected)->first();
+    //     //dd($option);
+    //     //$products = Product::all();
+    //     return $option->id;
+    //     //return view('products.index')->withProducts($products);
+    // }
+
+    // /**
+    //  * Display a listing of the resource.
+    //  * 
+    //  * @param  \Illuminate\Http\Request  $request
+    //  * @return \Illuminate\Http\Response
+    //  */
+    // public function indexDrawers(Request $request)
+    // {
+    //     $product = Product::find($request->productId);
+    //     $option = ProductOption::where('BaseNBR', $product->BaseNBR)
+    //     ->where('OptPosition', $request->drawerSelected)->first();
+    //     //dd($option);
+    //     //$products = Product::all();
+    //     return $option->id;
+    //     //return view('products.index')->withProducts($products);
+    // }
 
     /**
      * Show the form for creating a new resource.
