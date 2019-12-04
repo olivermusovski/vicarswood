@@ -10,8 +10,35 @@
             <h4>Drawer Option:</h4>
         </div>
 
-        <b-modal id="modal-1" title="BootstrapVue" hide-backdrop centered>
-            <p class="my-4">Hello from modal!</p>
+        <b-modal id="modal-1" title="Finish Options" size="xl" content-class="shadow" centered no-stacking>
+            <label>Pedestal:</label>
+            <b-form-radio-group class="" v-model="pedestalSelected" :options="pedestalOptions" @change="checkOptionsDrawer"></b-form-radio-group>
+
+            <label>Drawer:</label>
+            <b-form-radio-group v-model="drawerSelected" :options="drawerFinishOptions" @change="checkOptionsTop"></b-form-radio-group>
+
+            <label>Top:</label>
+            <b-form-radio-group v-model="topSelected" :options="topOptions" @change="createCode"></b-form-radio-group>
+
+            <div class="mt-3" v-if="show">Selected: <strong>{{ code }}</strong></div>
+
+            <div v-if="show">
+                <b-img class="shadow-sm w-25" v-bind:src="imagePath" fluid rounded alt="Responsive image"></b-img>
+            </div>
+
+            <b-button v-b-modal.modal-multi-2>Continue</b-button>
+        </b-modal>
+
+        <b-modal id="modal-multi-2" title="Hardware Options" size="xl" content-class="shadow" hide-backdrop centered no-stacking>
+            <b-form-radio-group v-model="hardwareOptionId" :options="hardwareOptions"></b-form-radio-group>
+            <b-button v-b-modal.modal-1>Return to Finishes</b-button>
+            <b-button v-if="showDrawers" v-b-modal.modal-multi-3>Continue</b-button>
+        </b-modal>
+
+        <b-modal id="modal-multi-3" title="Drawer Options" size="xl" content-class="shadow" hide-backdrop centered no-stacking>
+            <b-form-radio-group v-model="drawerOptionId" :options="drawerOptions"></b-form-radio-group>
+            <b-button v-b-modal.modal-multi-2>Return to Hardware</b-button>
+            <b-button v-b-modal.modal-multi-3>Continue</b-button>
         </b-modal>
     </div>
     

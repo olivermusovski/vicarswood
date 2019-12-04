@@ -82272,6 +82272,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['product'],
@@ -82467,12 +82494,210 @@ var render = function() {
         {
           attrs: {
             id: "modal-1",
-            title: "BootstrapVue",
-            "hide-backdrop": "",
-            centered: ""
+            title: "Finish Options",
+            size: "xl",
+            "content-class": "shadow",
+            centered: "",
+            "no-stacking": ""
           }
         },
-        [_c("p", { staticClass: "my-4" }, [_vm._v("Hello from modal!")])]
+        [
+          _c("label", [_vm._v("Pedestal:")]),
+          _vm._v(" "),
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.pedestalOptions },
+            on: { change: _vm.checkOptionsDrawer },
+            model: {
+              value: _vm.pedestalSelected,
+              callback: function($$v) {
+                _vm.pedestalSelected = $$v
+              },
+              expression: "pedestalSelected"
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Drawer:")]),
+          _vm._v(" "),
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.drawerFinishOptions },
+            on: { change: _vm.checkOptionsTop },
+            model: {
+              value: _vm.drawerSelected,
+              callback: function($$v) {
+                _vm.drawerSelected = $$v
+              },
+              expression: "drawerSelected"
+            }
+          }),
+          _vm._v(" "),
+          _c("label", [_vm._v("Top:")]),
+          _vm._v(" "),
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.topOptions },
+            on: { change: _vm.createCode },
+            model: {
+              value: _vm.topSelected,
+              callback: function($$v) {
+                _vm.topSelected = $$v
+              },
+              expression: "topSelected"
+            }
+          }),
+          _vm._v(" "),
+          _vm.show
+            ? _c("div", { staticClass: "mt-3" }, [
+                _vm._v("Selected: "),
+                _c("strong", [_vm._v(_vm._s(_vm.code))])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.show
+            ? _c(
+                "div",
+                [
+                  _c("b-img", {
+                    staticClass: "shadow-sm w-25",
+                    attrs: {
+                      src: _vm.imagePath,
+                      fluid: "",
+                      rounded: "",
+                      alt: "Responsive image"
+                    }
+                  })
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-multi-2",
+                  modifiers: { "modal-multi-2": true }
+                }
+              ]
+            },
+            [_vm._v("Continue")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modal-multi-2",
+            title: "Hardware Options",
+            size: "xl",
+            "content-class": "shadow",
+            "hide-backdrop": "",
+            centered: "",
+            "no-stacking": ""
+          }
+        },
+        [
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.hardwareOptions },
+            model: {
+              value: _vm.hardwareOptionId,
+              callback: function($$v) {
+                _vm.hardwareOptionId = $$v
+              },
+              expression: "hardwareOptionId"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-1",
+                  modifiers: { "modal-1": true }
+                }
+              ]
+            },
+            [_vm._v("Return to Finishes")]
+          ),
+          _vm._v(" "),
+          _vm.showDrawers
+            ? _c(
+                "b-button",
+                {
+                  directives: [
+                    {
+                      name: "b-modal",
+                      rawName: "v-b-modal.modal-multi-3",
+                      modifiers: { "modal-multi-3": true }
+                    }
+                  ]
+                },
+                [_vm._v("Continue")]
+              )
+            : _vm._e()
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modal-multi-3",
+            title: "Drawer Options",
+            size: "xl",
+            "content-class": "shadow",
+            "hide-backdrop": "",
+            centered: "",
+            "no-stacking": ""
+          }
+        },
+        [
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.drawerOptions },
+            model: {
+              value: _vm.drawerOptionId,
+              callback: function($$v) {
+                _vm.drawerOptionId = $$v
+              },
+              expression: "drawerOptionId"
+            }
+          }),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-multi-2",
+                  modifiers: { "modal-multi-2": true }
+                }
+              ]
+            },
+            [_vm._v("Return to Hardware")]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-multi-3",
+                  modifiers: { "modal-multi-3": true }
+                }
+              ]
+            },
+            [_vm._v("Continue")]
+          )
+        ],
+        1
       )
     ],
     1
