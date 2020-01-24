@@ -5,12 +5,15 @@
         </div>
 
         <div class="col-md-5">
-            <h4>Finish Option:</h4>
-            <h4>Hardware Option:</h4>
-            <h4>Drawer Option:</h4>
+            <h4 v-if="showFinishes">Finish Option: {{ this.finishName }}</h4>
+            <h4 v-if="showHardware">Hardware Option: {{ this.hardwareName }}</h4>
+            <h4 v-if="showDrawers">Drawer Option: {{ this.drawerName }}</h4>
+            <h4 v-if="showBoxes">Box Option: {{ this.boxName }}</h4>
+            <hr>
+            <b-button :disabled="this.cartDisabled" variant="primary" class="btn btn-primary btn-lg btn-block mb-2" @click="submit"><i class="fas fa-shopping-cart"></i> Add to Cart</b-button> 
         </div>
 
-        <b-modal id="modal-1" title="Finish Options" size="xl" content-class="shadow" centered no-stacking>
+        <b-modal id="modal-1" title="Finish Options" size="xl" content-class="shadow" hide-backdrop hide-footer centered no-stacking>
             <label>Pedestal:</label>
             <b-form-radio-group class="" v-model="pedestalSelected" :options="pedestalOptions" @change="checkOptionsDrawer"></b-form-radio-group>
 
@@ -26,19 +29,27 @@
                 <b-img class="shadow-sm w-25" v-bind:src="imagePath" fluid rounded alt="Responsive image"></b-img>
             </div>
 
-            <b-button v-b-modal.modal-multi-2>Continue</b-button>
+            <b-button  @click="getFinishName">Continue to Hardware</b-button>
         </b-modal>
 
-        <b-modal id="modal-multi-2" title="Hardware Options" size="xl" content-class="shadow" hide-backdrop centered no-stacking>
-            <b-form-radio-group v-model="hardwareOptionId" :options="hardwareOptions"></b-form-radio-group>
+        <b-modal id="modal-multi-2" title="Hardware Options" size="xl" content-class="shadow" hide-backdrop hide-footer centered no-stacking>
+            <b-form-radio-group v-model="hardwareOptionId" :options="hardwareOptions" @change="getHardwareName"></b-form-radio-group>
             <b-button v-b-modal.modal-1>Return to Finishes</b-button>
-            <b-button v-if="showDrawers" v-b-modal.modal-multi-3>Continue</b-button>
+            <b-button v-if="showDrawers" v-b-modal.modal-multi-3>Continue to Drawers</b-button>
+            <b-button v-else @click="$bvModal.hide('modal-multi-2')">Done</b-button>
         </b-modal>
 
-        <b-modal id="modal-multi-3" title="Drawer Options" size="xl" content-class="shadow" hide-backdrop centered no-stacking>
-            <b-form-radio-group v-model="drawerOptionId" :options="drawerOptions"></b-form-radio-group>
+        <b-modal id="modal-multi-3" title="Drawer Options" size="xl" content-class="shadow" hide-backdrop hide-footer centered no-stacking>
+            <b-form-radio-group v-model="drawerOptionId" :options="drawerOptions" @change="getDrawerName"></b-form-radio-group>
             <b-button v-b-modal.modal-multi-2>Return to Hardware</b-button>
-            <b-button v-b-modal.modal-multi-3>Continue</b-button>
+            <b-button v-if="showBoxes" v-b-modal.modal-multi-4>Continue to Boxes</b-button>
+            <b-button v-else @click="$bvModal.hide('modal-multi-3')">Done</b-button>
+        </b-modal>
+
+        <b-modal id="modal-multi-4" title="Box Options" size="xl" content-class="shadow" hide-backdrop hide-footer centered no-stacking>
+            <b-form-radio-group v-model="boxOptionId" :options="boxOptions" @change="getBoxName"></b-form-radio-group>
+            <b-button v-b-modal.modal-multi-3>Return to Drawers</b-button>
+            <b-button @click="$bvModal.hide('modal-multi-4')">Done</b-button>
         </b-modal>
     </div>
     
@@ -110,15 +121,22 @@
                 //drawerSelected: null,
                 hardwareOptions: [],
                 drawerOptions: [],
+                boxOptions: [],
                 hardwareImagePath: null,
                 productId: null,
                 finishOptionId: null,
                 hardwareOptionId: null,
                 drawerOptionId: null,
+                boxOptionId: null,
                 showFinishes: false,
                 showHardware: false,
                 showDrawers: false,
-                showBoxes: false
+                showBoxes: false,
+                finishName: null,
+                hardwareName: null,
+                drawerName: null,
+                boxName: null,
+                cartDisabled: true
             };
         },
 
@@ -217,11 +235,61 @@
                 this.finishOptionId = finishOption.id
             },
 
+            getFinishName() {
+                var finishOption = this.product.options.find(element => element.id == this.finishOptionId);
+                this.finishName = finishOption.OptName;
+                this.$bvModal.show('modal-multi-2');
+                this.checkCartButton();
+            },
+
+            getHardwareName(value) {
+                var hardwareOption = this.product.options.find(element => element.id == value);
+                this.hardwareName = hardwareOption.OptName;
+                this.checkCartButton();
+            },
+
+            getDrawerName(value) {
+                var drawerOption = this.product.options.find(element => element.id == value);
+                this.drawerName = drawerOption.OptName;
+                this.checkCartButton();
+            },
+
+            getBoxName(value) {
+                var boxOption = this.product.options.find(element => element.id == value);
+                this.boxName = boxOption.OptName;
+                this.checkCartButton();
+            },
+
+            checkCartButton() {
+                if(this.showFinishes) {
+                    if(this.finishName) {
+                        if(this.showHardware) {
+                            if(this.hardwareName) {
+                                if(this.showDrawers) {
+                                    if(this.drawerName) {
+                                        if(this.showBoxes) {
+                                            if(this.boxName) {
+                                                this.cartDisabled = false;
+                                            }
+                                        } else {
+                                            this.cartDisabled = false;
+                                        }
+                                    }
+                                } else {
+                                    this.cartDisabled = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+
             submit() {
                 axios.post('/cart', {
                     hardwareOptionId: this.hardwareOptionId,
                     finishOptionId: this.finishOptionId,
                     drawerOptionId: this.drawerOptionId,
+                    boxOptionId: this.boxOptionId,
                     productId: this.product.id
                 }).then(response => {
                     if (response.data.success) {

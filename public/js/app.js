@@ -82299,6 +82299,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['product'],
@@ -82322,15 +82333,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             //drawerSelected: null,
             hardwareOptions: [],
             drawerOptions: [],
+            boxOptions: [],
             hardwareImagePath: null,
             productId: null,
             finishOptionId: null,
             hardwareOptionId: null,
             drawerOptionId: null,
+            boxOptionId: null,
             showFinishes: false,
             showHardware: false,
             showDrawers: false,
-            showBoxes: false
+            showBoxes: false,
+            finishName: null,
+            hardwareName: null,
+            drawerName: null,
+            boxName: null,
+            cartDisabled: true
         };
     },
     mounted: function mounted() {
@@ -82439,11 +82457,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.show = true;
             this.finishOptionId = finishOption.id;
         },
+        getFinishName: function getFinishName() {
+            var _this4 = this;
+
+            var finishOption = this.product.options.find(function (element) {
+                return element.id == _this4.finishOptionId;
+            });
+            this.finishName = finishOption.OptName;
+            this.$bvModal.show('modal-multi-2');
+            this.checkCartButton();
+        },
+        getHardwareName: function getHardwareName(value) {
+            var hardwareOption = this.product.options.find(function (element) {
+                return element.id == value;
+            });
+            this.hardwareName = hardwareOption.OptName;
+            this.checkCartButton();
+        },
+        getDrawerName: function getDrawerName(value) {
+            var drawerOption = this.product.options.find(function (element) {
+                return element.id == value;
+            });
+            this.drawerName = drawerOption.OptName;
+            this.checkCartButton();
+        },
+        getBoxName: function getBoxName(value) {
+            var boxOption = this.product.options.find(function (element) {
+                return element.id == value;
+            });
+            this.boxName = boxOption.OptName;
+            this.checkCartButton();
+        },
+        checkCartButton: function checkCartButton() {
+            if (this.showFinishes) {
+                if (this.finishName) {
+                    if (this.showHardware) {
+                        if (this.hardwareName) {
+                            if (this.showDrawers) {
+                                if (this.drawerName) {
+                                    if (this.showBoxes) {
+                                        if (this.boxName) {
+                                            this.cartDisabled = false;
+                                        }
+                                    } else {
+                                        this.cartDisabled = false;
+                                    }
+                                }
+                            } else {
+                                this.cartDisabled = false;
+                            }
+                        }
+                    }
+                }
+            }
+        },
         submit: function submit() {
             axios.post('/cart', {
                 hardwareOptionId: this.hardwareOptionId,
                 finishOptionId: this.finishOptionId,
                 drawerOptionId: this.drawerOptionId,
+                boxOptionId: this.boxOptionId,
                 productId: this.product.id
             }).then(function (response) {
                 if (response.data.success) {
@@ -82487,7 +82560,45 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c(
+        "div",
+        { staticClass: "col-md-5" },
+        [
+          _vm.showFinishes
+            ? _c("h4", [_vm._v("Finish Option: " + _vm._s(this.finishName))])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showHardware
+            ? _c("h4", [
+                _vm._v("Hardware Option: " + _vm._s(this.hardwareName))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showDrawers
+            ? _c("h4", [_vm._v("Drawer Option: " + _vm._s(this.drawerName))])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.showBoxes
+            ? _c("h4", [_vm._v("Box Option: " + _vm._s(this.boxName))])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              staticClass: "btn btn-primary btn-lg btn-block mb-2",
+              attrs: { disabled: this.cartDisabled, variant: "primary" },
+              on: { click: _vm.submit }
+            },
+            [
+              _c("i", { staticClass: "fas fa-shopping-cart" }),
+              _vm._v(" Add to Cart")
+            ]
+          )
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "b-modal",
@@ -82497,6 +82608,8 @@ var render = function() {
             title: "Finish Options",
             size: "xl",
             "content-class": "shadow",
+            "hide-backdrop": "",
+            "hide-footer": "",
             centered: "",
             "no-stacking": ""
           }
@@ -82569,19 +82682,9 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c(
-            "b-button",
-            {
-              directives: [
-                {
-                  name: "b-modal",
-                  rawName: "v-b-modal.modal-multi-2",
-                  modifiers: { "modal-multi-2": true }
-                }
-              ]
-            },
-            [_vm._v("Continue")]
-          )
+          _c("b-button", { on: { click: _vm.getFinishName } }, [
+            _vm._v("Continue to Hardware")
+          ])
         ],
         1
       ),
@@ -82595,6 +82698,7 @@ var render = function() {
             size: "xl",
             "content-class": "shadow",
             "hide-backdrop": "",
+            "hide-footer": "",
             centered: "",
             "no-stacking": ""
           }
@@ -82602,6 +82706,7 @@ var render = function() {
         [
           _c("b-form-radio-group", {
             attrs: { options: _vm.hardwareOptions },
+            on: { change: _vm.getHardwareName },
             model: {
               value: _vm.hardwareOptionId,
               callback: function($$v) {
@@ -82637,9 +82742,19 @@ var render = function() {
                     }
                   ]
                 },
-                [_vm._v("Continue")]
+                [_vm._v("Continue to Drawers")]
               )
-            : _vm._e()
+            : _c(
+                "b-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$bvModal.hide("modal-multi-2")
+                    }
+                  }
+                },
+                [_vm._v("Done")]
+              )
         ],
         1
       ),
@@ -82653,6 +82768,7 @@ var render = function() {
             size: "xl",
             "content-class": "shadow",
             "hide-backdrop": "",
+            "hide-footer": "",
             centered: "",
             "no-stacking": ""
           }
@@ -82660,6 +82776,7 @@ var render = function() {
         [
           _c("b-form-radio-group", {
             attrs: { options: _vm.drawerOptions },
+            on: { change: _vm.getDrawerName },
             model: {
               value: _vm.drawerOptionId,
               callback: function($$v) {
@@ -82683,6 +82800,62 @@ var render = function() {
             [_vm._v("Return to Hardware")]
           ),
           _vm._v(" "),
+          _vm.showBoxes
+            ? _c(
+                "b-button",
+                {
+                  directives: [
+                    {
+                      name: "b-modal",
+                      rawName: "v-b-modal.modal-multi-4",
+                      modifiers: { "modal-multi-4": true }
+                    }
+                  ]
+                },
+                [_vm._v("Continue to Boxes")]
+              )
+            : _c(
+                "b-button",
+                {
+                  on: {
+                    click: function($event) {
+                      return _vm.$bvModal.hide("modal-multi-3")
+                    }
+                  }
+                },
+                [_vm._v("Done")]
+              )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "b-modal",
+        {
+          attrs: {
+            id: "modal-multi-4",
+            title: "Box Options",
+            size: "xl",
+            "content-class": "shadow",
+            "hide-backdrop": "",
+            "hide-footer": "",
+            centered: "",
+            "no-stacking": ""
+          }
+        },
+        [
+          _c("b-form-radio-group", {
+            attrs: { options: _vm.boxOptions },
+            on: { change: _vm.getBoxName },
+            model: {
+              value: _vm.boxOptionId,
+              callback: function($$v) {
+                _vm.boxOptionId = $$v
+              },
+              expression: "boxOptionId"
+            }
+          }),
+          _vm._v(" "),
           _c(
             "b-button",
             {
@@ -82694,7 +82867,19 @@ var render = function() {
                 }
               ]
             },
-            [_vm._v("Continue")]
+            [_vm._v("Return to Drawers")]
+          ),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              on: {
+                click: function($event) {
+                  return _vm.$bvModal.hide("modal-multi-4")
+                }
+              }
+            },
+            [_vm._v("Done")]
           )
         ],
         1
@@ -82703,20 +82888,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-5" }, [
-      _c("h4", [_vm._v("Finish Option:")]),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Hardware Option:")]),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Drawer Option:")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
