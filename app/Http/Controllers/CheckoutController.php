@@ -104,7 +104,7 @@ class CheckoutController extends Controller
         foreach (\Cart::getContent() as $item) {
 
             //get product
-            $product = Product::find($item->id);
+            $product = Product::find($item->attributes['id']);
 
             // create new order line
             $orderLine = new OrderLine;
