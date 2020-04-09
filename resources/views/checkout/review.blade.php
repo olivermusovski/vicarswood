@@ -54,23 +54,22 @@
 							</div>
 							<div class="col-12">
 								<h5 class="mt-2">{{ $orderLine->product->ProdName }}</h5>
-								@foreach($orderLine->options as $orderOption)
-									<p>{{ $orderOption->OptName }}</p>
-								@endforeach
-								<p>${{ number_format($orderLine->ExtPartPrice, 2) }}</p>
-								
+								<ul>
+									@foreach($orderLine->options as $orderOption)
+										<li>{{ $orderOption->OptName }}</li>
+									@endforeach
+								</ul>
+								<h5>${{ number_format($orderLine->ExtPartPrice, 2) }}</h5>
 							</div>
 							<div class="col-12">
-								<h5>{{ $orderLine->Qty }}</h5>
+								<p>Qty: {{ $orderLine->Qty }}</p>
 							</div>
 						</div>
 						<hr>
 					@endif
 				@endforeach
-
-				
-
 			</div>
+
 			<div class="col-lg-7 mt-3 mt-lg-0" id="checkout">
 				{{-- Discount codes --}}
 				<p>{{ __("Have a code?") }}</p>
@@ -213,7 +212,7 @@
 
 @section('scripts')
 	<script>
-		var stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+		var stripe = Stripe('pk_test_uUDhuAJnviYuFUfRXdzQmQ9r00yzCkIcup');
 		var elements = stripe.elements();
 		var style = {
 			base: {
@@ -238,7 +237,13 @@
 
 		form.addEventListener('submit', function(event) {
 			event.preventDefault();
-			stripe.createToken(card).then(function(result) {
+
+			var options = {
+				name: document.getElementById('name').value,
+				email: document.getElementById('email').value
+			}
+
+			stripe.createToken(card, options).then(function(result) {
 				if(result.error) {
 					var errorElement = document.getElementById('card-errors');
 					errorElement.textContent = result.error.message;

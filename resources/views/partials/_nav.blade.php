@@ -12,10 +12,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Left Side Of Navbar -->
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item ml-4">
+                    <li class="nav-item ml-md-4">
                         <a class="nav-link" href="{{ route('products.index') }}">{{ __('Products') }}</a>
                     </li>
-                    <li class="nav-item ml-4">
+                    <li class="nav-item ml-md-4">
                         <a class="nav-link" href="{{ url('/about') }}">{{ __('About') }}</a>
                     </li>
                 </ul>
@@ -75,7 +75,7 @@
                                 \Cart::session(auth()->user()->id);
                                 @endphp
                                 @if (!Cart::isEmpty())
-                                    <span class="badge badge-pill badge-primary">{{ Cart::getContent()->count() }}</span>
+                                    <span class="badge badge-pill badge-light">{{ Cart::getContent()->count() }}</span>
                                 @endif
                             </a>
                         </li>

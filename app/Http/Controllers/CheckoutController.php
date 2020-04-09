@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App;
 use App\Address;
 use App\Country;
 use App\Order;
@@ -9,6 +10,7 @@ use App\OrderLine;
 use App\OrderOption;
 use App\Product;
 use App\ProductOption;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -300,6 +302,11 @@ class CheckoutController extends Controller
      */
     public function completeOrder(Request $request)
     {
+        if(auth()->user()) {
+            \Cart::session(auth()->user()->id);
+        }
+
+        // dd(\Cart::getTotal());
         // -----------------------------------
         // Set alert messages based on locale
         // -----------------------------------
@@ -314,6 +321,21 @@ class CheckoutController extends Controller
 
         // -----------------------------------
         // -----------------------------------
+
+        // stripe process charge
+        try {
+            $charge = Stripe::charges()->create([
+                'amount' => \Cart::getTotal(),
+                'currency' => 'USD',
+                'source' => $request->stripeToken,
+                'description' => 'Order',
+                'receipt_email' => $request->email,
+                // 'metadata' => [
+                // ]
+            ]);
+        } catch (Exception $e) {
+
+        }
         
         //find order
         $order = Order::find($request->order_id);
@@ -334,6 +356,8 @@ class CheckoutController extends Controller
         $order->OrderStatus = 'Submitted';
         $order->save();
         
+        
+
         \Cart::clear();
                 
         return redirect()->route('confirmation')->with('success_message', $successMessage);

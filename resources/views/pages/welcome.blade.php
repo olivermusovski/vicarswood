@@ -25,7 +25,7 @@
                             <a class="btn btn-light btn-lg rounded-full" href="{{ route('products.index') }}">{{ __('Products') }}</a>    
                         </div>
                         <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-xl-start">
-                            <a class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4" href="{{ asset('files/Catalog.pdf') }}"><i class="far fa-file-pdf"></i> {{ __('View Catalog') }}</a>
+                            <a class="btn btn-secondary btn-lg rounded-full mt-3 mt-lg-0 ml-xl-4" href="{{ asset('files/Catalog.pdf') }}" target="_blank"><i class="far fa-file-pdf"></i> {{ __('View Catalog') }}</a>
                         </div>
                     </div>
                     
