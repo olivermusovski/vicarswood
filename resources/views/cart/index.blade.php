@@ -42,10 +42,12 @@
 					</div>
 					<div class="col-12 col-md-4 col-lg-3">
 						<div class="mt-4">
-							<a href="{{ route('products.show', $item->id) }}">{{ $item->name }}</a>
+							<a href="{{ route('products.show', $item->attributes->id) }}">{{ $item->name }}</a>
 							<p class="mb-0">{{ $item->attributes->desc }} ${{ $item->price }}</p>
 							@foreach ($item->conditions as $condition)
-								<p class="mb-0">{{ $condition->getName() }} +${{ $condition->getValue() }}</p>
+								<ul class="mb-0 pl-4">
+									<li class="">{{ $condition->getName() }} @if($condition->getValue() >= 0) +@else -@endif${{ number_format(abs($condition->getValue()), 2) }}</li>
+								</ul>
 							@endforeach				
 						</div>
 					</div>
@@ -72,7 +74,7 @@
 					</div>
 					<div class="col-6 col-md-5 mt-4">
 						<label>Price:</label>
-						<h4>${{ number_format($item->getPriceWithConditions(), 2) }}</h4>
+						<h4>${{ number_format($item->getPriceWithConditions() * $item->quantity, 2) }}</h4>
 					</div>
 				</div>
 				<hr>
@@ -97,19 +99,17 @@
 					<div class="card text-right">
 					  <div class="card-body">
 					    <p class="card-text text-muted">{{ __("Subtotal") }}: {{ number_format(Cart::getSubTotal(), 2) }} </p>
-					    @if(Cart::getCondition('promo'))
-
-								<div class="d-flex flex-row justify-content-end h-auto">
-									<form action="{{ route('coupon.destroyFromCart') }}" method="POST" class="">
-										@csrf
-										@method('DELETE')
-										<div class="form-group">
-											<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">{{ __("Remove") }}</button>
-										</div>
-									</form>
-									<p class="card-text">{{ __("Discount") }} ({{ Cart::getCondition('promo')->getAttributes()['description'] }}): ${{ number_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubTotal()), 2) }}</p>
-								</div>
-
+					    @if (Cart::getCondition('promo'))
+							<div class="d-flex flex-row justify-content-end h-auto">
+								<form action="{{ route('coupon.destroyFromCart') }}" method="POST" class="">
+									@csrf
+									@method('DELETE')
+									<div class="form-group">
+										<button type="submit" class="btn btn-outline-secondary btn-sm mr-2">{{ __("Remove") }}</button>
+									</div>
+								</form>
+								<p class="card-text">{{ __("Discount") }} ({{ Cart::getCondition('promo')->getAttributes()['description'] }}): ${{ number_format(Cart::getCondition('promo')->getCalculatedValue(Cart::getSubTotal()), 2) }}</p>
+							</div>
 						@endif
 					  </div>
 					  <div class="card-footer">

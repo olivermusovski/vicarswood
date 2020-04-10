@@ -8,7 +8,7 @@
     	<div class="row py-4">
     		
     		<div class="col-md-7">
-				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+				<div id="carouselExampleIndicators" class="carousel slide" data-interval="false">
 				  <ol class="carousel-indicators">
 				  	@php $i = 0 @endphp
 				  	@foreach($product->details as $detail)
@@ -18,7 +18,7 @@
 				  </ol>
 				  <div class="carousel-inner">
 				  	@foreach($product->details as $detail)
-						<div class="carousel-item {{ ($detail->ObjectSequence == 1) ? "active" : "" }}">
+						<div class="carousel-item {{ ($detail->ObjectSequence == 1) ? "active" : "" }}" data-interval="false">
 					      <img class="d-block w-100" src="{{ asset('images/'.$detail->ObjectFile) }}" alt="{{ $detail->ObjectName }}">
 					    </div>
 				  	@endforeach

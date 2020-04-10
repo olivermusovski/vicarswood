@@ -68,13 +68,13 @@
 						<input type="text" class="form-control form-control-lg" id="address" name="Street1Ship" value="" placeholder={{ __("Address") }}>
 					</div>
 
-					<div class="form-group">
-						{{-- <input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}> --}}
+					{{-- <div class="form-group">
+						<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
 						<select class="form-control form-control-lg" name="city" id="city"></select>
-					</div>
+					</div> --}}
 
 					<div class="row">
-						<div class="col-md-12 col-lg">
+						{{-- <div class="col-md-12 col-lg">
 							<div class="form-group">
 								<select class="form-control form-control-lg" id="country" name="category_id">
 									<option value="" selected disabled>Select</option>
@@ -82,7 +82,7 @@
 									<option value="{{$key}}">{{$country}}</option>
 									@endforeach
 								</select>
-								{{-- <input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}> --}}
+								<input type="text" class="form-control form-control-lg" id="country" name="CountryShip" value="" placeholder={{ __("Country") }}>
 								
 							</div>
 						</div>
@@ -90,11 +90,23 @@
 						<div class="col-md-12 col-lg">
 							<div class="form-group">
 								{{-- <input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}> --}}
-								<select class="form-control form-control-lg" name="state" id="state"></select>
+								{{-- <select class="form-control form-control-lg" name="state" id="state"></select>
+							</div>
+						</div> --}}
+
+						<div class="col-md-12 col-lg-6">
+							<div class="form-group">
+								<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
 							</div>
 						</div>
 
-						<div class="col-md-12 col-lg">
+						<div class="col-md-12 col-lg-3">
+							<div class="form-group">
+								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}>
+							</div>
+						</div>
+
+						<div class="col-md-12 col-lg-3">
 							<div class="form-group">
 								<input type="text" class="form-control form-control-lg" id="postalcode" name="PostalCodeShip" value="" placeholder={{ __("Postal Code") }}>
 							</div>

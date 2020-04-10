@@ -82310,6 +82310,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['product'],
@@ -82539,26 +82541,7 @@ var render = function() {
     "div",
     { staticClass: "row py-4" },
     [
-      _c(
-        "div",
-        { staticClass: "col-md-7" },
-        [
-          _c(
-            "b-button",
-            {
-              directives: [
-                {
-                  name: "b-modal",
-                  rawName: "v-b-modal.modal-1",
-                  modifiers: { "modal-1": true }
-                }
-              ]
-            },
-            [_vm._v("Configure product")]
-          )
-        ],
-        1
-      ),
+      _c("div", { staticClass: "col-md-7" }),
       _vm._v(" "),
       _c(
         "div",
@@ -82581,6 +82564,26 @@ var render = function() {
           _vm.showBoxes
             ? _c("h4", [_vm._v("Box Option: " + _vm._s(this.boxName))])
             : _vm._e(),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "b-button",
+            {
+              directives: [
+                {
+                  name: "b-modal",
+                  rawName: "v-b-modal.modal-1",
+                  modifiers: { "modal-1": true }
+                }
+              ],
+              staticClass: "btn btn-secondary btn-lg btn-block mb-2"
+            },
+            [
+              _c("i", { staticClass: "fas fa-clipboard-list" }),
+              _vm._v(" Configure product")
+            ]
+          ),
           _vm._v(" "),
           _c("hr"),
           _vm._v(" "),
@@ -82888,7 +82891,18 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "text-danger" }, [
+      _c("strong", [
+        _vm._v("Please configure the options for this product to add to cart.")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -127,8 +127,8 @@ class CartController extends Controller
                 'quantity' => 1, 
                 'attributes' => [
                     'desc' => $product->ProdDesc,
-                    'id' => $product->id
-                    //'imagepath' => $product->imagepath
+                    'id' => $product->id,
+                    'imagepath' => $product->detail->ObjectFile
                 ],
                 'conditions' => $itemConditions
             ]);

@@ -1,7 +1,7 @@
 <template>
     <div class="row py-4">
         <div class="col-md-7">
-            <b-button v-b-modal.modal-1>Configure product</b-button>
+            
         </div>
 
         <div class="col-md-5">
@@ -9,6 +9,8 @@
             <h4 v-if="showHardware">Hardware Option: {{ this.hardwareName }}</h4>
             <h4 v-if="showDrawers">Drawer Option: {{ this.drawerName }}</h4>
             <h4 v-if="showBoxes">Box Option: {{ this.boxName }}</h4>
+            <p class="text-danger"><strong>Please configure the options for this product to add to cart.</strong></p>
+            <b-button v-b-modal.modal-1 class="btn btn-secondary btn-lg btn-block mb-2"><i class="fas fa-clipboard-list"></i> Configure product</b-button>
             <hr>
             <b-button :disabled="this.cartDisabled" variant="primary" class="btn btn-primary btn-lg btn-block mb-2" @click="submit"><i class="fas fa-shopping-cart"></i> Add to Cart</b-button> 
         </div>
