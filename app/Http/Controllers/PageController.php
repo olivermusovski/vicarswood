@@ -42,16 +42,9 @@ class PageController extends Controller
 
     public function test() {
     	
-    	$product = Product::find(1);
+    	$order = \App\Order::find(14);
 
-        $grouped = $product->options->groupBy('PositionName');
-
-        return $grouped->toArray();
-    	/*
-    	foreach ($product->options as $option) {
-    		echo $option->id;
-		}
-        */
+        return $order->shippingAddress;
 
     }
 

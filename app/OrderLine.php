@@ -8,6 +8,8 @@ class OrderLine extends Model
 {
     protected $table = 'OrdB_Lines';
 
+    const FREIGHT = 5;
+
     public function order(){
     	return $this->belongsTo('App\Order', 'order_id');
     }

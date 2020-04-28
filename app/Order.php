@@ -16,6 +16,11 @@ class Order extends Model
     	return $this->hasMany('App\OrderLine', 'order_id');
     }
 
+    public function shippingAddress()
+    {
+        return $this->belongsTo('App\Address', 'ShipToId');
+    }
+
     //calculations
     public function getSubTotal() {
     	$subTotal = 0;

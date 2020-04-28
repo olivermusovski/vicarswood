@@ -10,6 +10,7 @@ use App\OrderLine;
 use App\OrderOption;
 use App\Product;
 use App\ProductOption;
+use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -32,11 +33,11 @@ class CheckoutController extends Controller
      * @param  int  $order
      * @return \Illuminate\Http\Response
      */
-    public function showShippingForm($order)
+    public function showShippingForm($order_id)
     {
-        $order = Order::find($order);
-        $countries = DB::table("countries")->pluck("name","id");
-        return view('checkout.shipping')->withOrder($order)->withCountries($countries);
+        $order = Order::find($order_id);
+        // $countries = DB::table("countries")->pluck("name","id");
+        return view('checkout.shipping')->withOrder($order); //->withCountries($countries;
     }
 
     /**
@@ -63,7 +64,7 @@ class CheckoutController extends Controller
             $order_id = session()->get('order_id');
             self::removeOrderLines($order_id);
             self::addOrderLines($order_id);
-            return redirect()->route('checkout.shipping', ['order' => $order_id]);
+            return redirect()->route('checkout.shipping', ['order_id' => $order_id]);
         } else {
 
             // store order
@@ -73,7 +74,7 @@ class CheckoutController extends Controller
             $order->user_id = auth()->user() ? auth()->user()->id : null;
             $order->UserEmail = auth()->user() ? auth()->user()->email : null;
             $order->UpdatedBy = 1;
-            $order->DateOrdered = date('Y-m-d h:i:s');
+            //$order->DateOrdered = date('Y-m-d h:i:s');
             $order->save();
 
             self::addOrderLines($order->id);
@@ -86,7 +87,6 @@ class CheckoutController extends Controller
             return redirect()->route('checkout.shipping', ['order' => $order->id]);
         }
         //return redirect()->route('checkout.review', ['order' => $order->id]);
-
     }
 
     /**
@@ -95,7 +95,8 @@ class CheckoutController extends Controller
      * @param   int $id
      * @return \Illuminate\Http\Response
      */
-    public function addOrderLines($id) {
+    public function addOrderLines($id) 
+    {
         $order = Order::find($id);
 
         //store order lines
@@ -187,12 +188,15 @@ class CheckoutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function removeOrderLines($id) {
-
+    public function removeOrderLines($id) 
+    {
         $order = Order::find($id);
 
         foreach ($order->lines as $orderLine) {
             $orderLine->delete();
+            foreach ($orderLine->options as $option) {
+                $option->delete();
+            }
         }
     }
 
@@ -206,18 +210,40 @@ class CheckoutController extends Controller
     {
         //dd($request);
         //dd(session());
-        //store shipping address
-        $shipping = new Address;
-        //$shipping->UserEmail = $request->UserEmailShip;
-        $shipping->AddressType = 'ShipTo';
-        $shipping->Attention = $request->AttentionShip;
-        $shipping->Street1 = $request->Street1Ship;
-        $shipping->City = $request->CityShip;
-        $shipping->Province = $request->ProvinceShip;
-        $shipping->PostalCode = $request->PostalCodeShip;
-        $shipping->PhoneNumber = $request->PhoneNumberShip;
-        $shipping->save();
+        if (session()->get('shipping_id') != NULL) {
+            $shipping_id = session()->get('shipping_id');
+            $shipping = Address::find($shipping_id);
 
+            $shipping->UserEmail = $request->UserEmailShip;
+            $shipping->Attention = $request->AttentionShip;
+            $shipping->Street1 = $request->Street1Ship;
+            $shipping->City = $request->CityShip;
+            $shipping->Province = $request->ProvinceShip;
+            $shipping->PostalCode = $request->PostalCodeShip;
+            $shipping->Country = $request->CountryShip;
+            $shipping->PhoneNumber = $request->PhoneNumberShip;
+            $shipping->save();
+        } else {
+            //store shipping address
+            $shipping = new Address;
+            $shipping->AddressType = 'ShipTo';
+            $shipping->UserEmail = $request->UserEmailShip;
+            $shipping->Attention = $request->AttentionShip;
+            $shipping->Street1 = $request->Street1Ship;
+            $shipping->City = $request->CityShip;
+            $shipping->Province = $request->ProvinceShip;
+            $shipping->PostalCode = $request->PostalCodeShip;
+            $shipping->Country = $request->CountryShip;
+            $shipping->PhoneNumber = $request->PhoneNumberShip;
+            $shipping->save();
+            session()->put('shipping_id', $shipping->id);
+
+            //attach addresses to order
+            $order = Order::find($request->order_id);
+            //$order->BillToId = $billing->id;
+            $order->ShipToId = $shipping->id;
+            $order->save();
+        }
         //store billing address
         /*
         $billing = new Address;
@@ -232,12 +258,6 @@ class CheckoutController extends Controller
         $billing->save();
         */
 
-        //attach addresses to order
-        $order = Order::find($request->order_id);
-        //$order->BillToId = $billing->id;
-        $order->ShipToId = $shipping->id;
-        $order->save();
-
         $this->calculateShipping($shipping, $order);
         $this->calculateTaxes($shipping, $order);
 
@@ -249,22 +269,41 @@ class CheckoutController extends Controller
         //calculate shipping
         $price = 20;
 
-        $orderLine = new OrderLine;
-        $orderLine->order_id = $order->id;
-        $orderLine->LineTypeID = 5;
-        $orderLine->BaseNBR = null;
-        $orderLine->BasePrice = 0;
-        $orderLine->BaseCost = 0;
-        $orderLine->Qty = 0;
-        $orderLine->Taxable = 0;
-        $orderLine->ProductDesc = 'Freight';
-        $orderLine->PartDesc = 'Shipping & Handling';
-        $orderLine->PartPrice = $price;
-        $orderLine->ExtPartPrice = $price;
-        $orderLine->PartCost = 0;
-        $orderLine->ExtPartCost = 0;
-        $orderLine->SalesTax = 0;
-        $orderLine->save();
+        $shippingLineItem = $order->lines->where('LineTypeID', OrderLine::FREIGHT)->first();
+        if ($shippingLineItem) {
+            $shippingLineItem->LineTypeID = OrderLine::FREIGHT;
+            $shippingLineItem->BaseNBR = null;
+            $shippingLineItem->BasePrice = 0;
+            $shippingLineItem->BaseCost = 0;
+            $shippingLineItem->Qty = 0;
+            $shippingLineItem->Taxable = 0;
+            $shippingLineItem->ProductDesc = 'Freight';
+            $shippingLineItem->PartDesc = 'Shipping & Handling';
+            $shippingLineItem->PartPrice = $price;
+            $shippingLineItem->ExtPartPrice = $price;
+            $shippingLineItem->PartCost = 0;
+            $shippingLineItem->ExtPartCost = 0;
+            $shippingLineItem->SalesTax = 0;
+            $shippingLineItem->save();
+        } else {
+
+            $orderLine = new OrderLine;
+            $orderLine->order_id = $order->id;
+            $orderLine->LineTypeID = OrderLine::FREIGHT;
+            $orderLine->BaseNBR = null;
+            $orderLine->BasePrice = 0;
+            $orderLine->BaseCost = 0;
+            $orderLine->Qty = 0;
+            $orderLine->Taxable = 0;
+            $orderLine->ProductDesc = 'Freight';
+            $orderLine->PartDesc = 'Shipping & Handling';
+            $orderLine->PartPrice = $price;
+            $orderLine->ExtPartPrice = $price;
+            $orderLine->PartCost = 0;
+            $orderLine->ExtPartCost = 0;
+            $orderLine->SalesTax = 0;
+            $orderLine->save();
+        }
 
         return;
     }
@@ -333,8 +372,8 @@ class CheckoutController extends Controller
                 // 'metadata' => [
                 // ]
             ]);
-        } catch (Exception $e) {
-
+        } catch (CardErrorException $e) {
+            return back()->withErrors('Error! '.$e->getMessage());
         }
         
         //find order

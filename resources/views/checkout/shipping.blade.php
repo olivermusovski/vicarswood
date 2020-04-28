@@ -2,6 +2,44 @@
 
 @section('stylesheets')
 <script src="http://www.codermen.com/js/jquery.js"></script>
+<script src="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.js"></script>
+<link type="text/css" rel="stylesheet" href="https://api.mqcdn.com/sdk/place-search-js/v1.0.0/place-search.css"/>
+<script type="text/javascript">
+  window.onload = function() {
+    let ps = placeSearch({
+      key: 'TUVfzD0Yf9wSRBTwUm4yKk9vUzYZ8J7m',
+      container: document.querySelector('#form-address'),
+      useDeviceLocation: true,
+      collection: [
+        'address',
+      ]
+    });
+
+    ps.on('change', (e) => {
+      document.querySelector('#form-street').value = e.result.name || '';
+      document.querySelector('#form-city').value = e.result.city || '';
+      // document.querySelector('#form-state').value = e.result.state || '';
+      document.querySelector('#form-state-code').value = e.result.stateCode || '';
+      document.querySelector('#form-zip').value = e.result.postalCode || '';
+      document.querySelector('#form-country').value = e.result.country || '';
+      document.querySelector('#form-country-code').value = e.result.countryCode || '';
+    });
+
+    ps.on('clear', () => {
+      document.querySelector('#form-street').value = '';
+      document.querySelector('#form-city').value = '';
+      // document.querySelector('#form-state').value = '';
+      document.querySelector('#form-state-code').value = '';
+      document.querySelector('#form-zip').value = '';
+      document.querySelector('#form-country').value = '';
+      document.querySelector('#form-country-code').value = '';
+    });
+
+    ps.on('error', (e) => {
+      console.log(e);
+    });
+  }
+</script>
 @endsection
 
 @section('title', '| Checkout')
@@ -42,7 +80,42 @@
 
 		<div class="row justify-content-center mt-3">
 			<div class="col-md-7">
-				<form action="{{ route('checkout.storeShippingAddress') }}" method="POST">
+				{{-- <form action="/" class="form">
+			        <div class="form-group">
+			          <label for="form-address">Address*</label>
+			          <input type="search" class="form-control" id="form-address" placeholder="Where do you live?" />
+			        </div>
+			        <div class="form-group">
+			          <label for="form-street">Street</label>
+			          <input type="text" class="form-control" id="form-street" placeholder="Street number and name" />
+			        </div>
+			        <div class="form-group">
+			          <label for="form-city">City*</label>
+			          <input type="text" class="form-control" id="form-city" placeholder="City">
+			        </div>
+			        <div class="form-group">
+			          <label for="form-state">State*</label>
+			          <input type="text" class="form-control" id="form-state" placeholder="State">
+			        </div>
+			        <div class="form-group">
+			          <label for="form-state-code">State Code*</label>
+			          <input type="text" class="form-control" id="form-state-code" placeholder="State Code">
+			        </div>
+			        <div class="form-group">
+			          <label for="form-zip">ZIP code*</label>
+			          <input type="text" class="form-control" id="form-zip" placeholder="ZIP code">
+			        </div>
+			        <div class="form-group">
+			          <label for="form-country">Country*</label>
+			          <input type="text" class="form-control" id="form-country" placeholder="Country">
+			        </div>
+			        <div class="form-group">
+			          <label for="form-country-code">Country Code*</label>
+			          <input type="text" class="form-control" id="form-country-code" placeholder="Country Code">
+			        </div>
+			      </form> --}}
+
+				<form action="{{ route('checkout.storeShippingAddress') }}" method="POST" class="form">
 					@csrf
 
 					@if(!$order->user_id)
@@ -52,7 +125,7 @@
 						</div>
 						
 						<div class="form-group mt-1">
-							<input type="email" class="form-control form-control-lg" id="email" name="UserEmailShip" value="" placeholder="Email Address">
+							<input type="email" class="form-control" id="email" name="UserEmailShip" value="" placeholder="{{ __("Email Address") }}">
 						</div>
 
 						<hr>
@@ -61,12 +134,44 @@
 					<h4 class="font-weight-bold">{{ __("Shipping Details") }}</h4>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="name" name="AttentionShip" value="" placeholder={{ __("Name") }}>
+						<input type="text" class="form-control" id="name" name="AttentionShip" value="" placeholder="{{ __("Name") }}" required>
 					</div>
 
 					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="address" name="Street1Ship" value="" placeholder={{ __("Address") }}>
+						<input type="text" class="form-control" id="form-address" name="AdressShip" value="" placeholder="{{ __("Search for your address") }}">
 					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="form-street" name="Street1Ship" value="" placeholder="{{ __("Address") }}" required>
+					</div>
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="form-city" name="CityShip" value="" placeholder="{{ __("City") }}" required>
+					</div>
+				
+					<div class="form-group">
+						<input type="text" class="form-control" id="form-state-code" name="ProvinceShip" value="" placeholder="{{ __("State") }}" required>
+					</div>
+
+					{{-- <div class="form-group">
+						<input type="text" class="form-control" id="form-state-code" name="ProvinceCodeShip" value="" placeholder="{{ __("State Code") }}">
+					</div> --}}
+				
+					<div class="form-group">
+						<input type="text" class="form-control" id="form-zip" name="PostalCodeShip" value="" placeholder="{{ __("Postal Code") }}" required>
+					</div>
+				
+					<div class="form-group">
+			          	<input type="text" class="form-control" id="form-country" name="CountryShip" placeholder="{{ __("Country") }}" required>
+			        </div>
+
+			        {{-- <div class="form-group">
+			          	<input type="text" class="form-control" id="form-country-code" name="CountryCodeShip" placeholder="{{ __("Country Code") }}">
+			        </div> --}}
+
+					<div class="form-group">
+						<input type="text" class="form-control" id="phone" name="PhoneNumberShip" value="" placeholder="{{ __("Phone Number") }}">
+					</div>					
 
 					{{-- <div class="form-group">
 						<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
@@ -94,30 +199,14 @@
 							</div>
 						</div> --}}
 
-						<div class="col-md-12 col-lg-6">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="city" name="CityShip" value="" placeholder={{ __("City") }}>
-							</div>
-						</div>
+						
 
-						<div class="col-md-12 col-lg-3">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="province" name="ProvinceShip" value="" placeholder={{ __("State") }}>
-							</div>
-						</div>
-
-						<div class="col-md-12 col-lg-3">
-							<div class="form-group">
-								<input type="text" class="form-control form-control-lg" id="postalcode" name="PostalCodeShip" value="" placeholder={{ __("Postal Code") }}>
-							</div>
-						</div>
+						
 					</div>
 
 					
 			
-					<div class="form-group">
-						<input type="text" class="form-control form-control-lg" id="phone" name="PhoneNumberShip" value="" placeholder={{ __("Phone Number") }}>
-					</div>
+					
 
 					
 
@@ -199,7 +288,7 @@
 
 @section('scripts')	
 
-	<script type="text/javascript">
+	{{-- <script type="text/javascript">
 		$('#country').change(function(){
 	    var countryID = $(this).val();    
 	    if(countryID){
@@ -247,6 +336,6 @@
 	    }
 	        
 	   });
-	</script>
+	</script> --}}
 
 @endsection 

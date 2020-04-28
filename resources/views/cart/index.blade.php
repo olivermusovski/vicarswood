@@ -35,7 +35,7 @@
 		@else
 			<h2>{{ Cart::getTotalQuantity() }} {{ __("item(s) in Shopping Cart") }}</h2>
 			<hr>
-			@foreach ( Cart::getContent() as $item)
+			@foreach (Cart::getContent() as $item)
 				<div class="row">
 					<div class="col-12 col-md-8 col-lg-5">
 						<a href="{{ route('products.show', $item->id) }}"><img src="{{ asset('images/'.$item->attributes->imagepath) }}" alt="product" class="rounded float-md-left mr-md-2 mx-auto img-fluid"></a>
@@ -55,13 +55,13 @@
 						<form action="{{ route('cart.destroy', $item->id) }}" method="POST">
 							@csrf
 							{{ method_field('DELETE') }}
-							<button type="submit" class="btn btn-block btn-secondary">{{ __("Remove") }}</button>
+							<button type="submit" class="btn btn-block btn-secondary"><i class="fas fa-trash-alt"></i> {{ __("Remove") }}</button>
 						</form>
 					</div>
 					<div class="col-6 col-md-3 col-lg-2 mt-4 align-self-md-end">
 						<form action="#" method="POST">
 							@csrf
-							<button type="submit" class="btn btn-block btn-secondary">{{ __("Save for later") }}</button>
+							<button type="submit" class="btn btn-block btn-secondary">{{ __("Save For Later") }}</button>
 						</form>
 					</div>
 					<div class="col-6 col-md-2 col-lg-2 mt-4">

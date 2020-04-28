@@ -71,8 +71,24 @@
 			</div>
 
 			<div class="col-lg-7 mt-3 mt-lg-0" id="checkout">
+				{{-- Shipping information --}}
+				<div class="card">
+					<h5 class="card-header">{{ __("Shipping Information") }}</h5>
+					<div class="card-body">
+						<ul class="list-unstyled">
+							<li>{{ $order->shippingAddress->Attention }}</li>
+							<li>{{ $order->shippingAddress->Street1 }}</li>
+							<li>{{ $order->shippingAddress->City }}, {{ $order->shippingAddress->Province }} {{ $order->shippingAddress->PostalCode }}</li>
+							<li><br></li>
+							<li>{{ $order->shippingAddress->UserEmail }}</li>
+							<li>{{ $order->shippingAddress->PhoneNumber }}</li>
+						</ul>
+						<a href="#" class="">Edit</a>
+					</div>
+				</div>
+
 				{{-- Discount codes --}}
-				<p>{{ __("Have a code?") }}</p>
+				<p class="mt-3">{{ __("Have a code?") }}</p>
 				<form action="{{ route('coupon.store') }}" method="POST">
 					@csrf
 					<div class="input-group mb-2">
@@ -135,10 +151,10 @@
 					<p>BILLING INFORMATION</p>
 					
 					<div class="form-group">
-						<input class="w-100" id="name" name="name" required placeholder={{ __("Cardholder_Name") }}>
+						<input class="w-100" id="name" name="name" required placeholder="{{ __("Cardholder Name") }}">
 					</div>
 					<div class="form-group">
-						<input class="w-100" id="email" type="email" name="email" required placeholder={{ __("Email_Address") }}>
+						<input class="w-100" id="email" type="email" name="email" required placeholder="{{ __("Email Address") }}">
 					</div>
 					<div class="form-group">
 						<label for="card-element">{{ __("PAYMENT INFORMATION") }}</label>
@@ -193,7 +209,7 @@
 
 					<div class="row">
 						<div class="col-md-12">
-							<button type="submit" class="btn btn-primary btn-block">{{ __("Complete Checkout") }}</button>
+							<button type="submit" id="complete-order" class="btn btn-primary btn-block">{{ __("Complete Checkout") }}</button>
 						</div>
 					</div>
 
@@ -238,6 +254,9 @@
 		form.addEventListener('submit', function(event) {
 			event.preventDefault();
 
+			// Disable the submit button to prevent repeated clicks
+			document.getElementById('complete-order').disabled = true;
+
 			var options = {
 				name: document.getElementById('name').value,
 				email: document.getElementById('email').value
@@ -247,6 +266,9 @@
 				if(result.error) {
 					var errorElement = document.getElementById('card-errors');
 					errorElement.textContent = result.error.message;
+
+					// Enable the submit button
+					document.getElementById('complete-order').disabled = false;
 				} else {
 					stripeTokenHandler(result.token);
 				}
